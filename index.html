@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Child Nutrition & Growth Tracker | SDSS & Community Spark</title>
+  <!-- Tailwind CSS CDN for rapid styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    .active-tab {
+      border-bottom: 3px solid #800020;
+      color: #800020;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+
+  <!-- Header / Navigation Bar -->
+  <header class="bg-gradient-to-r from-red-950 to-red-900 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white text-red-900 p-2 rounded-lg font-bold text-xl">
+          <i class="fa-solid font-bold fa-heart-pulse"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold tracking-wide">Digital Child Nutrition Tracker</h1>
+          <p class="text-xs text-red-200">Shanti Devi Shiksha Samiti (SDSS) × Team Community Spark</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3 text-xs bg-red-900/60 px-3 py-1.5 rounded-full border border-red-700">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        <span>Cloud Sync: Active</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navigation Tabs -->
+  <nav class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm">
+      <button onclick="switchTab('caregiver')" id="tab-caregiver" class="py-4 px-2 active-tab flex items-center space-x-2">
+        <i class="fa-solid fa-hand-holding-hand"></i>
+        <span>Caregiver 1-Tap Entry</span>
+      </button>
+      <button onclick="switchTab('dashboard')" id="tab-dashboard" class="py-4 px-2 text-gray-500 hover:text-red-900 flex items-center space-x-2">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Real-Time Risk Dashboard</span>
+      </button>
+      <button onclick="switchTab('profiles')" id="tab-profiles" class="py-4 px-2 text-gray-500 hover:text-red-900 flex items-center space-x-2">
+        <i class="fa-solid fa-id-card"></i>
+        <span>Child Profiles</span>
+      </button>
+      <button onclick="switchTab('reports')" id="tab-reports" class="py-4 px-2 text-gray-500 hover:text-red-900 flex items-center space-x-2">
+        <i class="fa-solid fa-file-contract"></i>
+        <span>Donor Impact Reports</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="hidden fixed bottom-5 right-5 bg-emerald-600 text-white px-5 py-3 rounded-lg shadow-lg z-50 flex items-center space-x-2 transition-all">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-msg">Action completed successfully!</span>
+  </div>
+
+  <!-- Content Containers -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+
+    <!-- 1. CAREGIVER 1-TAP ENTRY TAB -->
+    <section id="sec-caregiver" class="space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+        <div>
+          <h2 class="text-xl font-bold text-gray-900">Daily Caregiver Portal</h2>
+          <p class="text-xs text-gray-500">Tap to record meal distribution and attendance in under 5 seconds.</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <label class="text-xs font-semibold text-gray-600">Active Meal Session:</label>
+          <select id="meal-type" class="bg-gray-100 border border-gray-300 rounded-lg px-3 py-1.5 text-sm font-medium focus:ring-2 focus:ring-red-900 outline-none">
+            <option>Morning Breakfast</option>
+            <option selected>Afternoon Lunch</option>
+            <option>Evening Snack</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Quick Action Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="child-cards">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 2. REAL-TIME RISK DASHBOARD TAB -->
+    <section id="sec-dashboard" class="hidden space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+          <p class="text-xs font-semibold text-gray-500 uppercase">Total Enrolled</p>
+          <p class="text-3xl font-bold text-gray-900 mt-1">124</p>
+          <p class="text-xs text-emerald-600 mt-1"><i class="fa-solid fa-arrow-up"></i> 100% active at SDSS</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+          <p class="text-xs font-semibold text-gray-500 uppercase">Today's Meals Served</p>
+          <p class="text-3xl font-bold text-emerald-600 mt-1" id="dash-meals-count">218</p>
+          <p class="text-xs text-gray-500 mt-1">Target: 248 daily portions</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+          <p class="text-xs font-semibold text-gray-500 uppercase">High Risk (Red Alerts)</p>
+          <p class="text-3xl font-bold text-red-600 mt-1">3</p>
+          <p class="text-xs text-red-500 mt-1"><i class="fa-solid fa-triangle-exclamation"></i> Immediate intervention needed</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+          <p class="text-xs font-semibold text-gray-500 uppercase">Moderate Risk (Yellow)</p>
+          <p class="text-3xl font-bold text-amber-500 mt-1">7</p>
+          <p class="text-xs text-amber-600 mt-1">Monitored weekly</p>
+        </div>
+      </div>
+
+      <!-- Priority Risk Table -->
+      <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+          <h3 class="font-bold text-gray-900">Priority Health & Growth Watchlist (WHO Standard)</h3>
+          <span class="text-xs bg-red-100 text-red-800 px-2.5 py-1 rounded-full font-semibold">Auto-Evaluated</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-gray-600">
+            <thead class="bg-gray-50 text-gray-700 text-xs uppercase border-b border-gray-200">
+              <tr>
+                <th class="px-6 py-3">Child Name</th>
+                <th class="px-6 py-3">Age</th>
+                <th class="px-6 py-3">Height / Weight</th>
+                <th class="px-6 py-3">WHO Status</th>
+                <th class="px-6 py-3">Caregiver Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 font-semibold text-gray-900">Aarav Kumar</td>
+                <td class="px-6 py-4">4 yrs</td>
+                <td class="px-6 py-4">92 cm / 11.2 kg</td>
+                <td class="px-6 py-4">
+                  <span class="bg-red-100 text-red-700 font-bold px-2 py-1 rounded-md text-xs">
+                    <i class="fa-solid fa-circle-exclamation mr-1"></i>Severe Stunting (Red)
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-xs font-medium text-red-900 underline cursor-pointer">Assign Extra Dietary Ration</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 font-semibold text-gray-900">Priya Sharma</td>
+                <td class="px-6 py-4">3 yrs</td>
+                <td class="px-6 py-4">88 cm / 10.5 kg</td>
+                <td class="px-6 py-4">
+                  <span class="bg-amber-100 text-amber-700 font-bold px-2 py-1 rounded-md text-xs">
+                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>Underweight (Yellow)
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-xs font-medium text-amber-900 underline cursor-pointer">Schedule Growth Rescreening</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CHILD PROFILES TAB -->
+    <section id="sec-profiles" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <h3 class="text-lg font-bold text-gray-900 mb-4">Register New Child / Search Profile</h3>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <input type="text" id="reg-name" placeholder="Child's Full Name" class="border border-gray-300 rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-red-900" />
+          <input type="number" id="reg-age" placeholder="Age (Years)" class="border border-gray-300 rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-red-900" />
+          <input type="number" id="reg-weight" placeholder="Weight (kg)" class="border border-gray-300 rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-red-900" />
+          <button onclick="addNewChild()" class="bg-red-900 hover:bg-red-950 text-white font-semibold py-2 px-4 rounded-lg text-sm transition">
+            <i class="fa-solid fa-plus mr-1"></i> Register Profile
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <h3 class="text-lg font-bold text-gray-900 mb-2">Child Growth Curve Simulation</h3>
+        <p class="text-xs text-gray-500 mb-4">Centralized record maintained per child registered by caregivers.</p>
+        <div class="h-40 bg-gray-50 rounded-lg border border-dashed border-gray-300 flex items-center justify-center text-gray-400 text-sm">
+          <i class="fa-solid fa-chart-area text-2xl mr-2 text-red-900"></i>
+          <span>WHO Growth Chart Curve Visualizer (Simulated)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. DONOR IMPACT REPORTS TAB -->
+    <section id="sec-reports" class="hidden space-y-6">
+      <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900">Donor-Ready Impact Report</h3>
+            <p class="text-xs text-gray-500">Auditable statistics generated directly from caregiver entries.</p>
+          </div>
+          <button onclick="showToast('Exporting PDF Report...')" class="bg-gray-800 hover:bg-gray-900 text-white text-xs font-bold py-2 px-4 rounded-lg flex items-center space-x-2">
+            <i class="fa-solid fa-download"></i>
+            <span>Export Verified Audit PDF</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <h4 class="font-bold text-gray-700 text-sm mb-2">Meal Distribution Efficiency</h4>
+            <p class="text-2xl font-bold text-red-900">98.4%</p>
+            <p class="text-xs text-gray-500 mt-1">Zero meal leakage recorded across active shifts.</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <h4 class="font-bold text-gray-700 text-sm mb-2">Average Logging Time</h4>
+            <p class="text-2xl font-bold text-red-900">2.8 Seconds</p>
+            <p class="text-xs text-gray-500 mt-1">Exceeds the target 5-second entry mark.</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <h4 class="font-bold text-gray-700 text-sm mb-2">Nutritional Recovery Rate</h4>
+            <p class="text-2xl font-bold text-emerald-700">82.0%</p>
+            <p class="text-xs text-gray-500 mt-1">Children upgraded from Yellow alert to Normal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 border-t border-gray-200 py-4 mt-auto text-center text-xs text-gray-500">
+    <p>Digital Child Nutrition & Growth Tracker — Designed for Shanti Devi Shiksha Samiti (SDSS)</p>
+    <p class="mt-1 font-semibold text-gray-600">Built by Team Community Spark | K.R. Mangalam University</p>
+  </footer>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    // Initial Mock Data
+    let childrenData = [
+      { id: 1, name: "Aarav Kumar", age: 4, status: "red", attendance: false, meals: 0, weight: 11.2 },
+      { id: 2, name: "Priya Sharma", age: 3, status: "yellow", attendance: false, meals: 0, weight: 10.5 },
+      { id: 3, name: "Rohan Singh", age: 5, status: "green", attendance: false, meals: 0, weight: 16.0 },
+      { id: 4, name: "Ananya Das", age: 4, status: "green", attendance: false, meals: 0, weight: 14.8 }
+    ];
+
+    let totalMealsServed = 218;
+
+    // Render Caregiver 1-Tap Cards
+    function renderCaregiverCards() {
+      const container = document.getElementById("child-cards");
+      container.innerHTML = "";
+
+      childrenData.forEach(child => {
+        let badgeColor = child.status === 'red' ? 'bg-red-100 text-red-800 border-red-300' :
+                         child.status === 'yellow' ? 'bg-amber-100 text-amber-800 border-amber-300' :
+                         'bg-emerald-100 text-emerald-800 border-emerald-300';
+
+        let badgeText = child.status === 'red' ? 'High Risk' :
+                        child.status === 'yellow' ? 'Moderate Risk' : 'Healthy';
+
+        const card = document.createElement("div");
+        card.className = "bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between space-y-4 hover:border-red-900 transition";
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="font-bold text-gray-900 text-base">${child.name}</h3>
+              <p class="text-xs text-gray-500">Age: ${child.age} yrs | Weight: ${child.weight} kg</p>
+            </div>
+            <span class="text-xs px-2.5 py-1 rounded-full font-bold border ${badgeColor}">
+              ${badgeText}
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-gray-100">
+            <button onclick="toggleAttendance(${child.id})" class="py-2 px-3 text-xs font-semibold rounded-lg border transition ${child.attendance ? 'bg-emerald-800 text-white border-emerald-800' : 'bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100'}">
+              <i class="fa-solid ${child.attendance ? 'fa-user-check' : 'fa-user-plus'} mr-1"></i>
+              ${child.attendance ? 'Present' : 'Mark Present'}
+            </button>
+            <button onclick="logMeal(${child.id})" class="py-2 px-3 text-xs font-semibold rounded-lg bg-red-900 hover:bg-red-950 text-white transition">
+              <i class="fa-solid fa-utensils mr-1"></i> Log Meal (${child.meals})
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Toggle Attendance
+    function toggleAttendance(id) {
+      const child = childrenData.find(c => c.id === id);
+      if (child) {
+        child.attendance = !child.attendance;
+        showToast(`${child.name} marked ${child.attendance ? 'Present' : 'Absent'}`);
+        renderCaregiverCards();
+      }
+    }
+
+    // Log Meal
+    function logMeal(id) {
+      const child = childrenData.find(c => c.id === id);
+      if (child) {
+        child.meals += 1;
+        totalMealsServed += 1;
+        document.getElementById("dash-meals-count").innerText = totalMealsServed;
+        showToast(`Logged meal for ${child.name} in < 3s`);
+        renderCaregiverCards();
+      }
+    }
+
+    // Add New Child
+    function addNewChild() {
+      const name = document.getElementById("reg-name").value;
+      const age = document.getElementById("reg-age").value;
+      const weight = document.getElementById("reg-weight").value;
+
+      if (!name || !age) {
+        alert("Please enter a name and age.");
+        return;
+      }
+
+      const newChild = {
+        id: childrenData.length + 1,
+        name: name,
+        age: parseInt(age),
+        status: "green",
+        attendance: false,
+        meals: 0,
+        weight: weight ? parseFloat(weight) : 12.0
+      };
+
+      childrenData.push(newChild);
+      showToast(`Registered ${name} successfully!`);
+      document.getElementById("reg-name").value = "";
+      document.getElementById("reg-age").value = "";
+      document.getElementById("reg-weight").value = "";
+      renderCaregiverCards();
+    }
+
+    // Navigation Switcher
+    function switchTab(tabName) {
+      ['caregiver', 'dashboard', 'profiles', 'reports'].forEach(t => {
+        document.getElementById(`sec-${t}`).classList.add('hidden');
+        document.getElementById(`tab-${t}`).classList.remove('active-tab');
+        document.getElementById(`tab-${t}`).classList.add('text-gray-500');
+      });
+
+      document.getElementById(`sec-${tabName}`).classList.remove('hidden');
+      document.getElementById(`tab-${tabName}`).classList.add('active-tab');
+      document.getElementById(`tab-${tabName}`).classList.remove('text-gray-500');
+    }
+
+    // Toast Alert Helper
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      document.getElementById("toast-msg").innerText = msg;
+      toast.classList.remove("hidden");
+      setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 2500);
+    }
+
+    // Initial Execution
+    renderCaregiverCards();
+  </script>
+</body>
+</html>
