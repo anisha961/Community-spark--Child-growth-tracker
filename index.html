@@ -2,191 +2,749 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Digital Child Nutrition Tracker | SDSS & Team Community Spark</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Child Nutrition & Growth Tracker | SDSS & Team Community Spark</title>
+  
+  <!-- FontAwesome Icons CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-          colors: {
-            burgundy: {
-              50: '#fdf2f4',
-              100: '#fbe6e9',
-              600: '#9b1c31',
-              800: '#580d19',
-              900: '#3b060e',
-              950: '#230207',
-            },
-            cream: {
-              50: '#fffdfa',
-              100: '#fbf7ee',
-              200: '#f7efdd',
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    .active-nav {
-      background-color: rgba(255, 255, 255, 0.15);
-      border-bottom: 3px solid #fbe6e9;
-      font-weight: 700;
+    :root {
+      --burgundy-950: #230409;
+      --burgundy-900: #3D0810;
+      --burgundy-800: #4A0E17;
+      --burgundy-700: #6B1523;
+      --burgundy-600: #8C1C2E;
+      --burgundy-100: #F7E8EC;
+      --burgundy-50: #FAF0F3;
+      
+      --cream-50: #FFFCF7;
+      --cream-100: #FDFBF7;
+      --cream-200: #F5EFE6;
+      --cream-300: #EADFCF;
+      
+      --gold-500: #D4AF37;
+      --gold-600: #B89320;
+      --gold-100: #FAF2D8;
+      
+      --emerald-600: #059669;
+      --emerald-100: #D1FAE5;
+      
+      --amber-500: #F59E0B;
+      --amber-100: #FEF3C7;
+      
+      --red-600: #DC2626;
+      --red-100: #FEE2E2;
+
+      --slate-900: #0F172A;
+      --slate-800: #1E293B;
+      --slate-600: #475569;
+      --slate-500: #64748B;
+      --slate-200: #E2E8F0;
+      --slate-100: #F1F5F9;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
     }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream-100);
+      color: var(--slate-800);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .app-header {
+      background: linear-gradient(135deg, var(--burgundy-950) 0%, var(--burgundy-800) 100%);
+      color: white;
+      box-shadow: var(--shadow-lg);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      background: white;
+      color: var(--burgundy-800);
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: inset 0 0 0 2px var(--gold-500);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: white;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--burgundy-100);
+      opacity: 0.9;
+    }
+
+    .sync-badge {
+      background: rgba(35, 4, 9, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--cream-100);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #34D399;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #34D399;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    .nav-tabs-wrapper {
+      background: rgba(35, 4, 9, 0.9);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      overflow-x: auto;
+    }
+
+    .nav-tabs-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      padding: 0 24px;
+      gap: 8px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--burgundy-100);
+      padding: 14px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      border-bottom: 3px solid transparent;
+      opacity: 0.8;
+    }
+
+    .tab-btn:hover {
+      opacity: 1;
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      opacity: 1;
+      color: white;
+      border-bottom-color: var(--gold-500);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .main-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 24px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--cream-300);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--burgundy-950);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--slate-500);
+      margin-top: 2px;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .metric-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--cream-300);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .metric-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-500);
+    }
+
+    .metric-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--burgundy-950);
+      margin: 8px 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .metric-subtext {
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .children-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .child-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--cream-300);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .child-card:hover {
+      border-color: var(--burgundy-700);
+      box-shadow: var(--shadow-md);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .badge-red {
+      background-color: var(--red-100);
+      color: var(--red-600);
+      border: 1px solid rgba(220, 38, 38, 0.2);
+    }
+
+    .badge-yellow {
+      background-color: var(--amber-100);
+      color: var(--amber-500);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .badge-green {
+      background-color: var(--emerald-100);
+      color: var(--emerald-600);
+      border: 1px solid rgba(5, 150, 105, 0.2);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--burgundy-800);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--burgundy-950);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary {
+      background-color: var(--cream-200);
+      color: var(--slate-800);
+      border: 1px solid var(--cream-300);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--cream-300);
+    }
+
+    .btn-gold {
+      background-color: var(--gold-500);
+      color: var(--burgundy-950);
+    }
+
+    .btn-gold:hover {
+      background-color: var(--gold-600);
+      color: white;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--burgundy-700);
+      color: var(--burgundy-800);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--burgundy-50);
+    }
+
+    .data-table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--cream-300);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background-color: var(--burgundy-950);
+      color: white;
+      padding: 14px 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+
+    .data-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--cream-200);
+      color: var(--slate-800);
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:hover td {
+      background-color: var(--cream-50);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--slate-700);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--cream-300);
+      background-color: var(--cream-50);
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--slate-800);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--burgundy-700);
+      box-shadow: 0 0 0 3px rgba(107, 21, 35, 0.1);
+      background-color: white;
+    }
+
+    .hero-donor {
+      background: linear-gradient(135deg, var(--burgundy-950) 0%, var(--burgundy-800) 100%);
+      color: white;
+      border-radius: var(--radius-xl);
+      padding: 40px 32px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .hero-donor::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .tier-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--cream-300);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    .tier-card.featured {
+      border: 2px solid var(--gold-500);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .tier-featured-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold-500);
+      color: var(--burgundy-950);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 14px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--burgundy-950);
+      color: white;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 1000;
+      border: 1px solid var(--burgundy-700);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      padding: 20px;
+    }
+
+    .modal-backdrop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-xl);
+      max-width: 500px;
+      width: 100%;
+      padding: 32px;
+      box-shadow: var(--shadow-xl);
+      transform: scale(0.95);
+      transition: transform 0.2s ease;
+    }
+
+    .modal-backdrop.show .modal-content {
+      transform: scale(1);
+    }
+
+    .hidden { display: none !important; }
+    .text-burgundy { color: var(--burgundy-800); }
+    .text-gold { color: var(--gold-600); }
+    .text-emerald { color: var(--emerald-600); }
+    .text-red { color: var(--red-600); }
+    .text-amber { color: var(--amber-500); }
+    .text-muted { color: var(--slate-500); }
+    .font-mono { font-family: monospace; }
   </style>
 </head>
-<body class="bg-cream-100 text-gray-800 font-sans min-h-screen flex flex-col selection:bg-burgundy-600 selection:text-white">
+<body>
 
-  <!-- Header / Navigation Bar -->
-  <header class="bg-gradient-to-r from-burgundy-950 via-burgundy-900 to-burgundy-800 text-white shadow-lg sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
-      <div class="flex items-center space-x-3">
-        <div class="bg-white text-burgundy-900 w-10 h-10 rounded-xl flex items-center justify-center font-extrabold text-xl shadow-inner">
-          <i class="fa-solid fa-heart-pulse text-burgundy-600"></i>
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-icon">
+          <i class="fa-solid fa-heart-pulse"></i>
         </div>
         <div>
-          <h1 class="text-lg font-bold tracking-tight text-white leading-tight">Community Spark <span class="text-burgundy-100 font-normal">| Nutrition Tracker</span></h1>
-          <p class="text-xs text-burgundy-100/80">In Strategic Partnership with <span class="font-semibold text-white">Shanti Devi Shiksha Samiti (SDSS)</span></p>
+          <div class="brand-title">Child Nutrition & Growth Tracker</div>
+          <div class="brand-subtitle">Team Community Spark × Shanti Devi Shiksha Samiti (SDSS), Gurugram</div>
         </div>
       </div>
-      
-      <div class="flex items-center space-x-3 text-xs bg-burgundy-950/60 px-3.5 py-1.5 rounded-full border border-burgundy-600/40 shadow-sm">
-        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-        <span class="font-medium text-cream-100">SDSS Cloud Synchronization: Active</span>
+      <div class="sync-badge">
+        <span class="pulse-dot"></span>
+        <span>SDSS Cloud Sync: Active</span>
       </div>
     </div>
 
-    <!-- Tab Strip -->
-    <div class="bg-burgundy-950/80 border-t border-burgundy-800/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 flex space-x-1 sm:space-x-4 text-xs sm:text-sm overflow-x-auto">
-        <button onclick="switchTab('caregiver')" id="tab-caregiver" class="py-3 px-4 active-nav flex items-center space-x-2 whitespace-nowrap transition">
+    <div class="nav-tabs-wrapper">
+      <div class="nav-tabs-container">
+        <button onclick="switchTab('caregiver')" id="tab-caregiver" class="tab-btn active">
           <i class="fa-solid fa-hand-holding-heart"></i>
           <span>Caregiver 1-Tap Portal</span>
         </button>
-        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="py-3 px-4 text-burgundy-100/70 hover:text-white flex items-center space-x-2 whitespace-nowrap transition">
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn">
           <i class="fa-solid fa-chart-line"></i>
           <span>WHO Risk Dashboard</span>
         </button>
-        <button onclick="switchTab('profiles')" id="tab-profiles" class="py-3 px-4 text-burgundy-100/70 hover:text-white flex items-center space-x-2 whitespace-nowrap transition">
+        <button onclick="switchTab('profiles')" id="tab-profiles" class="tab-btn">
           <i class="fa-solid fa-id-card"></i>
           <span>Child Profiles & Growth</span>
         </button>
-        <button onclick="switchTab('donor')" id="tab-donor" class="py-3 px-4 text-burgundy-100/70 hover:text-white flex items-center space-x-2 whitespace-nowrap transition">
-          <i class="fa-solid fa-hand-holding-dollar text-amber-300"></i>
-          <span class="text-amber-200 font-semibold">Donor Impact & Support</span>
+        <button onclick="switchTab('donor')" id="tab-donor" class="tab-btn">
+          <i class="fa-solid fa-hand-holding-dollar text-gold"></i>
+          <span>Donor & CSR Portal</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Notification Toast -->
-  <div id="toast" class="hidden fixed bottom-6 right-6 bg-burgundy-900 text-white px-5 py-3.5 rounded-xl shadow-2xl z-50 flex items-center space-x-3 border border-burgundy-600 transition-all">
-    <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
-    <span id="toast-msg" class="text-sm font-medium">Action completed successfully!</span>
-  </div>
+  <main class="main-container">
 
-  <!-- MAIN CONTENT AREA -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
-
-    <!-- TAB 1: CAREGIVER 1-TAP ENTRY -->
-    <section id="sec-caregiver" class="space-y-6">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-5 rounded-2xl shadow-sm border border-cream-200">
-        <div>
-          <h2 class="text-xl font-extrabold text-burgundy-950">Field Caregiver Workspace</h2>
-          <p class="text-xs text-gray-500 mt-0.5">Rapid attendance and meal distribution entry for SDSS shelter staff.</p>
+    <!-- 1. CAREGIVER 1-TAP PORTAL TAB -->
+    <section id="sec-caregiver" class="tab-section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <i class="fa-solid fa-clipboard-user text-burgundy"></i>
+              Caregiver Field Portal
+            </h2>
+            <p class="card-subtitle">Rapid 1-tap logging for attendance and meal distribution at SDSS Day-Shelter.</p>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <select id="meal-session-select" class="form-select" style="font-weight: 700;">
+                <option>Morning Breakfast</option>
+                <option selected>Afternoon Lunch</option>
+                <option>Evening Snack</option>
+              </select>
+            </div>
+            <button onclick="markAllPresent()" class="btn btn-secondary">
+              <i class="fa-solid fa-users-check"></i> Mark All Present
+            </button>
+          </div>
         </div>
-        <div class="flex items-center space-x-3 bg-cream-100 p-2 rounded-xl border border-cream-200">
-          <label class="text-xs font-bold text-burgundy-900 uppercase tracking-wider">Active Meal Session:</label>
-          <select id="meal-type" class="bg-white border border-cream-200 text-gray-800 rounded-lg px-3 py-1.5 text-xs font-semibold focus:ring-2 focus:ring-burgundy-600 outline-none">
-            <option>Morning Breakfast</option>
-            <option selected>Afternoon Lunch</option>
-            <option>Evening Snack</option>
-          </select>
-        </div>
-      </div>
 
-      <!-- Quick Action Cards Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="child-cards">
-        <!-- Rendered via JS -->
+        <div class="children-grid" id="caregiver-cards-container">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
       </div>
     </section>
 
-    <!-- TAB 2: WHO RISK DASHBOARD -->
-    <section id="sec-dashboard" class="hidden space-y-6">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm">
-          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Total Enrolled Children</p>
-          <p class="text-3xl font-extrabold text-burgundy-950 mt-1">124</p>
-          <p class="text-xs text-emerald-600 font-medium mt-1"><i class="fa-solid fa-circle-check"></i> 100% Verified at SDSS Shelter</p>
+    <!-- 2. WHO REAL-TIME RISK DASHBOARD TAB -->
+    <section id="sec-dashboard" class="tab-section hidden">
+      <!-- KPIs Grid -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Total Children Enrolled</span>
+          <div class="metric-value">124</div>
+          <span class="metric-subtext text-emerald">
+            <i class="fa-solid fa-circle-check"></i> 100% Registered at SDSS
+          </span>
         </div>
-        <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm">
-          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Meals Served Today</p>
-          <p class="text-3xl font-extrabold text-emerald-600 mt-1" id="dash-meals-count">218</p>
-          <p class="text-xs text-gray-500 font-medium mt-1">Target: 248 daily portions</p>
+        <div class="metric-card">
+          <span class="metric-label">Today's Meals Served</span>
+          <div class="metric-value text-emerald" id="dash-meals-counter">218</div>
+          <span class="metric-subtext text-muted">Target: 248 portions / day</span>
         </div>
-        <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm">
-          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Critical Malnutrition Risk</p>
-          <p class="text-3xl font-extrabold text-red-600 mt-1">3</p>
-          <p class="text-xs text-red-500 font-medium mt-1"><i class="fa-solid fa-triangle-exclamation"></i> Immediate intervention required</p>
+        <div class="metric-card">
+          <span class="metric-label">Critical Malnutrition Alerts</span>
+          <div class="metric-value text-red">3</div>
+          <span class="metric-subtext text-red">
+            <i class="fa-solid fa-triangle-exclamation"></i> Immediate action required
+          </span>
         </div>
-        <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm">
-          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Moderate Growth Faltering</p>
-          <p class="text-3xl font-extrabold text-amber-500 mt-1">7</p>
-          <p class="text-xs text-amber-600 font-medium mt-1">Monitored on weekly rescreening</p>
+        <div class="metric-card">
+          <span class="metric-label">Moderate Growth Risk</span>
+          <div class="metric-value text-amber">7</div>
+          <span class="metric-subtext text-amber">Monitored weekly</span>
         </div>
       </div>
 
-      <!-- Priority Risk Table -->
-      <div class="bg-white rounded-2xl border border-cream-200 shadow-sm overflow-hidden">
-        <div class="px-6 py-4 bg-burgundy-950 text-white flex justify-between items-center">
-          <h3 class="font-bold text-sm tracking-wide">Priority Child Wellness Watchlist (WHO Standard)</h3>
-          <span class="text-xs bg-burgundy-800 text-burgundy-100 px-3 py-1 rounded-full font-semibold border border-burgundy-600">Auto-Evaluated</span>
+      <!-- Priority Watchlist Table -->
+      <div class="card" style="padding: 0; overflow: hidden;">
+        <div style="padding: 20px 24px; background-color: var(--burgundy-950); color: white; display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 16px; font-weight: 800;">WHO Standard Growth Priority Watchlist</h3>
+          <span class="badge badge-red">Automated Health Flags</span>
         </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm text-gray-600">
-            <thead class="bg-cream-100 text-burgundy-950 text-xs uppercase font-bold border-b border-cream-200">
+        <div class="data-table-wrapper" style="border: none;">
+          <table class="data-table">
+            <thead>
               <tr>
-                <th class="px-6 py-3.5">Child Profile</th>
-                <th class="px-6 py-3.5">Age</th>
-                <th class="px-6 py-3.5">Height / Weight</th>
-                <th class="px-6 py-3.5">WHO Growth Classification</th>
-                <th class="px-6 py-3.5">Assigned Action</th>
+                <th>Child Profile</th>
+                <th>Age</th>
+                <th>Height / Weight</th>
+                <th>WHO Classification</th>
+                <th>Assigned Action Plan</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-cream-200">
-              <tr class="hover:bg-cream-50 transition">
-                <td class="px-6 py-4 font-bold text-gray-900">Aarav Kumar</td>
-                <td class="px-6 py-4 text-xs">4 yrs</td>
-                <td class="px-6 py-4 text-xs font-mono">92 cm / 11.2 kg</td>
-                <td class="px-6 py-4">
-                  <span class="bg-red-100 text-red-800 font-bold px-2.5 py-1 rounded-md text-xs border border-red-200 flex items-center w-max">
-                    <i class="fa-solid fa-circle-exclamation mr-1.5"></i>Severe Stunting (Red Flag)
-                  </span>
-                </td>
-                <td class="px-6 py-4 text-xs font-semibold text-burgundy-600 hover:text-burgundy-900 cursor-pointer underline">Assign Supplementary Nutrition</td>
+            <tbody>
+              <tr>
+                <td><strong>Aarav Kumar</strong></td>
+                <td>4 yrs</td>
+                <td class="font-mono">92 cm / 11.2 kg</td>
+                <td><span class="badge badge-red"><i class="fa-solid fa-circle-exclamation"></i> Severe Stunting</span></td>
+                <td><a href="#" onclick="showToast('Assigned micro-nutrient dietary supplement plan.')" class="text-burgundy" style="font-weight: 700; text-decoration: underline;">Assign Dietary Supplement</a></td>
               </tr>
-              <tr class="hover:bg-cream-50 transition">
-                <td class="px-6 py-4 font-bold text-gray-900">Priya Sharma</td>
-                <td class="px-6 py-4 text-xs">3 yrs</td>
-                <td class="px-6 py-4 text-xs font-mono">88 cm / 10.5 kg</td>
-                <td class="px-6 py-4">
-                  <span class="bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-md text-xs border border-amber-200 flex items-center w-max">
-                    <i class="fa-solid fa-triangle-exclamation mr-1.5"></i>Underweight (Yellow Flag)
-                  </span>
-                </td>
-                <td class="px-6 py-4 text-xs font-semibold text-burgundy-600 hover:text-burgundy-900 cursor-pointer underline">Schedule Weekly Screening</td>
+              <tr>
+                <td><strong>Priya Sharma</strong></td>
+                <td>3 yrs</td>
+                <td class="font-mono">88 cm / 10.5 kg</td>
+                <td><span class="badge badge-yellow"><i class="fa-solid fa-triangle-exclamation"></i> Underweight</span></td>
+                <td><a href="#" onclick="showToast('Scheduled weekly weight screening alert.')" class="text-burgundy" style="font-weight: 700; text-decoration: underline;">Schedule Weekly Rescreening</a></td>
+              </tr>
+              <tr>
+                <td><strong>Rohan Singh</strong></td>
+                <td>5 yrs</td>
+                <td class="font-mono">108 cm / 16.0 kg</td>
+                <td><span class="badge badge-green"><i class="fa-solid fa-circle-check"></i> Healthy Growth</span></td>
+                <td><span class="text-muted">Standard Shelter Meals</span></td>
               </tr>
             </tbody>
           </table>
@@ -194,146 +752,363 @@
       </div>
     </section>
 
-    <!-- TAB 3: CHILD PROFILES & GROWTH -->
-    <section id="sec-profiles" class="hidden space-y-6">
-      <div class="bg-white p-6 rounded-2xl border border-cream-200 shadow-sm">
-        <h3 class="text-lg font-extrabold text-burgundy-950 mb-1">Register New Child Profile</h3>
-        <p class="text-xs text-gray-500 mb-4">Enroll a new child into the SDSS cloud tracking repository.</p>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <input type="text" id="reg-name" placeholder="Full Name" class="border border-cream-200 rounded-xl p-2.5 text-sm outline-none focus:ring-2 focus:ring-burgundy-600 bg-cream-50" />
-          <input type="number" id="reg-age" placeholder="Age (Years)" class="border border-cream-200 rounded-xl p-2.5 text-sm outline-none focus:ring-2 focus:ring-burgundy-600 bg-cream-50" />
-          <input type="number" id="reg-weight" placeholder="Weight (kg)" class="border border-cream-200 rounded-xl p-2.5 text-sm outline-none focus:ring-2 focus:ring-burgundy-600 bg-cream-50" />
-          <button onclick="addNewChild()" class="bg-burgundy-900 hover:bg-burgundy-950 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-md">
-            <i class="fa-solid fa-user-plus mr-1.5"></i> Register Child
-          </button>
+    <!-- 3. CHILD PROFILES & GROWTH TAB -->
+    <section id="sec-profiles" class="tab-section hidden">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <!-- Registration Form -->
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 16px;">
+            <i class="fa-solid fa-user-plus text-burgundy"></i> Register New Child Profile
+          </h3>
+          <form onsubmit="handleChildRegistration(event)">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" id="reg-name" required placeholder="e.g. Vikram Verma" class="form-input" />
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="form-group">
+                <label class="form-label">Age (Years)</label>
+                <input type="number" id="reg-age" required min="1" max="12" placeholder="e.g. 4" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Weight (kg)</label>
+                <input type="number" step="0.1" id="reg-weight" required placeholder="e.g. 12.5" class="form-input" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Height (cm)</label>
+              <input type="number" step="0.1" id="reg-height" placeholder="e.g. 98" class="form-input" />
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+              <i class="fa-solid fa-id-card"></i> Register Profile
+            </button>
+          </form>
         </div>
-      </div>
 
-      <div class="bg-white p-6 rounded-2xl border border-cream-200 shadow-sm">
-        <h3 class="text-lg font-extrabold text-burgundy-950 mb-1">Central Child Growth Trajectory</h3>
-        <p class="text-xs text-gray-500 mb-4">Simulated WHO growth curve monitoring across multi-month shelter check-ins.</p>
-        <div class="h-48 bg-cream-50 rounded-xl border border-dashed border-cream-200 flex flex-col items-center justify-center text-gray-400">
-          <i class="fa-solid fa-chart-area text-3xl text-burgundy-600 mb-2"></i>
-          <span class="text-sm font-semibold text-gray-600">WHO Standard Growth Visualizer Engine</span>
-          <span class="text-xs text-gray-400 mt-0.5">Plotting height/weight trends against global benchmarks</span>
+        <!-- Simulated SVG Growth Chart -->
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 8px;">
+            <i class="fa-solid fa-chart-line text-burgundy"></i> WHO Growth Trajectory
+          </h3>
+          <p class="card-subtitle" style="margin-bottom: 20px;">Real-time weight vs. age trajectory against WHO standards.</p>
+          
+          <div style="background: var(--cream-50); border: 1px border var(--cream-300); border-radius: var(--radius-md); padding: 16px;">
+            <svg viewBox="0 0 400 200" style="width: 100%; height: auto;">
+              <!-- Background grid lines -->
+              <line x1="40" y1="20" x2="380" y2="20" stroke="#E2E8F0" stroke-dasharray="4" />
+              <line x1="40" y1="70" x2="380" y2="70" stroke="#E2E8F0" stroke-dasharray="4" />
+              <line x1="40" y1="120" x2="380" y2="120" stroke="#E2E8F0" stroke-dasharray="4" />
+              <line x1="40" y1="170" x2="380" y2="170" stroke="#CBD5E1" />
+
+              <!-- WHO Upper/Lower Standard Bands -->
+              <path d="M 40 140 Q 200 80 380 30" fill="none" stroke="#34D399" stroke-width="2" />
+              <path d="M 40 170 Q 200 130 380 90" fill="none" stroke="#FBBF24" stroke-width="2" stroke-dasharray="4" />
+
+              <!-- Child Observed Curve -->
+              <path d="M 40 175 L 120 160 L 200 140 L 280 125 L 360 110" fill="none" stroke="#8C1C2E" stroke-width="3" />
+              
+              <!-- Data points -->
+              <circle cx="40" cy="175" r="4" fill="#3D0810" />
+              <circle cx="120" cy="160" r="4" fill="#3D0810" />
+              <circle cx="200" cy="140" r="4" fill="#3D0810" />
+              <circle cx="280" cy="125" r="4" fill="#3D0810" />
+              <circle cx="360" cy="110" r="6" fill="#D4AF37" stroke="#3D0810" stroke-width="2" />
+
+              <!-- Labels -->
+              <text x="365" y="105" font-size="10" font-weight="bold" fill="#3D0810">Aarav (Current)</text>
+            </svg>
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--slate-500); margin-top: 8px;">
+              <span>1 Yr</span><span>2 Yrs</span><span>3 Yrs</span><span>4 Yrs</span><span>5 Yrs</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- TAB 4: ENHANCED DONOR IMPACT & SUPPORT PORTAL -->
-    <section id="sec-donor" class="hidden space-y-8">
-      
-      <!-- Donor Banner -->
-      <div class="bg-gradient-to-r from-burgundy-950 via-burgundy-900 to-burgundy-800 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
-        <div class="max-w-2xl relative z-10">
-          <span class="bg-amber-400 text-burgundy-950 text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider">Direct Community Impact</span>
-          <h2 class="text-3xl font-extrabold mt-3 leading-tight">Fuel Daily Meals & Health Monitoring for Children in Need</h2>
-          <p class="text-burgundy-100 text-sm mt-2 leading-relaxed">
-            100% of your contributions directly fund nutritious hot meals, micro-nutrient supplements, and digital growth monitoring for children cared for by <strong>Shanti Devi Shiksha Samiti (SDSS)</strong>.
-          </p>
-        </div>
+    <!-- 4. DONOR & CSR PORTAL TAB -->
+    <section id="sec-donor" class="tab-section hidden">
+      <!-- High Impact Hero -->
+      <div class="hero-donor">
+        <span style="background: var(--gold-500); color: var(--burgundy-950); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; text-transform: uppercase;">
+          UN SDG 2 (Zero Hunger) & SDG 3 (Good Health)
+        </span>
+        <h2 style="font-size: 28px; font-weight: 800; margin-top: 12px; line-height: 1.2;">
+          Power Daily Nutrition & Growth Tracking for Children
+        </h2>
+        <p style="font-size: 14px; color: var(--burgundy-100); margin-top: 8px; max-width: 600px;">
+          Your contributions directly fund fresh shelter meals, micro-nutrient supplements, and digital WHO growth monitoring for children at Shanti Devi Shiksha Samiti (SDSS), Gurugram.
+        </p>
       </div>
 
-      <!-- Live Interactive Impact Calculator Slider -->
-      <div class="bg-white p-6 sm:p-8 rounded-2xl border border-cream-200 shadow-sm">
-        <div class="max-w-xl mx-auto text-center space-y-4">
-          <h3 class="text-lg font-extrabold text-burgundy-950 uppercase tracking-wide">Interactive Impact Calculator</h3>
-          <p class="text-xs text-gray-500">Drag the slider to see how many hot meals and child health screenings your contribution covers.</p>
-          
-          <div class="pt-4">
-            <span class="text-xs font-bold text-gray-400 uppercase">Donation Amount:</span>
-            <p class="text-4xl font-extrabold text-burgundy-900 mt-1">₹<span id="slider-val">2500</span></p>
+      <!-- Live Impact Calculator Slider -->
+      <div class="card" style="text-align: center; max-width: 680px; margin: 0 auto 32px auto;">
+        <h3 class="card-title" style="justify-content: center;">Interactive Donor Impact Calculator</h3>
+        <p class="card-subtitle">Adjust the slider to see how many meals and health screenings your contribution provides.</p>
+        
+        <div style="margin: 24px 0;">
+          <span style="font-size: 12px; font-weight: 700; color: var(--slate-500); text-transform: uppercase;">Donation Amount</span>
+          <div style="font-size: 40px; font-weight: 800; color: var(--burgundy-950); margin-top: 4px;">
+            ₹<span id="slider-amount-display">2,500</span>
           </div>
+        </div>
 
-          <input type="range" id="impact-slider" min="500" max="25000" step="500" value="2500" oninput="updateImpact(this.value)" class="w-full h-2.5 bg-cream-200 rounded-lg appearance-none cursor-pointer accent-burgundy-900">
+        <input type="range" id="impact-slider" min="500" max="25000" step="500" value="2500" oninput="updateCalculator(this.value)" style="width: 100%; accent-color: var(--burgundy-800); cursor: pointer;" />
 
-          <div class="grid grid-cols-2 gap-4 pt-4">
-            <div class="p-4 bg-cream-50 rounded-xl border border-cream-200 text-center">
-              <i class="fa-solid fa-bowl-food text-2xl text-burgundy-600 mb-1"></i>
-              <p class="text-2xl font-extrabold text-burgundy-950" id="calc-meals">100</p>
-              <p class="text-xs text-gray-500 font-medium">Hot Nutritious Meals Served</p>
-            </div>
-            <div class="p-4 bg-cream-50 rounded-xl border border-cream-200 text-center">
-              <i class="fa-solid fa-heart-pulse text-2xl text-burgundy-600 mb-1"></i>
-              <p class="text-2xl font-extrabold text-burgundy-950" id="calc-kids">5</p>
-              <p class="text-xs text-gray-500 font-medium">Children Tracked for 1 Month</p>
-            </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px;">
+          <div style="background: var(--cream-50); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--cream-300);">
+            <i class="fa-solid fa-bowl-food text-burgundy" style="font-size: 24px;"></i>
+            <div style="font-size: 24px; font-weight: 800; color: var(--burgundy-950);" id="calc-meals-display">100</div>
+            <div style="font-size: 12px; color: var(--slate-500);">Hot Nutritious Meals</div>
+          </div>
+          <div style="background: var(--cream-50); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--cream-300);">
+            <i class="fa-solid fa-heart-pulse text-burgundy" style="font-size: 24px;"></i>
+            <div style="font-size: 24px; font-weight: 800; color: var(--burgundy-950);" id="calc-kids-display">5</div>
+            <div style="font-size: 12px; color: var(--slate-500);">Children Covered (1 Month)</div>
           </div>
         </div>
       </div>
 
       <!-- Tiered Sponsorship Cards -->
-      <div class="space-y-4">
-        <h3 class="text-lg font-extrabold text-burgundy-950">Choose a Targeted Sponsorship Tier</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <!-- Tier 1 -->
-          <div class="bg-white rounded-2xl border border-cream-200 p-6 flex flex-col justify-between hover:border-burgundy-600 transition shadow-sm">
-            <div>
-              <span class="text-xs font-bold text-burgundy-600 bg-burgundy-50 px-3 py-1 rounded-full uppercase">Starter Impact</span>
-              <h4 class="text-xl font-bold text-gray-900 mt-3">Monthly Meal Supporter</h4>
-              <p class="text-2xl font-extrabold text-burgundy-950 mt-2">₹1,200 <span class="text-xs font-normal text-gray-500">/ month</span></p>
-              <ul class="text-xs text-gray-600 space-y-2.5 mt-4">
-                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Funds 50 hot lunches at SDSS shelter</li>
-                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Monthly digital health status reports</li>
-                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> 100% auditable digital ledger entry</li>
-              </ul>
-            </div>
-            <button onclick="showToast('Redirecting to Payment Gateway (Demo)...')" class="mt-6 w-full bg-burgundy-900 hover:bg-burgundy-950 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition">
-              Sponsor Now
-            </button>
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--burgundy-950); margin-bottom: 16px;">Sponsorship Tiers</h3>
+      <div class="tier-grid">
+        <div class="tier-card">
+          <div>
+            <span class="badge badge-green">Starter Impact</span>
+            <h4 style="font-size: 18px; font-weight: 800; margin-top: 12px;">Monthly Meal Supporter</h4>
+            <div style="font-size: 24px; font-weight: 800; color: var(--burgundy-950); margin: 8px 0;">₹1,200</div>
+            <ul style="font-size: 12px; color: var(--slate-600); list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px;">
+              <li><i class="fa-solid fa-check text-emerald"></i> 50 Fresh Hot Meals Served</li>
+              <li><i class="fa-solid fa-check text-emerald"></i> Digital Monthly Impact Report</li>
+            </ul>
           </div>
+          <button onclick="triggerPledgeModal('Monthly Meal Supporter', '₹1,200')" class="btn btn-primary" style="margin-top: 24px; width: 100%;">Pledge Support</button>
+        </div>
 
-          <!-- Tier 2 (Highlighted) -->
-          <div class="bg-white rounded-2xl border-2 border-burgundy-600 p-6 flex flex-col justify-between shadow-md relative">
-            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-burgundy-950 text-xs font-extrabold px-3 py-0.5 rounded-full uppercase">Most Popular</span>
-            <div>
-              <span class="text-xs font-bold text-burgundy-600 bg-burgundy-50 px-3 py-1 rounded-full uppercase">Full Child Coverage</span>
-              <h4 class="text-xl font-bold text-gray-900 mt-3">Child Health Champion</h4>
-              <p class="text-2xl font-extrabold text-burgundy-950 mt-2">₹3,500 <span class="text-xs font-normal text-gray-500">/ quarter</span></p>
-              <ul class="text-xs text-gray-600 space-y-2.5 mt-4">
-                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Complete daily nutrition & snacks for 1 child</li>
-                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Monthly WHO growth curve rescreening</li>
-                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Direct impact updates from field caregivers</li>
-              </ul>
-            </div>
-            <button onclick="showToast('Redirecting to Payment Gateway (Demo)...')" class="mt-6 w-full bg-burgundy-600 hover:bg-burgundy-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition shadow-md">
-              Sponsor Now
-            </button>
+        <div class="tier-card featured">
+          <span class="tier-featured-badge">Most Popular</span>
+          <div>
+            <span class="badge badge-yellow">Full Coverage</span>
+            <h4 style="font-size: 18px; font-weight: 800; margin-top: 12px;">Child Health Champion</h4>
+            <div style="font-size: 24px; font-weight: 800; color: var(--burgundy-950); margin: 8px 0;">₹3,500</div>
+            <ul style="font-size: 12px; color: var(--slate-600); list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px;">
+              <li><i class="fa-solid fa-check text-emerald"></i> Complete Meals for 1 Child (3 Months)</li>
+              <li><i class="fa-solid fa-check text-emerald"></i> Dedicated WHO Growth Screening Reports</li>
+            </ul>
           </div>
+          <button onclick="triggerPledgeModal('Child Health Champion', '₹3,500')" class="btn btn-gold" style="margin-top: 24px; width: 100%;">Pledge Support</button>
+        </div>
 
-          <!-- Tier 3 -->
-          <div class="bg-white rounded-2xl border border-cream-200 p-6 flex flex-col justify-between hover:border-burgundy-600 transition shadow-sm">
-            <div>
-              <span class="text-xs font-bold text-burgundy-600 bg-burgundy-50 px-3 py-1 rounded-full uppercase">Shelter Partner</span>
-              <h4 class="text-xl font-bold text-gray-900 mt-3">Nutrition Center Sponsor</h4>
-              <p class="text-2xl font-extrabold text-burgundy-950 mt-2">₹10,000 <span class="text-xs font-normal text-gray-500">/ month</span></p>
-              <ul class="text-xs text-gray-600 space-y-2.5 mt-4">
-                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Funds daily meals for entire shelter section</li>
-                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Dedicated CSR quarterly impact report</li>
-                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Recognized on SDSS digital partner wall</li>
-              </ul>
-            </div>
-            <button onclick="showToast('Redirecting to Payment Gateway (Demo)...')" class="mt-6 w-full bg-burgundy-900 hover:bg-burgundy-950 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition">
-              Sponsor Now
-            </button>
+        <div class="tier-card">
+          <div>
+            <span class="badge badge-red">Shelter Partner</span>
+            <h4 style="font-size: 18px; font-weight: 800; margin-top: 12px;">Nutrition Center Sponsor</h4>
+            <div style="font-size: 24px; font-weight: 800; color: var(--burgundy-950); margin: 8px 0;">₹10,000</div>
+            <ul style="font-size: 12px; color: var(--slate-600); list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px;">
+              <li><i class="fa-solid fa-check text-emerald"></i> Multi-Child Shelter Section Meal Coverage</li>
+              <li><i class="fa-solid fa-check text-emerald"></i> Verified Institutional Audit Reports</li>
+            </ul>
           </div>
-
+          <button onclick="triggerPledgeModal('Nutrition Center Sponsor', '₹10,000')" class="btn btn-primary" style="margin-top: 24px; width: 100%;">Pledge Support</button>
         </div>
       </div>
 
-      <!-- CSR & Corporate Inquiry Form -->
-      <div class="bg-white p-6 sm:p-8 rounded-2xl border border-cream-200 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <span class="text-xs font-bold text-burgundy-600 uppercase tracking-wider">Corporate Partnerships</span>
-          <h3 class="text-xl font-extrabold text-burgundy-950 mt-1">CSR Grant & Institutional Sponsorships</h3>
-          <p class="text-xs text-gray-500 mt-2 leading-relaxed">
-            Partner with Team Community Spark and Shanti Devi Shiksha Samiti (SDSS) to fulfill UN SDG 2 (Zero Hunger) & SDG 3 (Good Health & Well-Being) objectives with complete digital audit trail transparency.
-          </p>
-          <div class="mt-4 space-y-2 text-xs text-gray-600">
-            <p><i class="fa-solid fa-file-pdf text-burgundy-600 mr-2"></i> Automated monthly donor audit reports</p>
-            <p><i class="fa-solid fa-shield-halved text-burgundy-600 mr-2"></i> 100% verified cloud meal counts</p>
+      <!-- CSR Inquiry Form -->
+      <div class="card" style="margin-top: 32px;">
+        <h3 class="card-title"><i class="fa-solid fa-building text-burgundy"></i> Corporate CSR Partnership Inquiry</h3>
+        <p class="card-subtitle" style="margin-bottom: 16px;">Partner with Team Community Spark and SDSS to fulfill CSR targets with auditable metrics.</p>
+        <form onsubmit="handleCSRInquiry(event)">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Organization Name</label>
+              <input type="text" required placeholder="e.g. Acme Foundation" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Corporate Email</label>
+              <input type="email" required placeholder="csr@organization.org" class="form-input" />
+            </div>
           </div>
-        </div>
+          <div class="form-group">
+            <label class="form-label">Partnership Details</label>
+            <textarea rows="3" placeholder="Specify your CSR goals or sponsorship scope..." class="form-textarea"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Submit Corporate Inquiry</button>
+        </form>
+      </div>
+    </section>
 
-        <form onsubmit="event.
+  </main>
+
+  <div id="toast-notification" class="toast">
+    <i class="fa-solid fa-circle-check text-emerald" style="font-size: 18px;"></i>
+    <span id="toast-message">Action processed successfully!</span>
+  </div>
+
+  <div id="pledge-modal" class="modal-backdrop">
+    <div class="modal-content">
+      <h3 style="font-size: 20px; font-weight: 800; color: var(--burgundy-950);" id="modal-tier-title">Pledge Sponsorship</h3>
+      <p style="font-size: 13px; color: var(--slate-500); margin-top: 4px;" id="modal-tier-subtitle">Selected Tier: ₹1,200</p>
+
+      <form onsubmit="handlePledgeSubmit(event)" style="margin-top: 20px;">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" required placeholder="John Doe" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email / Mobile Number</label>
+          <input type="text" required placeholder="john@example.com" class="form-input" />
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+          <button type="button" onclick="closePledgeModal()" class="btn btn-secondary" style="flex: 1;">Cancel</button>
+          <button type="submit" class="btn btn-gold" style="flex: 1;">Confirm Pledge</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let childrenState = [
+      { id: 1, name: "Aarav Kumar", age: 4, weight: 11.2, height: 92, status: "red", attendance: false, meals: 0 },
+      { id: 2, name: "Priya Sharma", age: 3, weight: 10.5, height: 88, status: "yellow", attendance: false, meals: 0 },
+      { id: 3, name: "Rohan Singh", age: 5, weight: 16.0, height: 108, status: "green", attendance: false, meals: 0 },
+      { id: 4, name: "Ananya Das", age: 4, weight: 14.8, height: 100, status: "green", attendance: false, meals: 0 }
+    ];
+
+    let totalMealsCount = 218;
+
+    function renderCaregiverCards() {
+      const container = document.getElementById("caregiver-cards-container");
+      container.innerHTML = "";
+
+      childrenState.forEach(child => {
+        let badgeClass = child.status === 'red' ? 'badge-red' : (child.status === 'yellow' ? 'badge-yellow' : 'badge-green');
+        let badgeText = child.status === 'red' ? 'Critical Risk' : (child.status === 'yellow' ? 'Moderate Risk' : 'Healthy');
+
+        const card = document.createElement("div");
+        card.className = "child-card";
+        card.innerHTML = `
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div>
+                <h4 style="font-size: 16px; font-weight: 800; color: var(--burgundy-950);">${child.name}</h4>
+                <p style="font-size: 12px; color: var(--slate-500);">Age: ${child.age} yrs | Weight: ${child.weight} kg</p>
+              </div>
+              <span class="badge ${badgeClass}">${badgeText}</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px;">
+            <button onclick="toggleAttendance(${child.id})" class="btn ${child.attendance ? 'btn-primary' : 'btn-secondary'}">
+              <i class="fa-solid ${child.attendance ? 'fa-user-check' : 'fa-user-plus'}"></i>
+              ${child.attendance ? 'Present' : 'Mark Present'}
+            </button>
+            <button onclick="logMeal(${child.id})" class="btn btn-outline">
+              <i class="fa-solid fa-utensils"></i> Meal (${child.meals})
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function toggleAttendance(id) {
+      const child = childrenState.find(c => c.id === id);
+      if (child) {
+        child.attendance = !child.attendance;
+        showToast(`${child.name} marked ${child.attendance ? 'Present' : 'Absent'}`);
+        renderCaregiverCards();
+      }
+    }
+
+    function logMeal(id) {
+      const child = childrenState.find(c => c.id === id);
+      if (child) {
+        child.meals += 1;
+        totalMealsCount += 1;
+        document.getElementById("dash-meals-counter").innerText = totalMealsCount;
+        showToast(`Meal logged for ${child.name} in < 2s`);
+        renderCaregiverCards();
+      }
+    }
+
+    function markAllPresent() {
+      childrenState.forEach(c => c.attendance = true);
+      showToast("All children marked Present for active session.");
+      renderCaregiverCards();
+    }
+
+    function handleChildRegistration(event) {
+      event.preventDefault();
+      const name = document.getElementById("reg-name").value;
+      const age = parseInt(document.getElementById("reg-age").value);
+      const weight = parseFloat(document.getElementById("reg-weight").value);
+      const height = parseFloat(document.getElementById("reg-height").value) || 90;
+
+      const newChild = {
+        id: childrenState.length + 1,
+        name: name,
+        age: age,
+        weight: weight,
+        height: height,
+        status: "green",
+        attendance: false,
+        meals: 0
+      };
+
+      childrenState.push(newChild);
+      showToast(`Registered child profile for ${name}`);
+      event.target.reset();
+      renderCaregiverCards();
+    }
+
+    function updateCalculator(val) {
+      document.getElementById("slider-amount-display").innerText = parseInt(val).toLocaleString();
+      document.getElementById("calc-meals-display").innerText = Math.floor(val / 25);
+      document.getElementById("calc-kids-display").innerText = Math.floor(val / 500);
+    }
+
+    function switchTab(tabId) {
+      ['caregiver', 'dashboard', 'profiles', 'donor'].forEach(t => {
+        document.getElementById(`sec-${t}`).classList.add('hidden');
+        document.getElementById(`tab-${t}`).classList.remove('active');
+      });
+
+      document.getElementById(`sec-${tabId}`).classList.remove('hidden');
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast-notification");
+      document.getElementById("toast-message").innerText = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 3000);
+    }
+
+    function triggerPledgeModal(tier, amount) {
+      document.getElementById("modal-tier-title").innerText = `Pledge ${tier}`;
+      document.getElementById("modal-tier-subtitle").innerText = `Selected Tier Amount: ${amount}`;
+      document.getElementById("pledge-modal").classList.add("show");
+    }
+
+    function closePledgeModal() {
+      document.getElementById("pledge-modal").classList.remove("show");
+    }
+
+    function handlePledgeSubmit(e) {
+      e.preventDefault();
+      closePledgeModal();
+      showToast("Pledge submitted! Representative will issue 80G receipt details.");
+    }
+
+    function handleCSRInquiry(e) {
+      e.preventDefault();
+      e.target.reset();
+      showToast("CSR Inquiry submitted to SDSS partnership Desk!");
+    }
+
+    // Initial render
+    window.onload = function() {
+      renderCaregiverCards();
+    };
+  </script>
+</body>
+</html>
