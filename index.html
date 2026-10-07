@@ -23,7 +23,7 @@
       --burgundy-50: #FAF0F3;
       
       --cream-50: #FFFCF7;
-      --cream-100: #FDFBF7;
+      --cream-100: #FAF8F5;
       --cream-200: #F5EFE6;
       --cream-300: #EADFCF;
       
@@ -292,6 +292,77 @@
       gap: 6px;
     }
 
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .activity-card {
+      background: var(--cream-50);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--cream-300);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .activity-card:hover {
+      border-color: var(--burgundy-700);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .activity-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: var(--burgundy-100);
+      color: var(--burgundy-800);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .diet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .diet-card {
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--cream-300);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .diet-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--burgundy-700);
+    }
+
+    .diet-card.lunch::before {
+      background: var(--gold-500);
+    }
+
+    .diet-card.snack::before {
+      background: var(--emerald-600);
+    }
+
     .children-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -343,6 +414,12 @@
       background-color: var(--emerald-100);
       color: var(--emerald-600);
       border: 1px solid rgba(5, 150, 105, 0.2);
+    }
+
+    .badge-gold {
+      background-color: var(--gold-100);
+      color: var(--gold-600);
+      border: 1px solid rgba(212, 175, 55, 0.3);
     }
 
     .btn {
@@ -471,25 +548,25 @@
       background-color: white;
     }
 
-    .hero-donor {
+    .hero-banner {
       background: linear-gradient(135deg, var(--burgundy-950) 0%, var(--burgundy-800) 100%);
       color: white;
       border-radius: var(--radius-xl);
-      padding: 40px 32px;
-      margin-bottom: 32px;
+      padding: 36px;
+      margin-bottom: 28px;
       position: relative;
       overflow: hidden;
       box-shadow: var(--shadow-xl);
     }
 
-    .hero-donor::after {
+    .hero-banner::after {
       content: '';
       position: absolute;
-      top: -50%;
+      top: -40%;
       right: -10%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -624,7 +701,11 @@
 
     <div class="nav-tabs-wrapper">
       <div class="nav-tabs-container">
-        <button onclick="switchTab('caregiver')" id="tab-caregiver" class="tab-btn active">
+        <button onclick="switchTab('home')" id="tab-home" class="tab-btn active">
+          <i class="fa-solid fa-house"></i>
+          <span>Home & Executive Summary</span>
+        </button>
+        <button onclick="switchTab('caregiver')" id="tab-caregiver" class="tab-btn">
           <i class="fa-solid fa-hand-holding-heart"></i>
           <span>Caregiver 1-Tap Portal</span>
         </button>
@@ -646,8 +727,220 @@
 
   <main class="main-container">
 
-    <!-- 1. CAREGIVER 1-TAP PORTAL TAB -->
-    <section id="sec-caregiver" class="tab-section">
+    <!-- 1. HOME & EXECUTIVE SUMMARY TAB -->
+    <section id="sec-home" class="tab-section">
+      <!-- Executive Overview Banner -->
+      <div class="hero-banner">
+        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+          <span style="background: var(--gold-500); color: var(--burgundy-950); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; text-transform: uppercase;">
+            SDSS Day Shelter • Gurugram Sector 14
+          </span>
+          <span style="background: rgba(255, 255, 255, 0.15); color: white; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 9999px;">
+            <i class="fa-solid fa-calendar-day"></i> Today's Operations Live
+          </span>
+        </div>
+        <h1 style="font-size: 28px; font-weight: 800; line-height: 1.2;">
+          Eradicating Child Malnutrition Through Digital Precision & Structured Nutrition
+        </h1>
+        <p style="font-size: 14px; color: var(--burgundy-100); margin-top: 10px; max-width: 780px;">
+          Empowering frontline caregivers at Shanti Devi Shiksha Samiti (SDSS) with instant attendance, automated meal portion tracking, WHO-standard growth screening, and full donor transparency.
+        </p>
+
+        <div style="display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
+          <button onclick="switchTab('caregiver')" class="btn btn-gold">
+            <i class="fa-solid fa-bolt"></i> Launch Caregiver Portal
+          </button>
+          <button onclick="switchTab('donor')" class="btn btn-outline" style="border-color: white; color: white;">
+            <i class="fa-solid fa-heart"></i> Support Shelter Meals
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick KPI Strip -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Enrolled Children</span>
+          <div class="metric-value">124</div>
+          <span class="metric-subtext text-emerald">
+            <i class="fa-solid fa-check-circle"></i> 100% Digital Health Passports
+          </span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Daily Meal Target</span>
+          <div class="metric-value text-burgundy">248</div>
+          <span class="metric-subtext text-muted">2 meals + 1 snack daily</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Nutritional Coverage</span>
+          <div class="metric-value text-emerald">94.8%</div>
+          <span class="metric-subtext text-emerald">
+            <i class="fa-solid fa-arrow-trend-up"></i> +2.3% vs Last Month
+          </span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">WHO Malnutrition Risk</span>
+          <div class="metric-value text-amber">8.0%</div>
+          <span class="metric-subtext text-amber">10 active intervention cases</span>
+        </div>
+      </div>
+
+      <!-- Shelter Activity Hub Flow -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <i class="fa-solid fa-network-wired text-burgundy"></i>
+              SDSS Shelter Daily Operations Flow
+            </h2>
+            <p class="card-subtitle">End-to-end digital workflow managed by Community Spark field teams and SDSS staff.</p>
+          </div>
+          <span class="badge badge-gold"><i class="fa-solid fa-arrows-rotate"></i> Real-time Sync</span>
+        </div>
+
+        <div class="activity-grid">
+          <div class="activity-card">
+            <div class="activity-icon"><i class="fa-solid fa-user-check"></i></div>
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--burgundy-950);">1. 1-Tap Attendance</h4>
+            <p style="font-size: 12px; color: var(--slate-600);">Caregivers mark child presence in under 3 seconds per session upon morning arrival.</p>
+          </div>
+
+          <div class="activity-card">
+            <div class="activity-icon"><i class="fa-solid fa-utensils"></i></div>
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--burgundy-950);">2. Meal Log & Diet Plan</h4>
+            <p style="font-size: 12px; color: var(--slate-600);">Fortified meal portions logged per child according to WHO energy guidelines.</p>
+          </div>
+
+          <div class="activity-card">
+            <div class="activity-icon"><i class="fa-solid fa-weight-scale"></i></div>
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--burgundy-950);">3. WHO Growth Audit</h4>
+            <p style="font-size: 12px; color: var(--slate-600);">Monthly height/weight screenings flag stunting and underweight risks automatically.</p>
+          </div>
+
+          <div class="activity-card">
+            <div class="activity-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--burgundy-950);">4. Donor Transparency</h4>
+            <p style="font-size: 12px; color: var(--slate-600);">Auditable digital logs directly feed corporate CSR and individual donor reports.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SDSS Daily Diet Plan & Nutrition Chart -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">
+              <i class="fa-solid fa-bowl-food text-burgundy"></i>
+              SDSS Shelter Daily Diet Plan & Nutrition Chart
+            </h2>
+            <p class="card-subtitle">Scientifically balanced meal schedule designed for optimum child physical & cognitive development.</p>
+          </div>
+          <span class="badge badge-green"><i class="fa-solid fa-shield-halved"></i> WHO Micro-Nutrient Approved</span>
+        </div>
+
+        <div class="diet-grid">
+          <!-- Breakfast -->
+          <div class="diet-card">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="badge badge-gold"><i class="fa-solid fa-sun"></i> 08:30 AM - 09:15 AM</span>
+                <span style="font-size: 11px; font-weight: 700; color: var(--slate-500);">~320 kcal</span>
+              </div>
+              <h3 style="font-size: 16px; font-weight: 800; color: var(--burgundy-950); margin-top: 10px;">Morning Energy Breakfast</h3>
+              <p style="font-size: 13px; color: var(--slate-700); margin-top: 6px; font-weight: 600;">Sprouted Moong & Chana Chaat + Fortified Warm Milk (200ml)</p>
+              
+              <ul style="font-size: 12px; color: var(--slate-600); margin-top: 12px; display: flex; flex-direction: column; gap: 6px; list-style: none;">
+                <li><i class="fa-solid fa-circle-check text-emerald"></i> <strong>Protein:</strong> 11.5g (Essential amino acids for muscle growth)</li>
+                <li><i class="fa-solid fa-circle-check text-emerald"></i> <strong>Micro-nutrients:</strong> Vitamin A, Calcium, Iron</li>
+                <li><i class="fa-solid fa-circle-check text-emerald"></i> <strong>Special Additive:</strong> Micro-nutrient Sprinkles (MNP)</li>
+              </ul>
+            </div>
+            <button onclick="showToast('Morning Breakfast Meal Plan verified by Nutritionist.')" class="btn btn-secondary" style="margin-top: 16px; width: 100%;">View Meal Spec</button>
+          </div>
+
+          <!-- Afternoon Lunch -->
+          <div class="diet-card lunch">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="badge badge-yellow"><i class="fa-solid fa-sun-plant-wilt"></i> 01:00 PM - 02:00 PM</span>
+                <span style="font-size: 11px; font-weight: 700; color: var(--slate-500);">~510 kcal</span>
+              </div>
+              <h3 style="font-size: 16px; font-weight: 800; color: var(--burgundy-950); margin-top: 10px;">Wholesome Nourishment Lunch</h3>
+              <p style="font-size: 13px; color: var(--slate-700); margin-top: 6px; font-weight: 600;">Arhar Dal with Fortified Rice + Seasonal Green Sabzi + Whole Wheat Roti</p>
+              
+              <ul style="font-size: 12px; color: var(--slate-600); margin-top: 12px; display: flex; flex-direction: column; gap: 6px; list-style: none;">
+                <li><i class="fa-solid fa-circle-check text-emerald"></i> <strong>Protein:</strong> 18.2g (Complete vegetable protein mix)</li>
+                <li><i class="fa-solid fa-circle-check text-emerald"></i> <strong>Micro-nutrients:</strong> Folic Acid, Zinc, Vitamin B12</li>
+                <li><i class="fa-solid fa-circle-check text-emerald"></i> <strong>Special Additive:</strong> Fortified Rice (Iron & Folic Acid)</li>
+              </ul>
+            </div>
+            <button onclick="showToast('Afternoon Lunch Meal Plan verified by Nutritionist.')" class="btn btn-secondary" style="margin-top: 16px; width: 100%;">View Meal Spec</button>
+          </div>
+
+          <!-- Evening Snack -->
+          <div class="diet-card snack">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="badge badge-green"><i class="fa-solid fa-cloud-sun"></i> 04:30 PM - 05:00 PM</span>
+                <span style="font-size: 11px; font-weight: 700; color: var(--slate-500);">~210 kcal</span>
+              </div>
+              <h3 style="font-size: 16px; font-weight: 800; color: var(--burgundy-950); margin-top: 10px;">Vitality Evening Snack</h3>
+              <p style="font-size: 13px; color: var(--slate-700); margin-top: 6px; font-weight: 600;">Jaggery Roasted Chana + Seasonal Fresh Banana or Apple</p>
+              
+              <ul style="font-size: 12px; color: var(--slate-600); margin-top: 12px; display: flex; flex-direction: column; gap: 6px; list-style: none;">
+                <li><i class="fa-solid fa-circle-check text-emerald"></i> <strong>Protein:</strong> 6.8g (Quick recovery protein)</li>
+                <li><i class="fa-solid fa-circle-check text-emerald"></i> <strong>Micro-nutrients:</strong> Potassium, Dietary Fiber, Iron</li>
+                <li><i class="fa-solid fa-circle-check text-emerald"></i> <strong>Special Additive:</strong> Pure Organic Jaggery (Natural Iron)</li>
+              </ul>
+            </div>
+            <button onclick="showToast('Evening Snack Meal Plan verified by Nutritionist.')" class="btn btn-secondary" style="margin-top: 16px; width: 100%;">View Meal Spec</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Operational Feed & Shelter Announcements -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom: 16px;">
+            <i class="fa-solid fa-clock-rotate-left text-burgundy"></i> Real-time Shelter Activity Feed
+          </h3>
+          <ul style="display: flex; flex-direction: column; gap: 14px; list-style: none;">
+            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 12px;">
+              <span class="badge badge-green" style="margin-top: 2px;">11:45 AM</span>
+              <div>
+                <strong>Lunch Session Batch A Served:</strong> 48 meals logged at SDSS dining section.
+              </div>
+            </li>
+            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 12px;">
+              <span class="badge badge-gold" style="margin-top: 2px;">10:30 AM</span>
+              <div>
+                <strong>WHO Health Screening:</strong> Aarav Kumar recorded +0.4 cm growth over last month.
+              </div>
+            </li>
+            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 12px;">
+              <span class="badge badge-yellow" style="margin-top: 2px;">09:00 AM</span>
+              <div>
+                <strong>Breakfast Attendance Marked:</strong> 112 children checked in by Caregiver Sunita.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" style="background: var(--burgundy-950); color: white;">
+          <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 12px; color: white; display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-bullhorn text-gold"></i> Community Spark Field Note
+          </h3>
+          <p style="font-size: 13px; color: var(--burgundy-100); line-height: 1.6;">
+            "With digital 1-tap tracking at SDSS Gurugram, we have reduced meal preparation wastage by 18% while guaranteeing every child under severe growth risk receives specialized micro-nutrient supplements."
+          </p>
+          <div style="margin-top: 20px; font-size: 12px; color: var(--gold-500); font-weight: 700;">
+            — Lead Field Coordinator, SDSS Shelter Operations
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CAREGIVER 1-TAP PORTAL TAB -->
+    <section id="sec-caregiver" class="tab-section hidden">
       <div class="card">
         <div class="card-header">
           <div>
@@ -677,7 +970,7 @@
       </div>
     </section>
 
-    <!-- 2. WHO REAL-TIME RISK DASHBOARD TAB -->
+    <!-- 3. WHO REAL-TIME RISK DASHBOARD TAB -->
     <section id="sec-dashboard" class="tab-section hidden">
       <!-- KPIs Grid -->
       <div class="metrics-grid">
@@ -752,7 +1045,7 @@
       </div>
     </section>
 
-    <!-- 3. CHILD PROFILES & GROWTH TAB -->
+    <!-- 4. CHILD PROFILES & GROWTH TAB -->
     <section id="sec-profiles" class="tab-section hidden">
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
         <!-- Registration Form -->
@@ -825,10 +1118,10 @@
       </div>
     </section>
 
-    <!-- 4. DONOR & CSR PORTAL TAB -->
+    <!-- 5. DONOR & CSR PORTAL TAB -->
     <section id="sec-donor" class="tab-section hidden">
       <!-- High Impact Hero -->
-      <div class="hero-donor">
+      <div class="hero-banner">
         <span style="background: var(--gold-500); color: var(--burgundy-950); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; text-transform: uppercase;">
           UN SDG 2 (Zero Hunger) & SDG 3 (Good Health)
         </span>
@@ -977,6 +1270,7 @@
 
     function renderCaregiverCards() {
       const container = document.getElementById("caregiver-cards-container");
+      if (!container) return;
       container.innerHTML = "";
 
       childrenState.forEach(child => {
@@ -1024,7 +1318,8 @@
       if (child) {
         child.meals += 1;
         totalMealsCount += 1;
-        document.getElementById("dash-meals-counter").innerText = totalMealsCount;
+        const counter = document.getElementById("dash-meals-counter");
+        if (counter) counter.innerText = totalMealsCount;
         showToast(`Meal logged for ${child.name} in < 2s`);
         renderCaregiverCards();
       }
@@ -1067,20 +1362,29 @@
     }
 
     function switchTab(tabId) {
-      ['caregiver', 'dashboard', 'profiles', 'donor'].forEach(t => {
-        document.getElementById(`sec-${t}`).classList.add('hidden');
-        document.getElementById(`tab-${t}`).classList.remove('active');
+      ['home', 'caregiver', 'dashboard', 'profiles', 'donor'].forEach(t => {
+        const sec = document.getElementById(`sec-${t}`);
+        const tab = document.getElementById(`tab-${t}`);
+        if (sec) sec.classList.add('hidden');
+        if (tab) tab.classList.remove('active');
       });
 
-      document.getElementById(`sec-${tabId}`).classList.remove('hidden');
-      document.getElementById(`tab-${tabId}`).classList.add('active');
+      const activeSec = document.getElementById(`sec-${tabId}`);
+      const activeTab = document.getElementById(`tab-${tabId}`);
+      if (activeSec) activeSec.classList.remove('hidden');
+      if (activeTab) activeTab.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showToast(msg) {
       const toast = document.getElementById("toast-notification");
-      document.getElementById("toast-message").innerText = msg;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 3000);
+      const msgElem = document.getElementById("toast-message");
+      if (msgElem) msgElem.innerText = msg;
+      if (toast) {
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
+      }
     }
 
     function triggerPledgeModal(tier, amount) {
@@ -1096,7 +1400,7 @@
     function handlePledgeSubmit(e) {
       e.preventDefault();
       closePledgeModal();
-      showToast("Pledge submitted! Representative will issue 80G receipt details.");
+      showToast("Pledge submitted! SDSS representative will issue 80G receipt details.");
     }
 
     function handleCSRInquiry(e) {
@@ -1105,7 +1409,7 @@
       showToast("CSR Inquiry submitted to SDSS partnership Desk!");
     }
 
-    // Initial render
+    // Initial setup on load
     window.onload = function() {
       renderCaregiverCards();
     };
