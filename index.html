@@ -3,81 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Digital Child Nutrition & Growth Tracker | SDSS & Community Spark</title>
-  <!-- Tailwind CSS CDN for rapid styling -->
+  <title>Digital Child Nutrition Tracker | SDSS & Team Community Spark</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            burgundy: {
+              50: '#fdf2f4',
+              100: '#fbe6e9',
+              600: '#9b1c31',
+              800: '#580d19',
+              900: '#3b060e',
+              950: '#230207',
+            },
+            cream: {
+              50: '#fffdfa',
+              100: '#fbf7ee',
+              200: '#f7efdd',
+            }
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    .active-tab {
-      border-bottom: 3px solid #800020;
-      color: #800020;
+    .active-nav {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-bottom: 3px solid #fbe6e9;
       font-weight: 700;
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+<body class="bg-cream-100 text-gray-800 font-sans min-h-screen flex flex-col selection:bg-burgundy-600 selection:text-white">
 
   <!-- Header / Navigation Bar -->
-  <header class="bg-gradient-to-r from-red-950 to-red-900 text-white shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+  <header class="bg-gradient-to-r from-burgundy-950 via-burgundy-900 to-burgundy-800 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
       <div class="flex items-center space-x-3">
-        <div class="bg-white text-red-900 p-2 rounded-lg font-bold text-xl">
-          <i class="fa-solid font-bold fa-heart-pulse"></i>
+        <div class="bg-white text-burgundy-900 w-10 h-10 rounded-xl flex items-center justify-center font-extrabold text-xl shadow-inner">
+          <i class="fa-solid fa-heart-pulse text-burgundy-600"></i>
         </div>
         <div>
-          <h1 class="text-lg font-bold tracking-wide">Digital Child Nutrition Tracker</h1>
-          <p class="text-xs text-red-200">Shanti Devi Shiksha Samiti (SDSS) × Team Community Spark</p>
+          <h1 class="text-lg font-bold tracking-tight text-white leading-tight">Community Spark <span class="text-burgundy-100 font-normal">| Nutrition Tracker</span></h1>
+          <p class="text-xs text-burgundy-100/80">In Strategic Partnership with <span class="font-semibold text-white">Shanti Devi Shiksha Samiti (SDSS)</span></p>
         </div>
       </div>
-      <div class="flex items-center space-x-3 text-xs bg-red-900/60 px-3 py-1.5 rounded-full border border-red-700">
-        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-        <span>Cloud Sync: Active</span>
+      
+      <div class="flex items-center space-x-3 text-xs bg-burgundy-950/60 px-3.5 py-1.5 rounded-full border border-burgundy-600/40 shadow-sm">
+        <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+        <span class="font-medium text-cream-100">SDSS Cloud Synchronization: Active</span>
+      </div>
+    </div>
+
+    <!-- Tab Strip -->
+    <div class="bg-burgundy-950/80 border-t border-burgundy-800/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 flex space-x-1 sm:space-x-4 text-xs sm:text-sm overflow-x-auto">
+        <button onclick="switchTab('caregiver')" id="tab-caregiver" class="py-3 px-4 active-nav flex items-center space-x-2 whitespace-nowrap transition">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <span>Caregiver 1-Tap Portal</span>
+        </button>
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="py-3 px-4 text-burgundy-100/70 hover:text-white flex items-center space-x-2 whitespace-nowrap transition">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>WHO Risk Dashboard</span>
+        </button>
+        <button onclick="switchTab('profiles')" id="tab-profiles" class="py-3 px-4 text-burgundy-100/70 hover:text-white flex items-center space-x-2 whitespace-nowrap transition">
+          <i class="fa-solid fa-id-card"></i>
+          <span>Child Profiles & Growth</span>
+        </button>
+        <button onclick="switchTab('donor')" id="tab-donor" class="py-3 px-4 text-burgundy-100/70 hover:text-white flex items-center space-x-2 whitespace-nowrap transition">
+          <i class="fa-solid fa-hand-holding-dollar text-amber-300"></i>
+          <span class="text-amber-200 font-semibold">Donor Impact & Support</span>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- Main Navigation Tabs -->
-  <nav class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10">
-    <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm">
-      <button onclick="switchTab('caregiver')" id="tab-caregiver" class="py-4 px-2 active-tab flex items-center space-x-2">
-        <i class="fa-solid fa-hand-holding-hand"></i>
-        <span>Caregiver 1-Tap Entry</span>
-      </button>
-      <button onclick="switchTab('dashboard')" id="tab-dashboard" class="py-4 px-2 text-gray-500 hover:text-red-900 flex items-center space-x-2">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Real-Time Risk Dashboard</span>
-      </button>
-      <button onclick="switchTab('profiles')" id="tab-profiles" class="py-4 px-2 text-gray-500 hover:text-red-900 flex items-center space-x-2">
-        <i class="fa-solid fa-id-card"></i>
-        <span>Child Profiles</span>
-      </button>
-      <button onclick="switchTab('reports')" id="tab-reports" class="py-4 px-2 text-gray-500 hover:text-red-900 flex items-center space-x-2">
-        <i class="fa-solid fa-file-contract"></i>
-        <span>Donor Impact Reports</span>
-      </button>
-    </div>
-  </nav>
-
   <!-- Notification Toast -->
-  <div id="toast" class="hidden fixed bottom-5 right-5 bg-emerald-600 text-white px-5 py-3 rounded-lg shadow-lg z-50 flex items-center space-x-2 transition-all">
-    <i class="fa-solid fa-circle-check"></i>
-    <span id="toast-msg">Action completed successfully!</span>
+  <div id="toast" class="hidden fixed bottom-6 right-6 bg-burgundy-900 text-white px-5 py-3.5 rounded-xl shadow-2xl z-50 flex items-center space-x-3 border border-burgundy-600 transition-all">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+    <span id="toast-msg" class="text-sm font-medium">Action completed successfully!</span>
   </div>
 
-  <!-- Content Containers -->
-  <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+  <!-- MAIN CONTENT AREA -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
 
-    <!-- 1. CAREGIVER 1-TAP ENTRY TAB -->
+    <!-- TAB 1: CAREGIVER 1-TAP ENTRY -->
     <section id="sec-caregiver" class="space-y-6">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-5 rounded-2xl shadow-sm border border-cream-200">
         <div>
-          <h2 class="text-xl font-bold text-gray-900">Daily Caregiver Portal</h2>
-          <p class="text-xs text-gray-500">Tap to record meal distribution and attendance in under 5 seconds.</p>
+          <h2 class="text-xl font-extrabold text-burgundy-950">Field Caregiver Workspace</h2>
+          <p class="text-xs text-gray-500 mt-0.5">Rapid attendance and meal distribution entry for SDSS shelter staff.</p>
         </div>
-        <div class="flex items-center space-x-2">
-          <label class="text-xs font-semibold text-gray-600">Active Meal Session:</label>
-          <select id="meal-type" class="bg-gray-100 border border-gray-300 rounded-lg px-3 py-1.5 text-sm font-medium focus:ring-2 focus:ring-red-900 outline-none">
+        <div class="flex items-center space-x-3 bg-cream-100 p-2 rounded-xl border border-cream-200">
+          <label class="text-xs font-bold text-burgundy-900 uppercase tracking-wider">Active Meal Session:</label>
+          <select id="meal-type" class="bg-white border border-cream-200 text-gray-800 rounded-lg px-3 py-1.5 text-xs font-semibold focus:ring-2 focus:ring-burgundy-600 outline-none">
             <option>Morning Breakfast</option>
             <option selected>Afternoon Lunch</option>
             <option>Evening Snack</option>
@@ -86,75 +118,75 @@
       </div>
 
       <!-- Quick Action Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="child-cards">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="child-cards">
         <!-- Rendered via JS -->
       </div>
     </section>
 
-    <!-- 2. REAL-TIME RISK DASHBOARD TAB -->
+    <!-- TAB 2: WHO RISK DASHBOARD -->
     <section id="sec-dashboard" class="hidden space-y-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-          <p class="text-xs font-semibold text-gray-500 uppercase">Total Enrolled</p>
-          <p class="text-3xl font-bold text-gray-900 mt-1">124</p>
-          <p class="text-xs text-emerald-600 mt-1"><i class="fa-solid fa-arrow-up"></i> 100% active at SDSS</p>
+        <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Total Enrolled Children</p>
+          <p class="text-3xl font-extrabold text-burgundy-950 mt-1">124</p>
+          <p class="text-xs text-emerald-600 font-medium mt-1"><i class="fa-solid fa-circle-check"></i> 100% Verified at SDSS Shelter</p>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-          <p class="text-xs font-semibold text-gray-500 uppercase">Today's Meals Served</p>
-          <p class="text-3xl font-bold text-emerald-600 mt-1" id="dash-meals-count">218</p>
-          <p class="text-xs text-gray-500 mt-1">Target: 248 daily portions</p>
+        <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Meals Served Today</p>
+          <p class="text-3xl font-extrabold text-emerald-600 mt-1" id="dash-meals-count">218</p>
+          <p class="text-xs text-gray-500 font-medium mt-1">Target: 248 daily portions</p>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-          <p class="text-xs font-semibold text-gray-500 uppercase">High Risk (Red Alerts)</p>
-          <p class="text-3xl font-bold text-red-600 mt-1">3</p>
-          <p class="text-xs text-red-500 mt-1"><i class="fa-solid fa-triangle-exclamation"></i> Immediate intervention needed</p>
+        <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Critical Malnutrition Risk</p>
+          <p class="text-3xl font-extrabold text-red-600 mt-1">3</p>
+          <p class="text-xs text-red-500 font-medium mt-1"><i class="fa-solid fa-triangle-exclamation"></i> Immediate intervention required</p>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
-          <p class="text-xs font-semibold text-gray-500 uppercase">Moderate Risk (Yellow)</p>
-          <p class="text-3xl font-bold text-amber-500 mt-1">7</p>
-          <p class="text-xs text-amber-600 mt-1">Monitored weekly</p>
+        <div class="bg-white p-5 rounded-2xl border border-cream-200 shadow-sm">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Moderate Growth Faltering</p>
+          <p class="text-3xl font-extrabold text-amber-500 mt-1">7</p>
+          <p class="text-xs text-amber-600 font-medium mt-1">Monitored on weekly rescreening</p>
         </div>
       </div>
 
       <!-- Priority Risk Table -->
-      <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-          <h3 class="font-bold text-gray-900">Priority Health & Growth Watchlist (WHO Standard)</h3>
-          <span class="text-xs bg-red-100 text-red-800 px-2.5 py-1 rounded-full font-semibold">Auto-Evaluated</span>
+      <div class="bg-white rounded-2xl border border-cream-200 shadow-sm overflow-hidden">
+        <div class="px-6 py-4 bg-burgundy-950 text-white flex justify-between items-center">
+          <h3 class="font-bold text-sm tracking-wide">Priority Child Wellness Watchlist (WHO Standard)</h3>
+          <span class="text-xs bg-burgundy-800 text-burgundy-100 px-3 py-1 rounded-full font-semibold border border-burgundy-600">Auto-Evaluated</span>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left text-sm text-gray-600">
-            <thead class="bg-gray-50 text-gray-700 text-xs uppercase border-b border-gray-200">
+            <thead class="bg-cream-100 text-burgundy-950 text-xs uppercase font-bold border-b border-cream-200">
               <tr>
-                <th class="px-6 py-3">Child Name</th>
-                <th class="px-6 py-3">Age</th>
-                <th class="px-6 py-3">Height / Weight</th>
-                <th class="px-6 py-3">WHO Status</th>
-                <th class="px-6 py-3">Caregiver Action</th>
+                <th class="px-6 py-3.5">Child Profile</th>
+                <th class="px-6 py-3.5">Age</th>
+                <th class="px-6 py-3.5">Height / Weight</th>
+                <th class="px-6 py-3.5">WHO Growth Classification</th>
+                <th class="px-6 py-3.5">Assigned Action</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200">
-              <tr>
-                <td class="px-6 py-4 font-semibold text-gray-900">Aarav Kumar</td>
-                <td class="px-6 py-4">4 yrs</td>
-                <td class="px-6 py-4">92 cm / 11.2 kg</td>
+            <tbody class="divide-y divide-cream-200">
+              <tr class="hover:bg-cream-50 transition">
+                <td class="px-6 py-4 font-bold text-gray-900">Aarav Kumar</td>
+                <td class="px-6 py-4 text-xs">4 yrs</td>
+                <td class="px-6 py-4 text-xs font-mono">92 cm / 11.2 kg</td>
                 <td class="px-6 py-4">
-                  <span class="bg-red-100 text-red-700 font-bold px-2 py-1 rounded-md text-xs">
-                    <i class="fa-solid fa-circle-exclamation mr-1"></i>Severe Stunting (Red)
+                  <span class="bg-red-100 text-red-800 font-bold px-2.5 py-1 rounded-md text-xs border border-red-200 flex items-center w-max">
+                    <i class="fa-solid fa-circle-exclamation mr-1.5"></i>Severe Stunting (Red Flag)
                   </span>
                 </td>
-                <td class="px-6 py-4 text-xs font-medium text-red-900 underline cursor-pointer">Assign Extra Dietary Ration</td>
+                <td class="px-6 py-4 text-xs font-semibold text-burgundy-600 hover:text-burgundy-900 cursor-pointer underline">Assign Supplementary Nutrition</td>
               </tr>
-              <tr>
-                <td class="px-6 py-4 font-semibold text-gray-900">Priya Sharma</td>
-                <td class="px-6 py-4">3 yrs</td>
-                <td class="px-6 py-4">88 cm / 10.5 kg</td>
+              <tr class="hover:bg-cream-50 transition">
+                <td class="px-6 py-4 font-bold text-gray-900">Priya Sharma</td>
+                <td class="px-6 py-4 text-xs">3 yrs</td>
+                <td class="px-6 py-4 text-xs font-mono">88 cm / 10.5 kg</td>
                 <td class="px-6 py-4">
-                  <span class="bg-amber-100 text-amber-700 font-bold px-2 py-1 rounded-md text-xs">
-                    <i class="fa-solid fa-triangle-exclamation mr-1"></i>Underweight (Yellow)
+                  <span class="bg-amber-100 text-amber-800 font-bold px-2.5 py-1 rounded-md text-xs border border-amber-200 flex items-center w-max">
+                    <i class="fa-solid fa-triangle-exclamation mr-1.5"></i>Underweight (Yellow Flag)
                   </span>
                 </td>
-                <td class="px-6 py-4 text-xs font-medium text-amber-900 underline cursor-pointer">Schedule Growth Rescreening</td>
+                <td class="px-6 py-4 text-xs font-semibold text-burgundy-600 hover:text-burgundy-900 cursor-pointer underline">Schedule Weekly Screening</td>
               </tr>
             </tbody>
           </table>
@@ -162,200 +194,146 @@
       </div>
     </section>
 
-    <!-- 3. CHILD PROFILES TAB -->
+    <!-- TAB 3: CHILD PROFILES & GROWTH -->
     <section id="sec-profiles" class="hidden space-y-6">
-      <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-        <h3 class="text-lg font-bold text-gray-900 mb-4">Register New Child / Search Profile</h3>
+      <div class="bg-white p-6 rounded-2xl border border-cream-200 shadow-sm">
+        <h3 class="text-lg font-extrabold text-burgundy-950 mb-1">Register New Child Profile</h3>
+        <p class="text-xs text-gray-500 mb-4">Enroll a new child into the SDSS cloud tracking repository.</p>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <input type="text" id="reg-name" placeholder="Child's Full Name" class="border border-gray-300 rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-red-900" />
-          <input type="number" id="reg-age" placeholder="Age (Years)" class="border border-gray-300 rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-red-900" />
-          <input type="number" id="reg-weight" placeholder="Weight (kg)" class="border border-gray-300 rounded-lg p-2 text-sm outline-none focus:ring-2 focus:ring-red-900" />
-          <button onclick="addNewChild()" class="bg-red-900 hover:bg-red-950 text-white font-semibold py-2 px-4 rounded-lg text-sm transition">
-            <i class="fa-solid fa-plus mr-1"></i> Register Profile
+          <input type="text" id="reg-name" placeholder="Full Name" class="border border-cream-200 rounded-xl p-2.5 text-sm outline-none focus:ring-2 focus:ring-burgundy-600 bg-cream-50" />
+          <input type="number" id="reg-age" placeholder="Age (Years)" class="border border-cream-200 rounded-xl p-2.5 text-sm outline-none focus:ring-2 focus:ring-burgundy-600 bg-cream-50" />
+          <input type="number" id="reg-weight" placeholder="Weight (kg)" class="border border-cream-200 rounded-xl p-2.5 text-sm outline-none focus:ring-2 focus:ring-burgundy-600 bg-cream-50" />
+          <button onclick="addNewChild()" class="bg-burgundy-900 hover:bg-burgundy-950 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition shadow-md">
+            <i class="fa-solid fa-user-plus mr-1.5"></i> Register Child
           </button>
         </div>
       </div>
 
-      <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-        <h3 class="text-lg font-bold text-gray-900 mb-2">Child Growth Curve Simulation</h3>
-        <p class="text-xs text-gray-500 mb-4">Centralized record maintained per child registered by caregivers.</p>
-        <div class="h-40 bg-gray-50 rounded-lg border border-dashed border-gray-300 flex items-center justify-center text-gray-400 text-sm">
-          <i class="fa-solid fa-chart-area text-2xl mr-2 text-red-900"></i>
-          <span>WHO Growth Chart Curve Visualizer (Simulated)</span>
+      <div class="bg-white p-6 rounded-2xl border border-cream-200 shadow-sm">
+        <h3 class="text-lg font-extrabold text-burgundy-950 mb-1">Central Child Growth Trajectory</h3>
+        <p class="text-xs text-gray-500 mb-4">Simulated WHO growth curve monitoring across multi-month shelter check-ins.</p>
+        <div class="h-48 bg-cream-50 rounded-xl border border-dashed border-cream-200 flex flex-col items-center justify-center text-gray-400">
+          <i class="fa-solid fa-chart-area text-3xl text-burgundy-600 mb-2"></i>
+          <span class="text-sm font-semibold text-gray-600">WHO Standard Growth Visualizer Engine</span>
+          <span class="text-xs text-gray-400 mt-0.5">Plotting height/weight trends against global benchmarks</span>
         </div>
       </div>
     </section>
 
-    <!-- 4. DONOR IMPACT REPORTS TAB -->
-    <section id="sec-reports" class="hidden space-y-6">
-      <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-        <div class="flex justify-between items-center mb-6">
-          <div>
-            <h3 class="text-xl font-bold text-gray-900">Donor-Ready Impact Report</h3>
-            <p class="text-xs text-gray-500">Auditable statistics generated directly from caregiver entries.</p>
-          </div>
-          <button onclick="showToast('Exporting PDF Report...')" class="bg-gray-800 hover:bg-gray-900 text-white text-xs font-bold py-2 px-4 rounded-lg flex items-center space-x-2">
-            <i class="fa-solid fa-download"></i>
-            <span>Export Verified Audit PDF</span>
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <h4 class="font-bold text-gray-700 text-sm mb-2">Meal Distribution Efficiency</h4>
-            <p class="text-2xl font-bold text-red-900">98.4%</p>
-            <p class="text-xs text-gray-500 mt-1">Zero meal leakage recorded across active shifts.</p>
-          </div>
-          <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <h4 class="font-bold text-gray-700 text-sm mb-2">Average Logging Time</h4>
-            <p class="text-2xl font-bold text-red-900">2.8 Seconds</p>
-            <p class="text-xs text-gray-500 mt-1">Exceeds the target 5-second entry mark.</p>
-          </div>
-          <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <h4 class="font-bold text-gray-700 text-sm mb-2">Nutritional Recovery Rate</h4>
-            <p class="text-2xl font-bold text-emerald-700">82.0%</p>
-            <p class="text-xs text-gray-500 mt-1">Children upgraded from Yellow alert to Normal.</p>
-          </div>
+    <!-- TAB 4: ENHANCED DONOR IMPACT & SUPPORT PORTAL -->
+    <section id="sec-donor" class="hidden space-y-8">
+      
+      <!-- Donor Banner -->
+      <div class="bg-gradient-to-r from-burgundy-950 via-burgundy-900 to-burgundy-800 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+        <div class="max-w-2xl relative z-10">
+          <span class="bg-amber-400 text-burgundy-950 text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider">Direct Community Impact</span>
+          <h2 class="text-3xl font-extrabold mt-3 leading-tight">Fuel Daily Meals & Health Monitoring for Children in Need</h2>
+          <p class="text-burgundy-100 text-sm mt-2 leading-relaxed">
+            100% of your contributions directly fund nutritious hot meals, micro-nutrient supplements, and digital growth monitoring for children cared for by <strong>Shanti Devi Shiksha Samiti (SDSS)</strong>.
+          </p>
         </div>
       </div>
-    </section>
 
-  </main>
+      <!-- Live Interactive Impact Calculator Slider -->
+      <div class="bg-white p-6 sm:p-8 rounded-2xl border border-cream-200 shadow-sm">
+        <div class="max-w-xl mx-auto text-center space-y-4">
+          <h3 class="text-lg font-extrabold text-burgundy-950 uppercase tracking-wide">Interactive Impact Calculator</h3>
+          <p class="text-xs text-gray-500">Drag the slider to see how many hot meals and child health screenings your contribution covers.</p>
+          
+          <div class="pt-4">
+            <span class="text-xs font-bold text-gray-400 uppercase">Donation Amount:</span>
+            <p class="text-4xl font-extrabold text-burgundy-900 mt-1">₹<span id="slider-val">2500</span></p>
+          </div>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 border-t border-gray-200 py-4 mt-auto text-center text-xs text-gray-500">
-    <p>Digital Child Nutrition & Growth Tracker — Designed for Shanti Devi Shiksha Samiti (SDSS)</p>
-    <p class="mt-1 font-semibold text-gray-600">Built by Team Community Spark | K.R. Mangalam University</p>
-  </footer>
+          <input type="range" id="impact-slider" min="500" max="25000" step="500" value="2500" oninput="updateImpact(this.value)" class="w-full h-2.5 bg-cream-200 rounded-lg appearance-none cursor-pointer accent-burgundy-900">
 
-  <!-- JavaScript Application Logic -->
-  <script>
-    // Initial Mock Data
-    let childrenData = [
-      { id: 1, name: "Aarav Kumar", age: 4, status: "red", attendance: false, meals: 0, weight: 11.2 },
-      { id: 2, name: "Priya Sharma", age: 3, status: "yellow", attendance: false, meals: 0, weight: 10.5 },
-      { id: 3, name: "Rohan Singh", age: 5, status: "green", attendance: false, meals: 0, weight: 16.0 },
-      { id: 4, name: "Ananya Das", age: 4, status: "green", attendance: false, meals: 0, weight: 14.8 }
-    ];
-
-    let totalMealsServed = 218;
-
-    // Render Caregiver 1-Tap Cards
-    function renderCaregiverCards() {
-      const container = document.getElementById("child-cards");
-      container.innerHTML = "";
-
-      childrenData.forEach(child => {
-        let badgeColor = child.status === 'red' ? 'bg-red-100 text-red-800 border-red-300' :
-                         child.status === 'yellow' ? 'bg-amber-100 text-amber-800 border-amber-300' :
-                         'bg-emerald-100 text-emerald-800 border-emerald-300';
-
-        let badgeText = child.status === 'red' ? 'High Risk' :
-                        child.status === 'yellow' ? 'Moderate Risk' : 'Healthy';
-
-        const card = document.createElement("div");
-        card.className = "bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between space-y-4 hover:border-red-900 transition";
-        card.innerHTML = `
-          <div class="flex justify-between items-start">
-            <div>
-              <h3 class="font-bold text-gray-900 text-base">${child.name}</h3>
-              <p class="text-xs text-gray-500">Age: ${child.age} yrs | Weight: ${child.weight} kg</p>
+          <div class="grid grid-cols-2 gap-4 pt-4">
+            <div class="p-4 bg-cream-50 rounded-xl border border-cream-200 text-center">
+              <i class="fa-solid fa-bowl-food text-2xl text-burgundy-600 mb-1"></i>
+              <p class="text-2xl font-extrabold text-burgundy-950" id="calc-meals">100</p>
+              <p class="text-xs text-gray-500 font-medium">Hot Nutritious Meals Served</p>
             </div>
-            <span class="text-xs px-2.5 py-1 rounded-full font-bold border ${badgeColor}">
-              ${badgeText}
-            </span>
+            <div class="p-4 bg-cream-50 rounded-xl border border-cream-200 text-center">
+              <i class="fa-solid fa-heart-pulse text-2xl text-burgundy-600 mb-1"></i>
+              <p class="text-2xl font-extrabold text-burgundy-950" id="calc-kids">5</p>
+              <p class="text-xs text-gray-500 font-medium">Children Tracked for 1 Month</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tiered Sponsorship Cards -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-extrabold text-burgundy-950">Choose a Targeted Sponsorship Tier</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Tier 1 -->
+          <div class="bg-white rounded-2xl border border-cream-200 p-6 flex flex-col justify-between hover:border-burgundy-600 transition shadow-sm">
+            <div>
+              <span class="text-xs font-bold text-burgundy-600 bg-burgundy-50 px-3 py-1 rounded-full uppercase">Starter Impact</span>
+              <h4 class="text-xl font-bold text-gray-900 mt-3">Monthly Meal Supporter</h4>
+              <p class="text-2xl font-extrabold text-burgundy-950 mt-2">₹1,200 <span class="text-xs font-normal text-gray-500">/ month</span></p>
+              <ul class="text-xs text-gray-600 space-y-2.5 mt-4">
+                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Funds 50 hot lunches at SDSS shelter</li>
+                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Monthly digital health status reports</li>
+                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> 100% auditable digital ledger entry</li>
+              </ul>
+            </div>
+            <button onclick="showToast('Redirecting to Payment Gateway (Demo)...')" class="mt-6 w-full bg-burgundy-900 hover:bg-burgundy-950 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition">
+              Sponsor Now
+            </button>
           </div>
 
-          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-gray-100">
-            <button onclick="toggleAttendance(${child.id})" class="py-2 px-3 text-xs font-semibold rounded-lg border transition ${child.attendance ? 'bg-emerald-800 text-white border-emerald-800' : 'bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100'}">
-              <i class="fa-solid ${child.attendance ? 'fa-user-check' : 'fa-user-plus'} mr-1"></i>
-              ${child.attendance ? 'Present' : 'Mark Present'}
-            </button>
-            <button onclick="logMeal(${child.id})" class="py-2 px-3 text-xs font-semibold rounded-lg bg-red-900 hover:bg-red-950 text-white transition">
-              <i class="fa-solid fa-utensils mr-1"></i> Log Meal (${child.meals})
+          <!-- Tier 2 (Highlighted) -->
+          <div class="bg-white rounded-2xl border-2 border-burgundy-600 p-6 flex flex-col justify-between shadow-md relative">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-burgundy-950 text-xs font-extrabold px-3 py-0.5 rounded-full uppercase">Most Popular</span>
+            <div>
+              <span class="text-xs font-bold text-burgundy-600 bg-burgundy-50 px-3 py-1 rounded-full uppercase">Full Child Coverage</span>
+              <h4 class="text-xl font-bold text-gray-900 mt-3">Child Health Champion</h4>
+              <p class="text-2xl font-extrabold text-burgundy-950 mt-2">₹3,500 <span class="text-xs font-normal text-gray-500">/ quarter</span></p>
+              <ul class="text-xs text-gray-600 space-y-2.5 mt-4">
+                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Complete daily nutrition & snacks for 1 child</li>
+                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Monthly WHO growth curve rescreening</li>
+                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Direct impact updates from field caregivers</li>
+              </ul>
+            </div>
+            <button onclick="showToast('Redirecting to Payment Gateway (Demo)...')" class="mt-6 w-full bg-burgundy-600 hover:bg-burgundy-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition shadow-md">
+              Sponsor Now
             </button>
           </div>
-        `;
-        container.appendChild(card);
-      });
-    }
 
-    // Toggle Attendance
-    function toggleAttendance(id) {
-      const child = childrenData.find(c => c.id === id);
-      if (child) {
-        child.attendance = !child.attendance;
-        showToast(`${child.name} marked ${child.attendance ? 'Present' : 'Absent'}`);
-        renderCaregiverCards();
-      }
-    }
+          <!-- Tier 3 -->
+          <div class="bg-white rounded-2xl border border-cream-200 p-6 flex flex-col justify-between hover:border-burgundy-600 transition shadow-sm">
+            <div>
+              <span class="text-xs font-bold text-burgundy-600 bg-burgundy-50 px-3 py-1 rounded-full uppercase">Shelter Partner</span>
+              <h4 class="text-xl font-bold text-gray-900 mt-3">Nutrition Center Sponsor</h4>
+              <p class="text-2xl font-extrabold text-burgundy-950 mt-2">₹10,000 <span class="text-xs font-normal text-gray-500">/ month</span></p>
+              <ul class="text-xs text-gray-600 space-y-2.5 mt-4">
+                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Funds daily meals for entire shelter section</li>
+                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Dedicated CSR quarterly impact report</li>
+                <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Recognized on SDSS digital partner wall</li>
+              </ul>
+            </div>
+            <button onclick="showToast('Redirecting to Payment Gateway (Demo)...')" class="mt-6 w-full bg-burgundy-900 hover:bg-burgundy-950 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition">
+              Sponsor Now
+            </button>
+          </div>
 
-    // Log Meal
-    function logMeal(id) {
-      const child = childrenData.find(c => c.id === id);
-      if (child) {
-        child.meals += 1;
-        totalMealsServed += 1;
-        document.getElementById("dash-meals-count").innerText = totalMealsServed;
-        showToast(`Logged meal for ${child.name} in < 3s`);
-        renderCaregiverCards();
-      }
-    }
+        </div>
+      </div>
 
-    // Add New Child
-    function addNewChild() {
-      const name = document.getElementById("reg-name").value;
-      const age = document.getElementById("reg-age").value;
-      const weight = document.getElementById("reg-weight").value;
+      <!-- CSR & Corporate Inquiry Form -->
+      <div class="bg-white p-6 sm:p-8 rounded-2xl border border-cream-200 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <span class="text-xs font-bold text-burgundy-600 uppercase tracking-wider">Corporate Partnerships</span>
+          <h3 class="text-xl font-extrabold text-burgundy-950 mt-1">CSR Grant & Institutional Sponsorships</h3>
+          <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+            Partner with Team Community Spark and Shanti Devi Shiksha Samiti (SDSS) to fulfill UN SDG 2 (Zero Hunger) & SDG 3 (Good Health & Well-Being) objectives with complete digital audit trail transparency.
+          </p>
+          <div class="mt-4 space-y-2 text-xs text-gray-600">
+            <p><i class="fa-solid fa-file-pdf text-burgundy-600 mr-2"></i> Automated monthly donor audit reports</p>
+            <p><i class="fa-solid fa-shield-halved text-burgundy-600 mr-2"></i> 100% verified cloud meal counts</p>
+          </div>
+        </div>
 
-      if (!name || !age) {
-        alert("Please enter a name and age.");
-        return;
-      }
-
-      const newChild = {
-        id: childrenData.length + 1,
-        name: name,
-        age: parseInt(age),
-        status: "green",
-        attendance: false,
-        meals: 0,
-        weight: weight ? parseFloat(weight) : 12.0
-      };
-
-      childrenData.push(newChild);
-      showToast(`Registered ${name} successfully!`);
-      document.getElementById("reg-name").value = "";
-      document.getElementById("reg-age").value = "";
-      document.getElementById("reg-weight").value = "";
-      renderCaregiverCards();
-    }
-
-    // Navigation Switcher
-    function switchTab(tabName) {
-      ['caregiver', 'dashboard', 'profiles', 'reports'].forEach(t => {
-        document.getElementById(`sec-${t}`).classList.add('hidden');
-        document.getElementById(`tab-${t}`).classList.remove('active-tab');
-        document.getElementById(`tab-${t}`).classList.add('text-gray-500');
-      });
-
-      document.getElementById(`sec-${tabName}`).classList.remove('hidden');
-      document.getElementById(`tab-${tabName}`).classList.add('active-tab');
-      document.getElementById(`tab-${tabName}`).classList.remove('text-gray-500');
-    }
-
-    // Toast Alert Helper
-    function showToast(msg) {
-      const toast = document.getElementById("toast");
-      document.getElementById("toast-msg").innerText = msg;
-      toast.classList.remove("hidden");
-      setTimeout(() => {
-        toast.classList.add("hidden");
-      }, 2500);
-    }
-
-    // Initial Execution
-    renderCaregiverCards();
-  </script>
-</body>
-</html>
+        <form onsubmit="event.
