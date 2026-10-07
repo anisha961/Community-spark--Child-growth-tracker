@@ -1,1005 +1,942 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shanti Devi Shiksha Samiti (SDSS) x Community Spark | Empowering Lives</title>
-    <!-- Tailwind CSS -->
+    <title>SPARK x SDSS | Groovy Child Care & Nutrition Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            forest: '#1b4332',
-                            sage: '#2d6a4f',
-                            mint: '#40916c',
-                            sand: '#f4ece1',
-                            cream: '#faf6f0',
-                            terracotta: '#b7094c',
-                            burgundy: '#5c0029',
-                            gold: '#d4af37',
-                            charcoal: '#212529'
-                        }
+                        'green-house': '#1d3c30',
+                        'green-house-dark': '#132a21',
+                        'sprout': '#a8db5c',
+                        'sprout-light': '#cbe896',
+                        'electric-pink': '#ff94b9',
+                        'electric-pink-soft': '#ffc2d6',
+                        'peach': '#ffcca7',
+                        'calming-blue': '#a3c4bc',
+                        'paper-white': '#faf6ee',
+                        'paper-white-card': '#ffffff',
+                        'charcoal-dark': '#12211b'
                     },
                     fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                        syne: ['Syne', 'sans-serif'],
+                        script: ['Caveat', 'cursive'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '2.5rem',
+                    },
+                    boxShadow: {
+                        'retro': '4px 4px 0px 0px #12211b',
+                        'retro-lg': '6px 6px 0px 0px #12211b',
+                        'retro-xl': '8px 8px 0px 0px #12211b',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom Wave & Curved Section Shapes */
-        .wave-top-divider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
+        body {
+            background-color: #faf6ee;
+            color: #12211b;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
         }
-        .polaroid-card {
-            background: white;
-            padding: 12px 12px 24px 12px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15), 0 8px 10px -6px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
-            transition: all 0.3s ease;
-        }
-        .polaroid-card:hover {
-            transform: rotate(0deg) scale(1.03);
-            z-index: 20;
-        }
-        .polaroid-card-alt {
-            transform: rotate(2.5deg);
-        }
-        .ticker-wrap {
-            width: 100%;
-            overflow: hidden;
-            background-color: #d4af37;
-            color: #1b4332;
-            white-space: nowrap;
-        }
-        .ticker-move {
-            display: inline-block;
-            animation: ticker 35s linear infinite;
-        }
+
+        /* Ticker Animation */
         @keyframes ticker {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-50%, 0, 0); }
         }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+        .animate-ticker {
+            display: flex;
+            width: 200%;
+            animation: ticker 22s linear infinite;
         }
-        .custom-scroll::-webkit-scrollbar {
-            height: 6px;
-            width: 6px;
+        .animate-ticker:hover {
+            animation-play-state: paused;
         }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: #2d6a4f;
-            border-radius: 4px;
+
+        /* Wavy SVG Divider & Patterns */
+        .wavy-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 25 20, 50 10 T 100 10' fill='none' stroke='%23a8db5c' stroke-width='4' opacity='0.3'/%3E%3C/svg%3E");
+        }
+
+        .groovy-border {
+            border: 3px solid #12211b;
+        }
+
+        .groovy-btn {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .groovy-btn:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0px 0px #12211b;
+        }
+        .groovy-btn:active {
+            transform: translate(0px, 0px);
+            box-shadow: 2px 2px 0px 0px #12211b;
+        }
+
+        .phone-mockup {
+            border: 8px solid #12211b;
+            border-radius: 40px;
+            box-shadow: 10px 10px 0px #1d3c30;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #faf6ee;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1d3c30;
+            border-radius: 5px;
         }
     </style>
 </head>
-<body class="bg-brand-cream text-brand-charcoal font-sans antialiased selection:bg-brand-sage selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-electric-pink selection:text-green-house">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-brand-forest text-brand-sand text-xs md:text-sm py-2 px-4 border-b border-emerald-900/40">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-2">
-                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span class="font-medium">SDSS Impact Drive 2026: Partnered with Team Community Spark (K.R. Mangalam University)</span>
-            </div>
-            <div class="flex items-center gap-4 text-xs">
-                <a href="tel:+919876543210" class="hover:underline flex items-center gap-1"><i class="fa-solid fa-phone text-brand-gold"></i> Helpline: +91 98765 43210</a>
-                <span class="hidden md:inline">|</span>
-                <span class="hidden md:inline"><i class="fa-solid fa-location-dot text-brand-gold"></i> Gurugram & Sohna Centers</span>
+    <header class="sticky top-0 z-50 bg-paper-white/95 backdrop-blur-md border-b-4 border-charcoal-dark">
+        <!-- Top Groovy Ticker -->
+        <div class="bg-green-house text-paper-white py-2 overflow-hidden border-b-2 border-charcoal-dark font-syne text-xs uppercase tracking-wider font-bold">
+            <div class="animate-ticker whitespace-nowrap flex items-center gap-8">
+                <span>✦ SHANTI DEVI SHIKSHA SAMITI (SDSS)</span>
+                <span>✦ TEAM COMMUNITY SPARK (K.R. MANGALAM UNIVERSITY)</span>
+                <span>✦ NUTRITION FOR EVERY CHILD</span>
+                <span>✦ GROW WITH LOVE & SCIENCE</span>
+                <span>✦ WHO STANDARDS ALIGNED</span>
+                <span>✦ SHANTI DEVI SHIKSHA SAMITI (SDSS)</span>
+                <span>✦ TEAM COMMUNITY SPARK (K.R. MANGALAM UNIVERSITY)</span>
+                <span>✦ NUTRITION FOR EVERY CHILD</span>
+                <span>✦ GROW WITH LOVE & SCIENCE</span>
+                <span>✦ WHO STANDARDS ALIGNED</span>
             </div>
         </div>
-    </div>
 
-    <!-- Sticky Main Navigation -->
-    <nav class="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-md border-b border-brand-sand/80 transition-all shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo Block -->
-                <a href="#" class="flex items-center gap-3 group">
-                    <div class="w-11 h-11 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center font-serif text-xl font-bold shadow-md group-hover:scale-105 transition-transform">
-                        SD
-                    </div>
-                    <div>
-                        <div class="font-serif font-bold text-lg md:text-xl text-brand-forest leading-tight tracking-tight">Shanti Devi Shiksha Samiti</div>
-                        <div class="text-[10px] uppercase tracking-widest text-brand-sage font-bold">Supported by Community Spark</div>
-                    </div>
-                </a>
+        <!-- Navigation Bar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            <!-- Brand Badge Logo -->
+            <a href="#" onclick="showPage('home')" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 bg-sprout rounded-2xl border-2 border-charcoal-dark shadow-retro flex items-center justify-center transform group-hover:rotate-6 transition-transform">
+                    <i data-lucide="sprout" class="w-7 h-7 text-green-house"></i>
+                </div>
+                <div>
+                    <span class="font-syne text-xl sm:text-2xl font-extrabold text-green-house tracking-tight block leading-none">
+                        SPARK <span class="text-electric-pink font-script text-2xl sm:text-3xl">x</span> SDSS
+                    </span>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-charcoal-dark/70">Child Care & Nutrition</span>
+                </div>
+            </a>
 
-                <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold text-brand-forest">
-                    <a href="#about" class="hover:text-brand-terracotta transition-colors">Our Mission</a>
-                    <a href="#approach" class="hover:text-brand-terracotta transition-colors">Our Approach</a>
-                    <a href="#diet" class="hover:text-brand-terracotta transition-colors">Daily Diet Plan</a>
-                    <a href="#timeline" class="hover:text-brand-terracotta transition-colors">Journey</a>
-                    <a href="#tracker-demo" class="hover:text-brand-terracotta transition-colors flex items-center gap-1 text-emerald-700">
-                        <i class="fa-solid fa-chart-line"></i> Live Tracker Demo
-                    </a>
+            <!-- Nav Links (Desktop) -->
+            <nav class="hidden lg:flex items-center gap-2 font-bold text-sm text-green-house">
+                <button onclick="showPage('home')" class="nav-btn px-4 py-2 rounded-full hover:bg-sprout-light border-2 border-transparent hover:border-charcoal-dark transition-all">Home</button>
+                <button onclick="showPage('about')" class="nav-btn px-4 py-2 rounded-full hover:bg-electric-pink-soft border-2 border-transparent hover:border-charcoal-dark transition-all">About & Mission</button>
+                <button onclick="showPage('diet')" class="nav-btn px-4 py-2 rounded-full hover:bg-peach border-2 border-transparent hover:border-charcoal-dark transition-all">Diet Schedule</button>
+                <button onclick="showPage('app-simulator')" class="nav-btn px-4 py-2 rounded-full hover:bg-calming-blue border-2 border-transparent hover:border-charcoal-dark transition-all">Caregiver App</button>
+                <button onclick="showPage('growth-calc')" class="nav-btn px-4 py-2 rounded-full hover:bg-sprout-light border-2 border-transparent hover:border-charcoal-dark transition-all">Growth Tracker</button>
+            </nav>
+
+            <!-- Action CTA -->
+            <div class="flex items-center gap-3">
+                <button onclick="showPage('impact')" class="groovy-btn bg-electric-pink text-green-house font-syne font-bold px-5 py-2.5 rounded-full border-2 border-charcoal-dark shadow-retro text-sm flex items-center gap-2">
+                    <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+                    <span>Donate & Impact</span>
+                </button>
+                <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-xl border-2 border-charcoal-dark bg-paper-white" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t-2 border-charcoal-dark bg-paper-white px-4 py-4 space-y-2 font-bold">
+            <button onclick="showPage('home'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 rounded-xl bg-sprout-light/30">Home</button>
+            <button onclick="showPage('about'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 rounded-xl bg-electric-pink-soft/30">About & Mission</button>
+            <button onclick="showPage('diet'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 rounded-xl bg-peach/30">Diet Schedule</button>
+            <button onclick="showPage('app-simulator'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 rounded-xl bg-calming-blue/30">Caregiver App</button>
+            <button onclick="showPage('growth-calc'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 rounded-xl bg-sprout-light/30">Growth Tracker</button>
+        </div>
+    </header>
+
+    <main id="main-content" class="flex-grow">
+
+        <!-- PAGE 1: HOME -->
+        <section id="page-home" class="page-section">
+            <!-- Hero Banner -->
+            <div class="bg-green-house text-paper-white py-12 lg:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-b-4 border-charcoal-dark">
+                <!-- Wavy Decorative Shapes -->
+                <div class="absolute -top-12 -left-12 w-64 h-64 bg-sprout opacity-20 rounded-full blur-2xl"></div>
+                <div class="absolute bottom-0 right-0 w-96 h-96 bg-electric-pink opacity-15 rounded-full blur-3xl"></div>
+
+                <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 items-center relative z-10">
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-sprout text-green-house font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-full border-2 border-charcoal-dark shadow-retro">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            <span>Empowering Early Childhood Health</span>
+                        </div>
+                        <h1 class="font-syne text-4xl sm:text-6xl font-extrabold leading-tight tracking-tight">
+                            A NEW KIND OF <br>
+                            <span class="text-electric-pink underline decoration-sprout decoration-wavy underline-offset-8">CHILD CARE</span> & NUTRITION TRACKER
+                        </h1>
+                        <p class="text-paper-white/90 text-lg sm:text-xl font-normal max-w-2xl font-sans">
+                            In collaboration with <span class="font-bold text-sprout">Team Community Spark (K.R. Mangalam University)</span> and <span class="font-bold text-electric-pink">Shanti Devi Shiksha Samiti</span>. We elevate community growth through scientific diet mapping, real-time WHO metrics, and caregiver digital tools.
+                        </p>
+                        
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+                            <button onclick="showPage('growth-calc')" class="groovy-btn bg-sprout text-green-house font-syne font-extrabold px-6 py-3.5 rounded-full border-2 border-charcoal-dark shadow-retro text-base flex items-center gap-2">
+                                <i data-lucide="calculator" class="w-5 h-5"></i>
+                                Calculate Child Growth
+                            </button>
+                            <button onclick="showPage('diet')" class="groovy-btn bg-paper-white text-green-house font-syne font-bold px-6 py-3.5 rounded-full border-2 border-charcoal-dark shadow-retro text-base flex items-center gap-2">
+                                <i data-lucide="utensils" class="w-5 h-5"></i>
+                                View Weekly Diet Plan
+                            </button>
+                        </div>
+
+                        <!-- Pill Badges -->
+                        <div class="pt-6 flex flex-wrap justify-center lg:justify-start gap-3">
+                            <span class="px-3 py-1 bg-green-house-dark border border-sprout/40 rounded-full text-xs font-semibold text-sprout flex items-center gap-1.5">
+                                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> 100% Community Driven
+                            </span>
+                            <span class="px-3 py-1 bg-green-house-dark border border-sprout/40 rounded-full text-xs font-semibold text-sprout flex items-center gap-1.5">
+                                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> WHO Growth Standards
+                            </span>
+                            <span class="px-3 py-1 bg-green-house-dark border border-sprout/40 rounded-full text-xs font-semibold text-sprout flex items-center gap-1.5">
+                                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Zero Hunger Initiative
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Right Arch Card Banner -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <!-- Arch container with retro design -->
+                            <div class="bg-electric-pink rounded-t-full rounded-b-3xl p-6 border-4 border-charcoal-dark shadow-retro-xl text-center flex flex-col items-center justify-between min-h-[460px] relative overflow-hidden">
+                                <div class="w-full bg-paper-white border-2 border-charcoal-dark rounded-full py-2 font-syne font-extrabold text-sm text-green-house shadow-retro mb-4">
+                                    ✦ SDSS POSHAN HUB ✦
+                                </div>
+                                <div class="w-44 h-44 bg-sprout rounded-full border-4 border-charcoal-dark flex items-center justify-center shadow-retro my-4 relative">
+                                    <i data-lucide="apple" class="w-24 h-24 text-green-house"></i>
+                                    <div class="absolute -bottom-2 bg-peach border-2 border-charcoal-dark rounded-full px-3 py-0.5 text-xs font-extrabold text-green-house">
+                                        NUTRITION DENSITY
+                                    </div>
+                                </div>
+                                <div class="bg-paper-white border-2 border-charcoal-dark rounded-2xl p-4 w-full shadow-retro text-left">
+                                    <span class="text-xs font-extrabold text-green-house uppercase block">Today's Focus Metric</span>
+                                    <h4 class="font-syne font-bold text-lg text-green-house">Iron & Micronutrient Fortification</h4>
+                                    <p class="text-xs text-charcoal-dark/80 mt-1">Providing balanced midday meals across rural outreach centers.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program Pillars Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="font-script text-3xl text-electric-pink font-bold block">Groovy & Impactful Initiatives</span>
+                    <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-green-house mt-1">
+                        Empowering Communities with Care & Science
+                    </h2>
+                    <p class="text-charcoal-dark/80 mt-3 text-base">
+                        Our joint initiative combines field research from K.R. Mangalam University with Shanti Devi Shiksha Samiti’s grass-roots networks.
+                    </p>
                 </div>
 
-                <!-- CTA Button -->
-                <div class="flex items-center gap-3">
-                    <a href="#donate" class="bg-brand-forest hover:bg-brand-sage text-white font-bold px-6 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-sm uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-heart text-brand-gold"></i> Donate Now
-                    </a>
-                    <button id="mobile-menu-btn" class="lg:hidden text-brand-forest text-2xl focus:outline-none p-2">
-                        <i class="fa-solid fa-bars"></i>
+                <!-- Grid of Pastel Pill Cards -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-electric-pink-soft/80 border-3 border-charcoal-dark rounded-3xl p-6 shadow-retro hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-electric-pink border-2 border-charcoal-dark rounded-2xl flex items-center justify-center shadow-retro mb-4">
+                                <i data-lucide="utensils-crossed" class="w-7 h-7 text-green-house"></i>
+                            </div>
+                            <span class="text-xs font-extrabold uppercase tracking-widest text-green-house bg-paper-white px-2.5 py-1 rounded-full border border-charcoal-dark inline-block mb-3">Pillar 01</span>
+                            <h3 class="font-syne text-xl font-bold text-green-house mb-2">Morning Poshan Meal</h3>
+                            <p class="text-sm text-charcoal-dark/90 leading-relaxed">
+                                Fresh, calorie-dense breakfast and lunch formulas designed specifically for undernourished children aged 2–10.
+                            </p>
+                        </div>
+                        <button onclick="showPage('diet')" class="mt-6 text-xs font-syne font-extrabold underline text-green-house hover:text-electric-pink transition-colors text-left flex items-center gap-1">
+                            EXPLORE DIET PLAN <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-sprout-light/80 border-3 border-charcoal-dark rounded-3xl p-6 shadow-retro hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-sprout border-2 border-charcoal-dark rounded-2xl flex items-center justify-center shadow-retro mb-4">
+                                <i data-lucide="activity" class="w-7 h-7 text-green-house"></i>
+                            </div>
+                            <span class="text-xs font-extrabold uppercase tracking-widest text-green-house bg-paper-white px-2.5 py-1 rounded-full border border-charcoal-dark inline-block mb-3">Pillar 02</span>
+                            <h3 class="font-syne text-xl font-bold text-green-house mb-2">WHO Growth Benchmark</h3>
+                            <p class="text-sm text-charcoal-dark/90 leading-relaxed">
+                                Systematic height and weight tracking benchmarked against World Health Organization growth curves.
+                            </p>
+                        </div>
+                        <button onclick="showPage('growth-calc')" class="mt-6 text-xs font-syne font-extrabold underline text-green-house hover:text-sprout transition-colors text-left flex items-center gap-1">
+                            LAUNCH CALCULATOR <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-peach/80 border-3 border-charcoal-dark rounded-3xl p-6 shadow-retro hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-peach border-2 border-charcoal-dark rounded-2xl flex items-center justify-center shadow-retro mb-4">
+                                <i data-lucide="smartphone" class="w-7 h-7 text-green-house"></i>
+                            </div>
+                            <span class="text-xs font-extrabold uppercase tracking-widest text-green-house bg-paper-white px-2.5 py-1 rounded-full border border-charcoal-dark inline-block mb-3">Pillar 03</span>
+                            <h3 class="font-syne text-xl font-bold text-green-house mb-2">Caregiver Digital Sync</h3>
+                            <p class="text-sm text-charcoal-dark/90 leading-relaxed">
+                                Offline-first mobile tools enabling local Anganwadi workers and mothers to record child growth effortlessly.
+                            </p>
+                        </div>
+                        <button onclick="showPage('app-simulator')" class="mt-6 text-xs font-syne font-extrabold underline text-green-house hover:text-peach transition-colors text-left flex items-center gap-1">
+                            SIMULATE APP <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-calming-blue/80 border-3 border-charcoal-dark rounded-3xl p-6 shadow-retro hover:-translate-y-2 transition-transform flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 bg-calming-blue border-2 border-charcoal-dark rounded-2xl flex items-center justify-center shadow-retro mb-4">
+                                <i data-lucide="heart" class="w-7 h-7 text-green-house"></i>
+                            </div>
+                            <span class="text-xs font-extrabold uppercase tracking-widest text-green-house bg-paper-white px-2.5 py-1 rounded-full border border-charcoal-dark inline-block mb-3">Pillar 04</span>
+                            <h3 class="font-syne text-xl font-bold text-green-house mb-2">Maternal Guidance</h3>
+                            <p class="text-sm text-charcoal-dark/90 leading-relaxed">
+                                Interactive workshops and nutrition kits provided directly to expectant and nursing mothers.
+                            </p>
+                        </div>
+                        <button onclick="showPage('about')" class="mt-6 text-xs font-syne font-extrabold underline text-green-house hover:text-calming-blue transition-colors text-left flex items-center gap-1">
+                            LEARN OUR MISSION <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-about" class="page-section hidden py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="bg-paper-white-card border-4 border-charcoal-dark rounded-5xl p-6 sm:p-12 shadow-retro-xl mb-12">
+                <div class="max-w-3xl mx-auto text-center space-y-4 mb-10">
+                    <span class="font-script text-4xl text-electric-pink font-bold">Blüming Together</span>
+                    <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-green-house">
+                        ABOUT SHANTI DEVI SHIKSHA SAMITI & COMMUNITY SPARK
+                    </h2>
+                    <p class="text-charcoal-dark/80 text-lg">
+                        Creating sustainable, nutrition-focused community intervention frameworks for early childhood development.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-sprout-light/40 border-3 border-charcoal-dark rounded-4xl p-8 shadow-retro">
+                        <h3 class="font-syne text-2xl font-bold text-green-house mb-4 flex items-center gap-2">
+                            <i data-lucide="target" class="w-6 h-6 text-green-house"></i> Our Shared Vision
+                        </h3>
+                        <p class="text-charcoal-dark/90 text-base leading-relaxed mb-4">
+                            Shanti Devi Shiksha Samiti (SDSS) works tirelessly in rural sectors to provide underprivileged children with holistic education, primary nutrition, and healthcare support.
+                        </p>
+                        <p class="text-charcoal-dark/90 text-base leading-relaxed">
+                            Through partnership with <strong>Team Community Spark at K.R. Mangalam University</strong>, we combine youth dynamism, data analytics, and modern web software to scale this grassroots impact.
+                        </p>
+                    </div>
+
+                    <!-- Groovy Graphic Swatch Grid -->
+                    <div class="bg-green-house text-paper-white border-3 border-charcoal-dark rounded-4xl p-8 shadow-retro space-y-6">
+                        <h3 class="font-syne text-2xl font-bold text-sprout mb-2">Color Palette & Brand Ethos</h3>
+                        
+                        <div class="space-y-3 font-sans text-xs font-semibold">
+                            <div class="flex items-center gap-3 bg-paper-white/10 p-3 rounded-2xl border border-paper-white/20">
+                                <div class="w-8 h-8 rounded-xl bg-[#1d3c30] border border-paper-white"></div>
+                                <div><strong class="text-sprout block">Green House (#1d3c30)</strong> Growth, nature, and solid foundations</div>
+                            </div>
+                            <div class="flex items-center gap-3 bg-paper-white/10 p-3 rounded-2xl border border-paper-white/20">
+                                <div class="w-8 h-8 rounded-xl bg-[#ff94b9] border border-paper-white"></div>
+                                <div><strong class="text-electric-pink block">Electric Pink (#ff94b9)</strong> Joyful warmth, energetic childhood vibrancy</div>
+                            </div>
+                            <div class="flex items-center gap-3 bg-paper-white/10 p-3 rounded-2xl border border-paper-white/20">
+                                <div class="w-8 h-8 rounded-xl bg-[#a8db5c] border border-paper-white"></div>
+                                <div><strong class="text-sprout block">Sprout Green (#a8db5c)</strong> Nourishment, fresh starts, and vitality</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-diet" class="page-section hidden py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="font-script text-3xl text-electric-pink font-bold">Nourishing Young Minds</span>
+                <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-green-house">
+                    INTERACTIVE SDSS DIET SCHEDULE
+                </h2>
+                <p class="text-charcoal-dark/80 mt-2">
+                    Select a day to view prescribed nutrition macros, balanced meals, and essential vitamins tailored for growing children.
+                </p>
+            </div>
+
+            <!-- Day Selector Pills -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-10">
+                <button onclick="selectDay('mon')" id="day-mon" class="day-btn groovy-btn bg-sprout text-green-house font-syne font-extrabold px-5 py-2.5 rounded-full border-2 border-charcoal-dark shadow-retro text-sm">Mon</button>
+                <button onclick="selectDay('tue')" id="day-tue" class="day-btn groovy-btn bg-paper-white text-green-house font-syne font-extrabold px-5 py-2.5 rounded-full border-2 border-charcoal-dark shadow-retro text-sm">Tue</button>
+                <button onclick="selectDay('wed')" id="day-wed" class="day-btn groovy-btn bg-paper-white text-green-house font-syne font-extrabold px-5 py-2.5 rounded-full border-2 border-charcoal-dark shadow-retro text-sm">Wed</button>
+                <button onclick="selectDay('thu')" id="day-thu" class="day-btn groovy-btn bg-paper-white text-green-house font-syne font-extrabold px-5 py-2.5 rounded-full border-2 border-charcoal-dark shadow-retro text-sm">Thu</button>
+                <button onclick="selectDay('fri')" id="day-fri" class="day-btn groovy-btn bg-paper-white text-green-house font-syne font-extrabold px-5 py-2.5 rounded-full border-2 border-charcoal-dark shadow-retro text-sm">Fri</button>
+                <button onclick="selectDay('sat')" id="day-sat" class="day-btn groovy-btn bg-paper-white text-green-house font-syne font-extrabold px-5 py-2.5 rounded-full border-2 border-charcoal-dark shadow-retro text-sm">Sat</button>
+                <button onclick="selectDay('sun')" id="day-sun" class="day-btn groovy-btn bg-paper-white text-green-house font-syne font-extrabold px-5 py-2.5 rounded-full border-2 border-charcoal-dark shadow-retro text-sm">Sun</button>
+            </div>
+
+            <!-- Dynamic Meal Display -->
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Meals List -->
+                <div class="lg:col-span-8 space-y-4" id="meals-container">
+                    <!-- Meals dynamically updated via JS -->
+                </div>
+
+                <!-- Macro Nutrient Card Sidebar -->
+                <div class="lg:col-span-4 bg-green-house text-paper-white border-4 border-charcoal-dark rounded-4xl p-6 shadow-retro-xl sticky top-28">
+                    <h3 class="font-syne text-2xl font-bold text-sprout mb-1">Daily Target Nutrients</h3>
+                    <p class="text-xs text-paper-white/80 mb-6">Recommended daily intake for children aged 3–8 years</p>
+
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>CALORIES</span>
+                                <span class="text-sprout" id="macro-calories">1,450 kcal</span>
+                            </div>
+                            <div class="w-full h-3 bg-paper-white/20 rounded-full overflow-hidden border border-paper-white/30">
+                                <div class="h-full bg-sprout rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>PROTEIN</span>
+                                <span class="text-electric-pink" id="macro-protein">28g / 30g</span>
+                            </div>
+                            <div class="w-full h-3 bg-paper-white/20 rounded-full overflow-hidden border border-paper-white/30">
+                                <div class="h-full bg-electric-pink rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>IRON & MICRONUTRIENTS</span>
+                                <span class="text-peach" id="macro-iron">11mg</span>
+                            </div>
+                            <div class="w-full h-3 bg-paper-white/20 rounded-full overflow-hidden border border-paper-white/30">
+                                <div class="h-full bg-peach rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>CALCIUM</span>
+                                <span class="text-calming-blue" id="macro-calcium">600mg</span>
+                            </div>
+                            <div class="w-full h-3 bg-paper-white/20 rounded-full overflow-hidden border border-paper-white/30">
+                                <div class="h-full bg-calming-blue rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-paper-white/10 rounded-2xl border border-paper-white/20 text-xs">
+                        <i data-lucide="info" class="w-4 h-4 text-sprout inline mr-1"></i>
+                        <span>Diet charts are formulated in compliance with ICMR & National Nutrition Mission standards.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-app-simulator" class="page-section hidden py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="font-script text-3xl text-electric-pink font-bold">Field Ready Technology</span>
+                <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-green-house">
+                    CAREGIVER MOBILE APP SIMULATOR
+                </h2>
+                <p class="text-charcoal-dark/80 mt-2">
+                    Experience the simplified mobile interface used by SDSS ground health-workers to log meal distributions and track growth metrics offline.
+                </p>
+            </div>
+
+            <!-- Phone Frame -->
+            <div class="flex justify-center">
+                <div class="phone-mockup w-full max-w-sm bg-paper-white overflow-hidden my-4">
+                    <!-- Phone Header Bar -->
+                    <div class="bg-green-house text-paper-white px-5 py-4 border-b-2 border-charcoal-dark flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="sprout" class="w-5 h-5 text-sprout"></i>
+                            <span class="font-syne text-sm font-bold tracking-tight">SDSS Field Tracker</span>
+                        </div>
+                        <span class="text-[10px] bg-sprout text-green-house font-extrabold px-2 py-0.5 rounded-full">OFFLINE SYNC</span>
+                    </div>
+
+                    <!-- Phone Content Area -->
+                    <div class="p-4 space-y-4 bg-paper-white min-h-[460px]">
+                        <!-- Quick Child Profile Header -->
+                        <div class="bg-peach/50 border-2 border-charcoal-dark rounded-2xl p-3 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-electric-pink rounded-xl border border-charcoal-dark flex items-center justify-center font-syne font-bold text-green-house">
+                                    AR
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xs text-green-house">Aarav Sharma</h4>
+                                    <span class="text-[10px] text-charcoal-dark/70">Age: 4 yrs • ID: #SDSS-809</span>
+                                </div>
+                            </div>
+                            <span class="text-xs font-extrabold text-green-house bg-sprout px-2 py-1 rounded-lg border border-charcoal-dark">Normal Growth</span>
+                        </div>
+
+                        <!-- App Simulator Screen Selector Tabs -->
+                        <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                            <button onclick="simTab('meal')" id="sim-btn-meal" class="py-2 bg-sprout border-2 border-charcoal-dark rounded-xl text-green-house">Meal Log</button>
+                            <button onclick="simTab('metrics')" id="sim-btn-metrics" class="py-2 bg-paper-white border-2 border-charcoal-dark rounded-xl text-green-house">Growth Log</button>
+                        </div>
+
+                        <!-- Tab 1: Meal Log -->
+                        <div id="sim-screen-meal" class="space-y-3">
+                            <div class="text-xs font-extrabold text-green-house uppercase">Record Meal Distribution</div>
+                            
+                            <label class="block text-xs font-semibold text-charcoal-dark">Select Meal Type:</label>
+                            <select id="sim-meal-type" class="w-full text-xs font-bold border-2 border-charcoal-dark rounded-xl p-2 bg-paper-white">
+                                <option>Morning Poshan Meal (Suji Kheer & Milk)</option>
+                                <option>Midday Lunch (Dal, Rice & Spinach)</option>
+                                <option>Evening Fortified Biscuit</option>
+                            </select>
+
+                            <div class="flex items-center justify-between pt-2">
+                                <span class="text-xs font-bold text-green-house">Portion Consumed:</span>
+                                <span id="portion-val" class="text-xs font-extrabold text-electric-pink">100% Full Portion</span>
+                            </div>
+                            <input type="range" min="25" max="100" step="25" value="100" oninput="document.getElementById('portion-val').innerText = this.value + '% Portion'" class="w-full accent-green-house">
+
+                            <button onclick="simulateSaveMeal()" class="w-full py-2.5 bg-electric-pink text-green-house font-syne font-bold text-xs rounded-xl border-2 border-charcoal-dark shadow-retro mt-2">
+                                Save Meal Record
+                            </button>
+                        </div>
+
+                        <!-- Tab 2: Growth Metrics -->
+                        <div id="sim-screen-metrics" class="hidden space-y-3">
+                            <div class="text-xs font-extrabold text-green-house uppercase">Log Monthly Vitals</div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold text-charcoal-dark">Height (cm)</label>
+                                <input type="number" id="sim-height" value="102" class="w-full text-xs font-bold border-2 border-charcoal-dark rounded-xl p-2 bg-paper-white">
+                            </div>
+
+                            <div>
+                                <label class="block text-[10px] font-bold text-charcoal-dark">Weight (kg)</label>
+                                <input type="number" id="sim-weight" value="15.8" class="w-full text-xs font-bold border-2 border-charcoal-dark rounded-xl p-2 bg-paper-white">
+                            </div>
+
+                            <button onclick="simulateSaveMetrics()" class="w-full py-2.5 bg-sprout text-green-house font-syne font-bold text-xs rounded-xl border-2 border-charcoal-dark shadow-retro mt-2">
+                                Log Metrics
+                            </button>
+                        </div>
+
+                        <!-- Recent Sync Feedback Box -->
+                        <div id="sim-toast" class="hidden p-3 bg-sprout-light border-2 border-charcoal-dark rounded-xl text-xs text-green-house font-bold animate-bounce text-center">
+                            ✓ Local database updated & queued for sync!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-growth-calc" class="page-section hidden py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="font-script text-3xl text-electric-pink font-bold">WHO Percentile Index</span>
+                <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-green-house">
+                    CHILD GROWTH BENCHMARK CALCULATOR
+                </h2>
+                <p class="text-charcoal-dark/80 mt-2">
+                    Instant health percentile calculation based on World Health Organization standards for children under 10 years.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Calculator Inputs Form -->
+                <div class="lg:col-span-6 bg-paper-white-card border-4 border-charcoal-dark rounded-4xl p-6 sm:p-8 shadow-retro-xl">
+                    <form onsubmit="calculateGrowth(event)" class="space-y-5">
+                        <div>
+                            <label class="block font-syne font-bold text-sm text-green-house mb-2">CHILD'S AGE</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <input type="number" id="calc-age-years" min="0" max="10" value="4" class="w-full border-2 border-charcoal-dark rounded-2xl p-3 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-sprout">
+                                    <span class="text-[10px] font-bold text-charcoal-dark/60 mt-1 block">Years</span>
+                                </div>
+                                <div>
+                                    <input type="number" id="calc-age-months" min="0" max="11" value="6" class="w-full border-2 border-charcoal-dark rounded-2xl p-3 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-sprout">
+                                    <span class="text-[10px] font-bold text-charcoal-dark/60 mt-1 block">Months</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-syne font-bold text-sm text-green-house mb-2">GENDER</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="flex items-center gap-2 border-2 border-charcoal-dark rounded-2xl p-3 cursor-pointer hover:bg-sprout-light/30">
+                                    <input type="radio" name="calc-gender" value="boy" checked class="accent-green-house">
+                                    <span class="font-bold text-sm text-green-house">Boy</span>
+                                </label>
+                                <label class="flex items-center gap-2 border-2 border-charcoal-dark rounded-2xl p-3 cursor-pointer hover:bg-electric-pink-soft/30">
+                                    <input type="radio" name="calc-gender" value="girl" class="accent-green-house">
+                                    <span class="font-bold text-sm text-green-house">Girl</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-syne font-bold text-sm text-green-house mb-2">HEIGHT (cm)</label>
+                                <input type="number" step="0.1" id="calc-height" value="104" class="w-full border-2 border-charcoal-dark rounded-2xl p-3 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-sprout">
+                            </div>
+                            <div>
+                                <label class="block font-syne font-bold text-sm text-green-house mb-2">WEIGHT (kg)</label>
+                                <input type="number" step="0.1" id="calc-weight" value="16.5" class="w-full border-2 border-charcoal-dark rounded-2xl p-3 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-sprout">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="groovy-btn w-full bg-sprout text-green-house font-syne font-extrabold py-3.5 rounded-2xl border-2 border-charcoal-dark shadow-retro text-base flex justify-center items-center gap-2">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            Calculate Growth Metrics
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Calculation Output Display -->
+                <div class="lg:col-span-6 bg-green-house text-paper-white border-4 border-charcoal-dark rounded-4xl p-6 sm:p-8 shadow-retro-xl">
+                    <h3 class="font-syne text-2xl font-bold text-sprout mb-4">WHO Growth Assessment</h3>
+
+                    <div id="calc-results" class="space-y-6">
+                        <!-- Default Assessment -->
+                        <div class="bg-paper-white/10 p-4 rounded-2xl border border-paper-white/20">
+                            <span class="text-xs uppercase font-bold text-sprout block mb-1">Body Mass Index (BMI)</span>
+                            <div class="text-3xl font-syne font-extrabold text-paper-white" id="res-bmi">15.3 kg/m²</div>
+                            <span class="text-xs text-sprout-light mt-1 block font-semibold" id="res-status">✦ Healthy WHO Growth Band</span>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-xs font-bold">
+                                <span>Height-for-Age Percentile</span>
+                                <span id="res-h-pct" class="text-sprout">65th Percentile</span>
+                            </div>
+                            <div class="w-full h-3 bg-paper-white/20 rounded-full border border-paper-white/30 overflow-hidden">
+                                <div id="bar-h-pct" class="h-full bg-sprout rounded-full" style="width: 65%"></div>
+                            </div>
+
+                            <div class="flex justify-between text-xs font-bold pt-2">
+                                <span>Weight-for-Age Percentile</span>
+                                <span id="res-w-pct" class="text-electric-pink">58th Percentile</span>
+                            </div>
+                            <div class="w-full h-3 bg-paper-white/20 rounded-full border border-paper-white/30 overflow-hidden">
+                                <div id="bar-w-pct" class="h-full bg-electric-pink rounded-full" style="width: 58%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-paper-white/10 p-4 rounded-2xl border border-paper-white/20 text-xs leading-relaxed" id="res-recommendation">
+                            <strong class="text-sprout block mb-1">SDSS Nutrition Advice:</strong>
+                            Child demonstrates healthy parameters. Continue daily morning protein-enriched meals and maintain bi-weekly checks.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-impact" class="page-section hidden py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="font-script text-3xl text-electric-pink font-bold">Direct Grassroots Support</span>
+                <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-green-house">
+                    GROOVY IMPACT & DONATION ESTIMATOR
+                </h2>
+                <p class="text-charcoal-dark/80 mt-2">
+                    See how your contribution directly translates into nutritious meals, WHO checkups, and educational kits for children.
+                </p>
+            </div>
+
+            <div class="bg-paper-white-card border-4 border-charcoal-dark rounded-5xl p-6 sm:p-12 shadow-retro-xl max-w-4xl mx-auto">
+                <!-- Donation Amount Slider -->
+                <div class="space-y-6 mb-10">
+                    <div class="flex justify-between items-center flex-wrap gap-4">
+                        <label class="font-syne font-bold text-xl text-green-house">SELECT MONTHLY CONTRIBUTION</label>
+                        <div class="bg-electric-pink text-green-house font-syne font-extrabold text-3xl px-6 py-2 rounded-2xl border-2 border-charcoal-dark shadow-retro">
+                            ₹<span id="donation-val">1500</span> <span class="text-xs font-sans text-green-house">/ mo</span>
+                        </div>
+                    </div>
+
+                    <input type="range" id="donation-slider" min="500" max="10000" step="500" value="1500" oninput="updateImpact(this.value)" class="w-full h-4 bg-sprout-light border-2 border-charcoal-dark rounded-lg cursor-pointer accent-green-house">
+
+                    <div class="flex justify-between text-xs font-bold text-charcoal-dark/70">
+                        <span>₹500 / mo</span>
+                        <span>₹5,000 / mo</span>
+                        <span>₹10,000 / mo</span>
+                    </div>
+                </div>
+
+                <!-- Real-time Calculated Impact Metrics Grid -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-sprout-light/60 border-3 border-charcoal-dark rounded-3xl p-6 text-center shadow-retro">
+                        <i data-lucide="utensils" class="w-8 h-8 text-green-house mx-auto mb-2"></i>
+                        <span class="font-syne text-3xl font-extrabold text-green-house block" id="impact-meals">100</span>
+                        <span class="text-xs font-bold text-charcoal-dark uppercase">Nutritious Meals Provided</span>
+                    </div>
+
+                    <div class="bg-electric-pink-soft/60 border-3 border-charcoal-dark rounded-3xl p-6 text-center shadow-retro">
+                        <i data-lucide="stethoscope" class="w-8 h-8 text-green-house mx-auto mb-2"></i>
+                        <span class="font-syne text-3xl font-extrabold text-green-house block" id="impact-checkups">3</span>
+                        <span class="text-xs font-bold text-charcoal-dark uppercase">Children Health Tracked</span>
+                    </div>
+
+                    <div class="bg-peach/60 border-3 border-charcoal-dark rounded-3xl p-6 text-center shadow-retro">
+                        <i data-lucide="book-open" class="w-8 h-8 text-green-house mx-auto mb-2"></i>
+                        <span class="font-syne text-3xl font-extrabold text-green-house block" id="impact-kits">1</span>
+                        <span class="text-xs font-bold text-charcoal-dark uppercase">Early Learning Kit</span>
+                    </div>
+                </div>
+
+                <!-- Call to Action Button -->
+                <div class="mt-10 text-center">
+                    <button onclick="alert('Thank you for choosing to support Shanti Devi Shiksha Samiti & Team Community Spark!')" class="groovy-btn bg-sprout text-green-house font-syne font-extrabold px-8 py-4 rounded-full border-3 border-charcoal-dark shadow-retro-lg text-lg inline-flex items-center gap-3">
+                        <i data-lucide="heart" class="w-6 h-6 fill-current"></i>
+                        Pledge Contribution Now
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-brand-cream border-b border-brand-sand px-4 pt-2 pb-6 space-y-3">
-            <a href="#about" class="block py-2 text-brand-forest font-semibold border-b border-gray-100">Our Mission</a>
-            <a href="#approach" class="block py-2 text-brand-forest font-semibold border-b border-gray-100">Our Approach</a>
-            <a href="#diet" class="block py-2 text-brand-forest font-semibold border-b border-gray-100">Daily Diet Plan</a>
-            <a href="#timeline" class="block py-2 text-brand-forest font-semibold border-b border-gray-100">Journey</a>
-            <a href="#tracker-demo" class="block py-2 text-brand-forest font-semibold">Live Growth Tracker Demo</a>
-        </div>
-    </nav>
+    </main>
 
-    <!-- Hero Banner Section -->
-    <section class="relative bg-brand-forest text-white pt-16 pb-28 md:pt-20 md:pb-36 overflow-hidden">
-        <!-- Background Overlay Image with High Contrast -->
-        <div class="absolute inset-0 opacity-20 bg-cover bg-center mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1600&auto=format&fit=crop');"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Left Text Content -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 bg-emerald-900/80 border border-emerald-500/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-brand-gold">
-                        <i class="fa-solid fa-shield-heart"></i> Narayan Seva Sansthan Inspired Model
+    <footer class="bg-green-house text-paper-white border-t-4 border-charcoal-dark mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 bg-sprout rounded-xl border-2 border-paper-white flex items-center justify-center">
+                        <i data-lucide="sprout" class="w-6 h-6 text-green-house"></i>
                     </div>
-
-                    <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-brand-sand">
-                        Nourishing Potential, <br>
-                        <span class="text-brand-gold italic font-normal">Transforming Futures.</span>
-                    </h1>
-
-                    <p class="text-base sm:text-lg text-emerald-100 max-w-2xl font-light leading-relaxed mx-auto lg:mx-0">
-                        Over <strong>1.75M+ underprivileged children</strong> face malnutrition and stunted growth without structural healthcare. In collaboration with K.R. Mangalam University’s <em>Community Spark</em>, SDSS delivers daily nutrient-dense meals, health checks, and 1-tap digital growth tracking to empower every child.
-                    </p>
-
-                    <!-- Key Metrics Row -->
-                    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-emerald-800/80 max-w-xl mx-auto lg:mx-0">
-                        <div class="text-center lg:text-left">
-                            <div class="text-2xl sm:text-3xl font-serif font-bold text-brand-gold">10,000+</div>
-                            <div class="text-xs text-emerald-200 uppercase tracking-wider">Meals Delivered</div>
-                        </div>
-                        <div class="text-center lg:text-left">
-                            <div class="text-2xl sm:text-3xl font-serif font-bold text-brand-gold">850+</div>
-                            <div class="text-xs text-emerald-200 uppercase tracking-wider">Children Tracked</div>
-                        </div>
-                        <div class="text-center lg:text-left">
-                            <div class="text-2xl sm:text-3xl font-serif font-bold text-brand-gold">100%</div>
-                            <div class="text-xs text-emerald-200 uppercase tracking-wider">Direct Transparency</div>
-                        </div>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4 pt-2 justify-center lg:justify-start">
-                        <a href="#donate" class="bg-brand-gold hover:bg-yellow-500 text-brand-forest font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 text-center uppercase tracking-wider">
-                            Sponsor A Child's Diet
-                        </a>
-                        <a href="#tracker-demo" class="border-2 border-brand-sand text-brand-sand hover:bg-brand-sand hover:text-brand-forest font-bold px-8 py-4 rounded-full transition-all text-center uppercase tracking-wider">
-                            Explore Caregiver App
-                        </a>
-                    </div>
+                    <span class="font-syne text-xl font-extrabold text-sprout">SPARK x SDSS</span>
                 </div>
+                <p class="text-xs text-paper-white/80 leading-relaxed">
+                    A collaborative social impact initiative driven by Shanti Devi Shiksha Samiti and Team Community Spark at K.R. Mangalam University.
+                </p>
+            </div>
 
-                <!-- Right Hero Image Stack / Visual -->
-                <div class="lg:col-span-5 relative flex justify-center">
-                    <div class="relative w-full max-w-md">
-                        <div class="polaroid-card bg-white p-4 shadow-2xl rounded-sm">
-                            <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=800&auto=format&fit=crop" alt="Children enjoying nutritious meal" class="w-full h-72 object-cover rounded">
-                            <div class="pt-3 text-center">
-                                <span class="font-serif italic text-brand-forest font-bold text-lg">Daily Meals at SDSS Shelter</span>
-                                <p class="text-xs text-gray-500">Sohna Center • Gurugram Drive</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Floating Secondary Card -->
-                        <div class="absolute -bottom-6 -left-6 bg-brand-cream border-2 border-brand-gold text-brand-forest p-4 rounded-xl shadow-2xl hidden sm:flex items-center gap-3 max-w-xs">
-                            <div class="bg-emerald-100 p-3 rounded-full text-brand-forest text-xl">
-                                <i class="fa-solid fa-bowl-rice"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs font-bold text-brand-sage uppercase">Today's Meal Balance</div>
-                                <div class="text-sm font-extrabold">2,100 kcal • 65g Protein</div>
-                            </div>
-                        </div>
-                    </div>
+            <div>
+                <h4 class="font-syne text-sm font-bold text-sprout uppercase mb-3">Quick Navigation</h4>
+                <ul class="space-y-2 text-xs font-semibold">
+                    <li><button onclick="showPage('home')" class="hover:underline">Home Overview</button></li>
+                    <li><button onclick="showPage('about')" class="hover:underline">About & Mission</button></li>
+                    <li><button onclick="showPage('diet')" class="hover:underline">Diet Chart & Macros</button></li>
+                    <li><button onclick="showPage('growth-calc')" class="hover:underline">Growth Calculator</button></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-syne text-sm font-bold text-sprout uppercase mb-3">Institutional Partners</h4>
+                <div class="text-xs text-paper-white/80 space-y-2">
+                    <p>✦ <strong>Shanti Devi Shiksha Samiti (SDSS)</strong><br>Registered NGO & Social Welfare Organization</p>
+                    <p>✦ <strong>Team Community Spark</strong><br>K.R. Mangalam University Outreach Division</p>
                 </div>
-
             </div>
         </div>
 
-        <!-- Wavy Bottom SVG Divider (Reflects design style in image 1) -->
-        <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-10">
-            <svg class="relative block w-full h-12 md:h-20 text-brand-cream" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,120 L0,120 Z" fill="currentColor"></path>
-            </svg>
-        </div>
-    </section>
-
-    <!-- Continuous Marquee Ticker -->
-    <div class="ticker-wrap py-3 border-y border-yellow-600/30 text-xs font-bold uppercase tracking-widest shadow-inner">
-        <div class="ticker-move space-x-8">
-            <span>🌾 100% Free Healthy Meal Distribution</span>
-            <span>•</span>
-            <span>📈 WHO Standard Growth Tracking</span>
-            <span>•</span>
-            <span>🏥 Monthly Pediatric & Health Screenings</span>
-            <span>•</span>
-            <span>🎓 Educational Support & Skill Building</span>
-            <span>•</span>
-            <span>🤝 Community Spark (K.R. Mangalam University) Partnership</span>
-            <span>•</span>
-            <span>🌾 100% Free Healthy Meal Distribution</span>
-            <span>•</span>
-            <span>📈 WHO Standard Growth Tracking</span>
-        </div>
-    </div>
-
-    <!-- Our Mission Section (Inspired by Layout 1 & 3) -->
-    <section id="about" class="py-20 bg-brand-cream relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Left Stacked Images -->
-                <div class="lg:col-span-5 relative order-2 lg:order-1 flex justify-center">
-                    <div class="relative w-full max-w-sm">
-                        <!-- Top Polaroid -->
-                        <div class="polaroid-card mb-6">
-                            <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=800&auto=format&fit=crop" alt="Community Support" class="w-full h-56 object-cover rounded">
-                            <div class="pt-2 text-center font-serif text-sm font-semibold text-brand-forest">
-                                Warmth & Care at Shelter Drives
-                            </div>
-                        </div>
-                        <!-- Bottom Polaroid (Overlapping) -->
-                        <div class="polaroid-card polaroid-card-alt -mt-10 ml-8 bg-brand-sand">
-                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop" alt="Learning Support" class="w-full h-48 object-cover rounded">
-                            <div class="pt-2 text-center font-serif text-sm font-semibold text-brand-forest">
-                                Digital Growth Audits
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Editorial Mission Content -->
-                <div class="lg:col-span-7 space-y-6 order-1 lg:order-2">
-                    <div class="text-xs font-extrabold uppercase tracking-widest text-brand-terracotta flex items-center gap-2">
-                        <span class="w-8 h-0.5 bg-brand-terracotta"></span> Our Core Purpose
-                    </div>
-
-                    <h2 class="font-serif text-4xl sm:text-5xl font-extrabold text-brand-forest leading-tight">
-                        OUR MISSION
-                    </h2>
-
-                    <p class="text-lg text-gray-700 leading-relaxed font-light">
-                        <strong>Shanti Devi Shiksha Samiti (SDSS)</strong> operates with a singular commitment: to eradicate childhood malnutrition and create sustainable pathways for holistic growth. Inspired by the selfless service model of <em>Narayan Seva Sansthan</em>, we combine on-ground shelter relief with digital precision.
-                    </p>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-brand-sand">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-brand-forest flex items-center justify-center mb-3">
-                                <i class="fa-solid fa-utensils"></i>
-                            </div>
-                            <h3 class="font-serif font-bold text-lg text-brand-forest mb-1">Targeted Nutrition</h3>
-                            <p class="text-xs text-gray-600 leading-relaxed">Daily micro-nutrient rich dietary plans tailored for growing children to eliminate deficiencies.</p>
-                        </div>
-
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-brand-sand">
-                            <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-900 flex items-center justify-center mb-3">
-                                <i class="fa-solid fa-mobile-screen-button"></i>
-                            </div>
-                            <h3 class="font-serif font-bold text-lg text-brand-forest mb-1">1-Tap Tracking</h3>
-                            <p class="text-xs text-gray-600 leading-relaxed">Smart caregiver tools developed with K.R. Mangalam University to monitor height, weight, and health real-time.</p>
-                        </div>
-                    </div>
-
-                    <div class="pt-4">
-                        <a href="#approach" class="inline-flex items-center gap-3 bg-brand-forest text-white px-7 py-3 rounded-full font-bold text-sm tracking-wider uppercase hover:bg-brand-sage transition-all shadow-md">
-                            Learn How We Operate <i class="fa-solid fa-arrow-right text-brand-gold"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Approach Section (Inspired by Image 1 Tabbed Layout) -->
-    <section id="approach" class="py-20 bg-white border-y border-brand-sand">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-sage">Multi-Layered Care Model</span>
-                <h2 class="font-serif text-4xl sm:text-5xl font-extrabold text-brand-forest mt-2">OUR APPROACH</h2>
-                <p class="text-gray-600 mt-4 text-base">Our integrated framework ensures that every child receives immediate nutritional support along with long-term developmental tracking.</p>
-            </div>
-
-            <!-- Approach Interactive Navigation Pill Tabs -->
-            <div class="flex flex-wrap justify-center gap-3 mb-10" id="approach-tabs">
-                <button onclick="switchApproachTab('nutrition')" id="tab-btn-nutrition" class="approach-tab-btn active px-6 py-3 rounded-full text-sm font-bold border border-brand-forest bg-brand-forest text-white transition-all shadow-sm">
-                    <i class="fa-solid fa-apple-whole mr-2"></i> Targeted Nutrition
-                </button>
-                <button onclick="switchApproachTab('tracking')" id="tab-btn-tracking" class="approach-tab-btn px-6 py-3 rounded-full text-sm font-bold border border-gray-300 bg-gray-50 text-gray-700 hover:bg-brand-sand transition-all">
-                    <i class="fa-solid fa-chart-line mr-2"></i> WHO Growth Audit
-                </button>
-                <button onclick="switchApproachTab('healthcare')" id="tab-btn-healthcare" class="approach-tab-btn px-6 py-3 rounded-full text-sm font-bold border border-gray-300 bg-gray-50 text-gray-700 hover:bg-brand-sand transition-all">
-                    <i class="fa-solid fa-heart-pulse mr-2"></i> Medical Care
-                </button>
-                <button onclick="switchApproachTab('education')" id="tab-btn-education" class="approach-tab-btn px-6 py-3 rounded-full text-sm font-bold border border-gray-300 bg-gray-50 text-gray-700 hover:bg-brand-sand transition-all">
-                    <i class="fa-solid fa-book-open mr-2"></i> Education & Skills
-                </button>
-            </div>
-
-            <!-- Tab Content Display Cards -->
-            <div class="bg-brand-sand/50 rounded-2xl p-6 sm:p-10 border border-brand-sand shadow-inner">
-                
-                <!-- Nutrition Content -->
-                <div id="approach-content-nutrition" class="approach-content-panel grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    <div class="lg:col-span-7 space-y-4">
-                        <span class="bg-emerald-200 text-brand-forest px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">Pillar 01</span>
-                        <h3 class="font-serif text-3xl font-bold text-brand-forest">Daily Caloric & Nutrient Balance</h3>
-                        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
-                            We curate freshly prepared meal boxes daily at our community kitchens. Designed by clinical nutritionists, each meal guarantees mandatory RDA quotas for proteins, iron, calcium, and vitamin A for developing bodies.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-700 pt-2">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Fortified pulses, green leafy vegetables, and whole grains.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Specialized supplements for severely acute malnourished (SAM) children.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Zero-waste hygienic central kitchen standards.</li>
-                        </ul>
-                    </div>
-                    <div class="lg:col-span-5">
-                        <img src="https://images.unsplash.com/photo-1594708767771-a7502209ff51?q=80&w=800&auto=format&fit=crop" class="rounded-xl shadow-lg w-full h-64 object-cover" alt="Nutritious food distribution">
-                    </div>
-                </div>
-
-                <!-- Tracking Content -->
-                <div id="approach-content-tracking" class="approach-content-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    <div class="lg:col-span-7 space-y-4">
-                        <span class="bg-blue-200 text-blue-900 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">Pillar 02</span>
-                        <h3 class="font-serif text-3xl font-bold text-brand-forest">Digital Growth Tracking App</h3>
-                        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
-                            In collaboration with <strong>Team Community Spark (K.R. Mangalam University)</strong>, caregivers utilize a custom offline-first digital app to benchmark every child against WHO growth standard curves.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-700 pt-2">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Instant Height-for-Age and Weight-for-Height percentile calculations.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Automatic alert triggers for children requiring specialized medical diet.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> QR-based digital identity for seamless progress logging.</li>
-                        </ul>
-                    </div>
-                    <div class="lg:col-span-5">
-                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" class="rounded-xl shadow-lg w-full h-64 object-cover" alt="Healthcare digital app tracking">
-                    </div>
-                </div>
-
-                <!-- Healthcare Content -->
-                <div id="approach-content-healthcare" class="approach-content-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    <div class="lg:col-span-7 space-y-4">
-                        <span class="bg-red-200 text-red-900 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">Pillar 03</span>
-                        <h3 class="font-serif text-3xl font-bold text-brand-forest">Regular Medical Camps & Hygiene Drives</h3>
-                        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
-                            Nutrition without health hygiene is incomplete. SDSS organizes bi-weekly pediatric doctor visits, deworming drives, and clean water distribution camps across shelter homes.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-700 pt-2">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Pediatric health checkups and free distribution of vitamins.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Hygiene kits (soaps, toothbrushes, sanitizers) provided monthly.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Clean drinking water filtration setups in slum centers.</li>
-                        </ul>
-                    </div>
-                    <div class="lg:col-span-5">
-                        <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=800&auto=format&fit=crop" class="rounded-xl shadow-lg w-full h-64 object-cover" alt="Health screening camp">
-                    </div>
-                </div>
-
-                <!-- Education Content -->
-                <div id="approach-content-education" class="approach-content-panel hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    <div class="lg:col-span-7 space-y-4">
-                        <span class="bg-amber-200 text-amber-900 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">Pillar 04</span>
-                        <h3 class="font-serif text-3xl font-bold text-brand-forest">Education & Foundational Literacy</h3>
-                        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
-                            Once physical health stabilizes, we transition children into evening learning circles, preparing them for formal schooling enrollment and basic digital literacy.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-700 pt-2">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Free books, stationery, and learning aids.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> University student volunteers providing weekend tutoring.</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-sage"></i> Mainstream school admissions assistance.</li>
-                        </ul>
-                    </div>
-                    <div class="lg:col-span-5">
-                        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop" class="rounded-xl shadow-lg w-full h-64 object-cover" alt="Children learning in classroom">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Daily Diet & Nutrition Plan Section -->
-    <section id="diet" class="py-20 bg-brand-cream relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-terracotta">Structured Nutrition Schedule</span>
-                <h2 class="font-serif text-4xl font-extrabold text-brand-forest mt-2">SDSS DAILY SHELTER DIET PLAN</h2>
-                <p class="text-gray-600 mt-2 text-sm sm:text-base">Scientifically planned weekly nutritional meals designed for optimum physical growth and cognitive development.</p>
-            </div>
-
-            <!-- Diet Interactive Tabs -->
-            <div class="flex justify-center overflow-x-auto pb-4 gap-2 mb-8 custom-scroll">
-                <button onclick="switchDietDay('mon')" id="diet-btn-mon" class="diet-day-btn active bg-brand-forest text-white px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap shadow-sm">Monday</button>
-                <button onclick="switchDietDay('tue')" id="diet-btn-tue" class="diet-day-btn bg-white border border-brand-sand text-brand-forest hover:bg-brand-sand px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap">Tuesday</button>
-                <button onclick="switchDietDay('wed')" id="diet-btn-wed" class="diet-day-btn bg-white border border-brand-sand text-brand-forest hover:bg-brand-sand px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap">Wednesday</button>
-                <button onclick="switchDietDay('thu')" id="diet-btn-thu" class="diet-day-btn bg-white border border-brand-sand text-brand-forest hover:bg-brand-sand px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap">Thursday</button>
-                <button onclick="switchDietDay('fri')" id="diet-btn-fri" class="diet-day-btn bg-white border border-brand-sand text-brand-forest hover:bg-brand-sand px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap">Friday</button>
-                <button onclick="switchDietDay('sat')" id="diet-btn-sat" class="diet-day-btn bg-white border border-brand-sand text-brand-forest hover:bg-brand-sand px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap">Saturday</button>
-            </div>
-
-            <!-- Diet Card Schedule Display -->
-            <div id="diet-display-box" class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-brand-sand">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="diet-schedule-cards">
-                    <!-- Dynamic Javascript Content Injected Here -->
-                </div>
-
-                <!-- Nutrition Breakdown Summary Bar -->
-                <div class="mt-8 pt-6 border-t border-gray-100 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                    <div class="bg-brand-cream p-3 rounded-lg">
-                        <div class="text-xs text-gray-500 uppercase font-bold">Total Daily Energy</div>
-                        <div class="text-lg font-extrabold text-brand-forest" id="diet-stat-calories">2,150 Kcal</div>
-                    </div>
-                    <div class="bg-brand-cream p-3 rounded-lg">
-                        <div class="text-xs text-gray-500 uppercase font-bold">Proteins Intake</div>
-                        <div class="text-lg font-extrabold text-brand-forest" id="diet-stat-protein">62 Grams</div>
-                    </div>
-                    <div class="bg-brand-cream p-3 rounded-lg">
-                        <div class="text-xs text-gray-500 uppercase font-bold">Key Micronutrients</div>
-                        <div class="text-lg font-extrabold text-brand-forest" id="diet-stat-micro">Iron, Calcium, Vit-D</div>
-                    </div>
-                    <div class="bg-brand-cream p-3 rounded-lg">
-                        <div class="text-xs text-gray-500 uppercase font-bold">Quality Standard</div>
-                        <div class="text-lg font-extrabold text-brand-sage">100% WHO Aligned</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact Timeline Section (Inspired by Image 3 - From Idea to Bloom style) -->
-    <section id="timeline" class="py-20 bg-brand-forest text-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-gold">Milestones of Hope</span>
-                <h2 class="font-serif text-4xl sm:text-5xl font-extrabold text-brand-sand mt-2">FROM IDEA TO IMPACT</h2>
-                <p class="text-emerald-100 mt-2 text-sm sm:text-base">How a student initiative evolved into a scalable digital NGO model across North India.</p>
-            </div>
-
-            <!-- Horizontal Step Line -->
-            <div class="relative">
-                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-emerald-700 -translate-y-1/2 z-0"></div>
-
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
-                    
-                    <!-- Milestone 1 -->
-                    <div class="bg-emerald-900/90 border border-emerald-700/60 p-6 rounded-2xl text-center space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-brand-gold text-brand-forest font-extrabold flex items-center justify-center mx-auto text-lg shadow-lg">
-                            2024
-                        </div>
-                        <h3 class="font-serif font-bold text-xl text-brand-sand">Pilot Nutrition Drive</h3>
-                        <p class="text-xs text-emerald-200 leading-relaxed">
-                            Initiated by K.R. Mangalam University students, serving 100 daily hot meals in local Sohna shelters.
-                        </p>
-                    </div>
-
-                    <!-- Milestone 2 -->
-                    <div class="bg-emerald-900/90 border border-emerald-700/60 p-6 rounded-2xl text-center space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-brand-gold text-brand-forest font-extrabold flex items-center justify-center mx-auto text-lg shadow-lg">
-                            2025
-                        </div>
-                        <h3 class="font-serif font-bold text-xl text-brand-sand">SDSS Partnership</h3>
-                        <p class="text-xs text-emerald-200 leading-relaxed">
-                            Formalized collaboration with Shanti Devi Shiksha Samiti, expanding centers to Gurugram & NCR slums.
-                        </p>
-                    </div>
-
-                    <!-- Milestone 3 -->
-                    <div class="bg-emerald-900/90 border border-emerald-700/60 p-6 rounded-2xl text-center space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-brand-gold text-brand-forest font-extrabold flex items-center justify-center mx-auto text-lg shadow-lg">
-                            2026
-                        </div>
-                        <h3 class="font-serif font-bold text-xl text-brand-sand">Digital App Rollout</h3>
-                        <p class="text-xs text-emerald-200 leading-relaxed">
-                            Launched 1-Tap caregiver tracking system to monitor real-time height/weight metrics for 850+ kids.
-                        </p>
-                    </div>
-
-                    <!-- Milestone 4 -->
-                    <div class="bg-emerald-900/90 border border-emerald-700/60 p-6 rounded-2xl text-center space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-emerald-500 text-white font-extrabold flex items-center justify-center mx-auto text-lg shadow-lg">
-                            Future
-                        </div>
-                        <h3 class="font-serif font-bold text-xl text-brand-sand">Pan-State Expansion</h3>
-                        <p class="text-xs text-emerald-200 leading-relaxed">
-                            Targeting 50,000+ children with transparent donor-to-child progress monitoring.
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Donation Section (Inspired by Image 1 High-Conversion Checkout Card) -->
-    <section id="donate" class="py-20 bg-brand-cream relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-brand-sand">
-                <div class="grid grid-cols-1 md:grid-cols-12">
-                    
-                    <!-- Left Editorial Impact Block -->
-                    <div class="md:col-span-5 bg-brand-forest text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
-                        <div class="space-y-4 relative z-10">
-                            <span class="text-xs font-bold text-brand-gold uppercase tracking-widest">Direct Impact</span>
-                            <h2 class="font-serif text-3xl font-extrabold text-brand-sand leading-tight">
-                                EVERY DONATION COUNTS.
-                            </h2>
-                            <p class="text-xs text-emerald-100 leading-relaxed">
-                                Your contribution provides warm, micro-nutrient dense meals and digital health monitoring for children who need it most.
-                            </p>
-                            
-                            <div class="p-4 bg-emerald-900/70 border border-emerald-700/80 rounded-xl space-y-2 mt-4">
-                                <div class="text-xs text-brand-gold font-bold uppercase"><i class="fa-solid fa-calculator mr-1"></i> Live Impact Calculator</div>
-                                <div id="impact-calculator-preview" class="text-sm font-semibold text-white">
-                                    ₹1,200 feeds <span class="text-brand-gold font-extrabold">1 child</span> for 1 full month with complete daily balanced meals.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="pt-8 text-xs text-emerald-300 relative z-10 flex items-center gap-2">
-                            <i class="fa-solid fa-shield-halved text-brand-gold text-base"></i> 80G Tax Exemption Available for all Indian Citizens
-                        </div>
-                    </div>
-
-                    <!-- Right Donation Form Box (Image 1 Style Tab & Fields) -->
-                    <div class="md:col-span-7 p-6 sm:p-8 bg-white">
-                        
-                        <!-- Top Donation / Sponsor Tabs -->
-                        <div class="flex border-b border-gray-200 mb-6">
-                            <button onclick="switchDonateTab('money')" id="tab-money" class="flex-1 pb-3 font-bold text-sm text-brand-forest border-b-2 border-brand-forest transition-all text-center">
-                                MAKE A DONATION
-                            </button>
-                            <button onclick="switchDonateTab('volunteer')" id="tab-volunteer" class="flex-1 pb-3 font-bold text-sm text-gray-400 border-b-2 border-transparent hover:text-brand-forest transition-all text-center">
-                                VOLUNTEER / SPONSOR
-                            </button>
-                        </div>
-
-                        <!-- Money Donation Form Body -->
-                        <div id="donate-form-money" class="space-y-5">
-                            
-                            <!-- Frequency Toggle -->
-                            <div class="grid grid-cols-3 gap-2 bg-brand-cream p-1.5 rounded-xl border border-brand-sand">
-                                <button onclick="setFrequency('one-time')" id="freq-one-time" class="freq-btn py-2 text-xs font-bold rounded-lg bg-brand-forest text-white shadow-sm transition-all">One-time</button>
-                                <button onclick="setFrequency('monthly')" id="freq-monthly" class="freq-btn py-2 text-xs font-bold rounded-lg text-gray-600 hover:text-brand-forest transition-all">Monthly</button>
-                                <button onclick="setFrequency('yearly')" id="freq-yearly" class="freq-btn py-2 text-xs font-bold rounded-lg text-gray-600 hover:text-brand-forest transition-all">Yearly</button>
-                            </div>
-
-                            <!-- Amount Chips -->
-                            <div>
-                                <label class="block text-xs font-bold text-gray-600 uppercase mb-2">Select Amount (INR)</label>
-                                <div class="grid grid-cols-4 gap-2">
-                                    <button onclick="selectAmount(500)" class="amt-chip border-2 border-gray-200 hover:border-brand-forest py-2 rounded-xl text-sm font-bold text-gray-700 focus:outline-none transition-all">₹500</button>
-                                    <button onclick="selectAmount(1200)" class="amt-chip border-2 border-brand-forest bg-emerald-50 text-brand-forest py-2 rounded-xl text-sm font-bold focus:outline-none transition-all">₹1,200</button>
-                                    <button onclick="selectAmount(3500)" class="amt-chip border-2 border-gray-200 hover:border-brand-forest py-2 rounded-xl text-sm font-bold text-gray-700 focus:outline-none transition-all">₹3,500</button>
-                                    <button onclick="selectAmount('custom')" class="amt-chip border-2 border-gray-200 hover:border-brand-forest py-2 rounded-xl text-sm font-bold text-gray-700 focus:outline-none transition-all">Custom</button>
-                                </div>
-                            </div>
-
-                            <!-- Custom Amount Input Field -->
-                            <div id="custom-amount-container" class="relative">
-                                <span class="absolute left-3 top-2.5 text-gray-500 font-bold text-sm">₹</span>
-                                <input type="number" id="custom-amount-input" value="1200" oninput="updateCustomImpact()" class="w-full pl-8 pr-4 py-2 border-2 border-brand-sand rounded-xl text-sm focus:border-brand-forest focus:outline-none font-bold text-brand-forest" placeholder="Enter amount">
-                            </div>
-
-                            <!-- Donor Info Inputs -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <div>
-                                    <input type="text" id="donor-name" placeholder="Full Name" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-xs focus:ring-1 focus:ring-brand-forest focus:outline-none">
-                                </div>
-                                <div>
-                                    <input type="email" id="donor-email" placeholder="Email Address" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-xs focus:ring-1 focus:ring-brand-forest focus:outline-none">
-                                </div>
-                            </div>
-
-                            <!-- Payment Trigger CTA -->
-                            <button onclick="processDonation()" class="w-full bg-brand-forest hover:bg-brand-sage text-white font-extrabold py-3.5 rounded-xl shadow-lg transition-all uppercase tracking-wider text-sm flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-lock text-brand-gold"></i> Proceed to Secure Payment
-                            </button>
-
-                            <p class="text-[10px] text-gray-400 text-center">Encrypted 256-bit payment gateway • Tax receipt generated immediately</p>
-                        </div>
-
-                        <!-- Volunteer Form Body -->
-                        <div id="donate-form-volunteer" class="hidden space-y-4">
-                            <p class="text-xs text-gray-600">Join Team Community Spark as a field volunteer, health worker, or mentor at our centers.</p>
-                            <div>
-                                <input type="text" id="vol-name" placeholder="Full Name" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-xs">
-                            </div>
-                            <div>
-                                <input type="tel" id="vol-phone" placeholder="Phone Number" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-xs">
-                            </div>
-                            <div>
-                                <select id="vol-role" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-xs text-gray-700">
-                                    <option value="">Select Primary Interest</option>
-                                    <option value="diet">Nutrition & Food Distribution</option>
-                                    <option value="tracker">Caregiver App Tech Team</option>
-                                    <option value="teaching">Teaching & Mentorship</option>
-                                </select>
-                            </div>
-                            <button onclick="processVolunteer()" class="w-full bg-brand-terracotta hover:bg-red-800 text-white font-bold py-3 rounded-xl shadow text-xs uppercase tracking-wider">
-                                Submit Volunteer Application
-                            </button>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Live Caregiver App Interactive Sandbox Demo Section -->
-    <section id="tracker-demo" class="py-20 bg-white border-t border-brand-sand">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="bg-emerald-100 text-brand-forest px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-widest">Interactive Showcase</span>
-                <h2 class="font-serif text-4xl font-extrabold text-brand-forest mt-3">TRY THE CAREGIVER DIGITAL TRACKER</h2>
-                <p class="text-gray-600 mt-2 text-sm sm:text-base">Test the live tracking interface built by Community Spark for field workers on the ground.</p>
-            </div>
-
-            <!-- Caregiver App Frame Screen -->
-            <div class="max-w-2xl mx-auto bg-gray-900 rounded-3xl p-4 sm:p-6 shadow-2xl border-4 border-gray-800">
-                
-                <div class="bg-brand-cream rounded-2xl p-4 sm:p-6 text-brand-charcoal min-h-[420px] flex flex-col justify-between">
-                    
-                    <!-- App Header -->
-                    <div class="flex justify-between items-center border-b border-brand-sand pb-3">
-                        <div class="flex items-center gap-2">
-                            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                            <span class="text-xs font-bold uppercase tracking-wider text-brand-forest">SDSS Caregiver Portal v2.4</span>
-                        </div>
-                        <span class="text-[10px] bg-brand-forest text-white px-2 py-0.5 rounded font-mono">Center #04 • Sohna</span>
-                    </div>
-
-                    <!-- App Interactive Body -->
-                    <div class="my-4 space-y-4">
-                        
-                        <!-- Child Selection Field -->
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-1">Select Registered Child Record</label>
-                            <select id="demo-child-select" onchange="loadChildDemoData()" class="w-full bg-white border border-brand-sand p-2.5 rounded-xl text-sm font-bold text-brand-forest focus:outline-none">
-                                <option value="1">Aarav Kumar (ID: SDSS-801) - Age 6</option>
-                                <option value="2">Priya Sharma (ID: SDSS-802) - Age 4</option>
-                                <option value="3">Rahul Verma (ID: SDSS-803) - Age 8</option>
-                            </select>
-                        </div>
-
-                        <!-- Child Metrics Dashboard Cards -->
-                        <div class="grid grid-cols-3 gap-3">
-                            <div class="bg-white p-3 rounded-xl border border-brand-sand text-center">
-                                <div class="text-[10px] text-gray-500 font-bold uppercase">Height</div>
-                                <div class="text-lg font-bold text-brand-forest" id="demo-height">112 cm</div>
-                            </div>
-                            <div class="bg-white p-3 rounded-xl border border-brand-sand text-center">
-                                <div class="text-[10px] text-gray-500 font-bold uppercase">Weight</div>
-                                <div class="text-lg font-bold text-brand-forest" id="demo-weight">18.5 kg</div>
-                            </div>
-                            <div class="bg-white p-3 rounded-xl border border-brand-sand text-center">
-                                <div class="text-[10px] text-gray-500 font-bold uppercase">WHO Status</div>
-                                <div class="text-xs font-extrabold px-1 py-1 rounded mt-1 bg-emerald-100 text-emerald-800" id="demo-status">Normal Growth</div>
-                            </div>
-                        </div>
-
-                        <!-- 1-Tap Meal Log Button -->
-                        <div class="bg-white p-4 rounded-xl border border-brand-sand space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs font-bold text-gray-700"><i class="fa-solid fa-utensils text-brand-sage mr-1"></i> Quick Daily Nutrition Log</span>
-                                <span class="text-[10px] text-gray-400" id="demo-last-logged">Last logged: Yesterday</span>
-                            </div>
-                            <button onclick="logMealDemo()" class="w-full bg-brand-sage hover:bg-brand-forest text-white py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-check-circle"></i> 1-Tap Log Today's Meal Served
-                            </button>
-                        </div>
-
-                    </div>
-
-                    <!-- App Footer Stats -->
-                    <div class="bg-white p-3 rounded-xl border border-brand-sand text-xs flex justify-between items-center text-gray-600">
-                        <span>Offline Sync: <strong class="text-emerald-600">Ready</strong></span>
-                        <span>Community Spark Engine</span>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="bg-brand-forest text-brand-sand pt-16 pb-8 border-t border-emerald-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-emerald-800/60">
-                
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-full bg-brand-gold text-brand-forest flex items-center justify-center font-bold">SD</div>
-                        <span class="font-serif font-bold text-lg text-white">Shanti Devi Shiksha Samiti</span>
-                    </div>
-                    <p class="text-xs text-emerald-200 leading-relaxed">
-                        Dedicated to child welfare, nutritious dietary programs, and technology-driven growth audits in partnership with K.R. Mangalam University.
-                    </p>
-                </div>
-
-                <div>
-                    <h4 class="font-serif font-bold text-white text-sm mb-4 uppercase tracking-wider">Quick Links</h4>
-                    <ul class="space-y-2 text-xs text-emerald-200">
-                        <li><a href="#about" class="hover:text-brand-gold">Our Mission</a></li>
-                        <li><a href="#approach" class="hover:text-brand-gold">4-Pillar Approach</a></li>
-                        <li><a href="#diet" class="hover:text-brand-gold">Shelter Diet Plan</a></li>
-                        <li><a href="#tracker-demo" class="hover:text-brand-gold">Caregiver App</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-serif font-bold text-white text-sm mb-4 uppercase tracking-wider">Centers & Reach</h4>
-                    <p class="text-xs text-emerald-200 leading-relaxed">
-                        • Sohna Community Kitchen Center<br>
-                        • Gurugram Sector-4 Shelter Home<br>
-                        • NCR Mobile Health Vans
-                    </p>
-                </div>
-
-                <div>
-                    <h4 class="font-serif font-bold text-white text-sm mb-4 uppercase tracking-wider">Partner Initiative</h4>
-                    <p class="text-xs text-emerald-200 leading-relaxed mb-3">
-                        Project Community Spark • K.R. Mangalam University
-                    </p>
-                    <div class="flex space-x-3 text-lg text-brand-gold">
-                        <a href="#" class="hover:text-white"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="hover:text-white"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="pt-6 text-center text-xs text-emerald-400">
-                © 2026 Shanti Devi Shiksha Samiti (SDSS) x Team Community Spark. All rights reserved.
-            </div>
+        <div class="bg-green-house-dark py-4 border-t border-paper-white/10 text-center text-xs text-paper-white/60 font-mono">
+            © 2026 Shanti Devi Shiksha Samiti x Team Community Spark. All rights reserved.
         </div>
     </footer>
 
-    <!-- Interactive Toast Message Overlay -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-brand-forest text-white px-5 py-3 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 border border-brand-gold text-xs font-bold">
-        <i class="fa-solid fa-circle-check text-brand-gold text-lg"></i>
-        <span id="toast-message">Action processed successfully!</span>
-    </div>
-
     <script>
-        // --- Mobile Menu Toggle ---
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-        // --- Approach Tab Switcher ---
-        function switchApproachTab(tabKey) {
-            document.querySelectorAll('.approach-tab-btn').forEach(btn => {
-                btn.classList.remove('bg-brand-forest', 'text-white', 'active');
-                btn.classList.add('bg-gray-50', 'text-gray-700');
-            });
-            document.querySelectorAll('.approach-content-panel').forEach(panel => {
-                panel.classList.add('hidden');
-            });
-
-            const activeBtn = document.getElementById(`tab-btn-${tabKey}`);
-            activeBtn.classList.add('bg-brand-forest', 'text-white', 'active');
-            activeBtn.classList.remove('bg-gray-50', 'text-gray-700');
-
-            document.getElementById(`approach-content-${tabKey}`).classList.remove('hidden');
-        }
-
-        // --- Diet Day Plan Data & Switcher ---
+        // Diet Data Mapping
         const dietData = {
-            mon: {
-                breakfast: "Sprouted Moong & Milk (350 kcal)",
-                lunch: "Dal Tadka, Mix Veg, Roti & Rice (850 kcal)",
-                dinner: "Paneer Bhurji & Chapati (650 kcal)",
-                calories: "2,150 Kcal", protein: "62g", micro: "Iron, Calcium"
-            },
-            tue: {
-                breakfast: "Vegetable Poha & Boiled Eggs/Banana (320 kcal)",
-                lunch: "Rajma Masala, Steamed Rice & Salad (880 kcal)",
-                dinner: "Mix Pulses Soup & Roti (600 kcal)",
-                calories: "2,100 Kcal", protein: "60g", micro: "Folic Acid, Vit-B12"
-            },
-            wed: {
-                breakfast: "Rava Upma with Groundnuts & Milk (380 kcal)",
-                lunch: "Kadhi Pakoda, Rice & Green Spinach (820 kcal)",
-                dinner: "Soya Chunk Curry & Phulka (660 kcal)",
-                calories: "2,200 Kcal", protein: "68g", micro: "Zinc, Vit-A"
-            },
-            thu: {
-                breakfast: "Dalia Khichdi with Veggies (340 kcal)",
-                lunch: "Black Chana Curry, Rice & Chapati (840 kcal)",
-                dinner: "Lauki Chana Dal & Roti (610 kcal)",
-                calories: "2,080 Kcal", protein: "58g", micro: "Magnesium, Iron"
-            },
-            fri: {
-                breakfast: "Stuffed Potato Paratha & Curd (400 kcal)",
-                lunch: "Nutritious Mix Veg Khichdi with Ghee (800 kcal)",
-                dinner: "Egg/Paneer Curry & Chapati (680 kcal)",
-                calories: "2,250 Kcal", protein: "65g", micro: "Calcium, Vit-D"
-            },
-            sat: {
-                breakfast: "Boiled Chickpeas & Fresh Fruit (330 kcal)",
-                lunch: "Chole Rice & Cucumber Raita (860 kcal)",
-                dinner: "Dal Makhani & Roti (650 kcal)",
-                calories: "2,140 Kcal", protein: "61g", micro: "Iron, Vit-C"
-            }
+            mon: [
+                { time: "08:30 AM", title: "Breakfast", meal: "Fortified Suji Kheer + Warm Milk (200ml)", tag: "Energy Boost", bg: "bg-sprout-light/40" },
+                { time: "12:30 PM", title: "Lunch", meal: "Spinach Dal + Steamed Rice + Boiled Egg / Cottage Cheese", tag: "Protein & Iron", bg: "bg-electric-pink-soft/40" },
+                { time: "04:30 PM", title: "Snack", meal: "Sprouted Moong Salad + Roasted Chana", tag: "Micronutrients", bg: "bg-peach/40" },
+                { time: "07:30 PM", title: "Dinner", meal: "Vegetable Khichdi + Curd", tag: "Digestive Balance", bg: "bg-calming-blue/40" }
+            ],
+            tue: [
+                { time: "08:30 AM", title: "Breakfast", meal: "Ragi Porridge + Banana", tag: "Calcium Rich", bg: "bg-sprout-light/40" },
+                { time: "12:30 PM", title: "Lunch", meal: "Rajma (Kidney Beans) + Brown Rice + Cucumber", tag: "High Fiber & Protein", bg: "bg-electric-pink-soft/40" },
+                { time: "04:30 PM", title: "Snack", meal: "Fruit Chaat (Papaya & Apple)", tag: "Vitamin C & A", bg: "bg-peach/40" },
+                { time: "07:30 PM", title: "Dinner", meal: "Roti + Lauki (Bottle Gourd) Curry + Dal", tag: "Easy Digest", bg: "bg-calming-blue/40" }
+            ],
+            wed: [
+                { time: "08:30 AM", title: "Breakfast", meal: "Oats Kheer with Jaggery + Almonds", tag: "Iron & Fiber", bg: "bg-sprout-light/40" },
+                { time: "12:30 PM", title: "Lunch", meal: "Nutritious Mix Vegetable Dalia + Curd", tag: "Complex Carbs", bg: "bg-electric-pink-soft/40" },
+                { time: "04:30 PM", title: "Snack", meal: "Boiled Sweet Potato Slices", tag: "Beta-Carotene", bg: "bg-peach/40" },
+                { time: "07:30 PM", title: "Dinner", meal: "Moong Dal Cheela + Mint Chutney", tag: "Light Protein", bg: "bg-calming-blue/40" }
+            ],
+            thu: [
+                { time: "08:30 AM", title: "Breakfast", meal: "Stuffed Paneer Paratha (Light Oil) + Milk", tag: "Calcium & Fats", bg: "bg-sprout-light/40" },
+                { time: "12:30 PM", title: "Lunch", meal: "Black Chana Curry + Rice + Green Salad", tag: "Iron Dense", bg: "bg-electric-pink-soft/40" },
+                { time: "04:30 PM", title: "Snack", meal: "Roasted Makhana (Lotus Seeds)", tag: "Mineral Boost", bg: "bg-peach/40" },
+                { time: "07:30 PM", title: "Dinner", meal: "Mix Dal Soup + Roti", tag: "Recovery Night", bg: "bg-calming-blue/40" }
+            ],
+            fri: [
+                { time: "08:30 AM", title: "Breakfast", meal: "Vegetable Poha + Boiled Egg", tag: "Vitamins & Protein", bg: "bg-sprout-light/40" },
+                { time: "12:30 PM", title: "Lunch", meal: "Kadhi Pakora + Rice + Beetroot Salad", tag: "Probiotic Comfort", bg: "bg-electric-pink-soft/40" },
+                { time: "04:30 PM", title: "Snack", meal: "Peanut Chikki / Fortified Jaggery Bar", tag: "Quick Energy", bg: "bg-peach/40" },
+                { time: "07:30 PM", title: "Dinner", meal: "Pumpkin Curry + Bajra Roti", tag: "Essential Minerals", bg: "bg-calming-blue/40" }
+            ],
+            sat: [
+                { time: "08:30 AM", title: "Breakfast", meal: "Suji Upma with Peas and Carrots", tag: "Vitamins & Carbs", bg: "bg-sprout-light/40" },
+                { time: "12:30 PM", title: "Lunch", meal: "Soyabean Curry + Steamed Rice + Salad", tag: "Plant Protein", bg: "bg-electric-pink-soft/40" },
+                { time: "04:30 PM", title: "Snack", meal: "Banana Smoothie with Honey", tag: "Potassium Boost", bg: "bg-peach/40" },
+                { time: "07:30 PM", title: "Dinner", meal: "Khichdi with Ghee + Curd", tag: "Nourishing Night", bg: "bg-calming-blue/40" }
+            ],
+            sun: [
+                { time: "08:30 AM", title: "Breakfast", meal: "Special Poshan Halwa (Wheat, Jaggery & Nuts)", tag: "Feast Morning", bg: "bg-sprout-light/40" },
+                { time: "12:30 PM", title: "Lunch", meal: "Paneer Butter Masala (Mild) + Jeera Rice + Salad", tag: "Rich Protein", bg: "bg-electric-pink-soft/40" },
+                { time: "04:30 PM", title: "Snack", meal: "Fresh Orange / Seasonal Fruit", tag: "Immunity Booster", bg: "bg-peach/40" },
+                { time: "07:30 PM", title: "Dinner", meal: "Light Vegetable Soup + Multi-Grain Roti", tag: "Light Digest", bg: "bg-calming-blue/40" }
+            ]
         };
 
-        function switchDietDay(day) {
-            document.querySelectorAll('.diet-day-btn').forEach(btn => {
-                btn.classList.remove('bg-brand-forest', 'text-white', 'active');
-                btn.classList.add('bg-white', 'text-brand-forest');
+        // SPA Navigation Helper
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Toggle Mobile Navigation
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Diet Selector Functionality
+        function selectDay(dayKey) {
+            document.querySelectorAll('.day-btn').forEach(btn => {
+                btn.classList.remove('bg-sprout');
+                btn.classList.add('bg-paper-white');
             });
+            const activeBtn = document.getElementById('day-' + dayKey);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-paper-white');
+                activeBtn.classList.add('bg-sprout');
+            }
 
-            const activeBtn = document.getElementById(`diet-btn-${day}`);
-            activeBtn.classList.add('bg-brand-forest', 'text-white', 'active');
-            activeBtn.classList.remove('bg-white', 'text-brand-forest');
+            const meals = dietData[dayKey] || dietData['mon'];
+            const container = document.getElementById('meals-container');
+            container.innerHTML = meals.map(m => `
+                <div class="${m.bg} border-3 border-charcoal-dark rounded-3xl p-5 shadow-retro flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-extrabold text-green-house bg-paper-white px-2.5 py-0.5 rounded-full border border-charcoal-dark">${m.time}</span>
+                            <span class="text-xs font-bold text-green-house uppercase">${m.title}</span>
+                        </div>
+                        <h4 class="font-syne text-lg font-bold text-green-house">${m.meal}</h4>
+                    </div>
+                    <span class="inline-block bg-green-house text-sprout text-xs font-bold px-3 py-1 rounded-full border border-charcoal-dark whitespace-nowrap self-start sm:self-center">
+                        ✦ ${m.tag}
+                    </span>
+                </div>
+            `).join('');
+        }
 
-            const info = dietData[day];
-            const cardsContainer = document.getElementById('diet-schedule-cards');
+        // Caregiver App Simulator Scripting
+        function simTab(tab) {
+            document.getElementById('sim-screen-meal').classList.add('hidden');
+            document.getElementById('sim-screen-metrics').classList.add('hidden');
+            document.getElementById('sim-btn-meal').className = "py-2 bg-paper-white border-2 border-charcoal-dark rounded-xl text-green-house font-bold";
+            document.getElementById('sim-btn-metrics').className = "py-2 bg-paper-white border-2 border-charcoal-dark rounded-xl text-green-house font-bold";
+
+            if(tab === 'meal') {
+                document.getElementById('sim-screen-meal').classList.remove('hidden');
+                document.getElementById('sim-btn-meal').className = "py-2 bg-sprout border-2 border-charcoal-dark rounded-xl text-green-house font-bold";
+            } else {
+                document.getElementById('sim-screen-metrics').classList.remove('hidden');
+                document.getElementById('sim-btn-metrics').className = "py-2 bg-sprout border-2 border-charcoal-dark rounded-xl text-green-house font-bold";
+            }
+        }
+
+        function simulateSaveMeal() {
+            const toast = document.getElementById('sim-toast');
+            toast.innerText = "✓ Meal record logged & synced to SDSS server!";
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 2500);
+        }
+
+        function simulateSaveMetrics() {
+            const toast = document.getElementById('sim-toast');
+            toast.innerText = "✓ Growth vitals updated for child #SDSS-809!";
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 2500);
+        }
+
+        // WHO Growth Calculator Algorithm
+        function calculateGrowth(e) {
+            e.preventDefault();
+            const height = parseFloat(document.getElementById('calc-height').value) || 100;
+            const weight = parseFloat(document.getElementById('calc-weight').value) || 15;
             
-            cardsContainer.innerHTML = `
-                <div class="bg-brand-cream p-4 rounded-xl border border-brand-sand">
-                    <span class="text-[10px] font-bold text-brand-sage uppercase">Morning Breakfast</span>
-                    <h4 class="font-serif font-bold text-brand-forest text-base mt-1">${info.breakfast}</h4>
-                </div>
-                <div class="bg-brand-cream p-4 rounded-xl border border-brand-sand">
-                    <span class="text-[10px] font-bold text-brand-sage uppercase">Mid-Day Lunch</span>
-                    <h4 class="font-serif font-bold text-brand-forest text-base mt-1">${info.lunch}</h4>
-                </div>
-                <div class="bg-brand-cream p-4 rounded-xl border border-brand-sand">
-                    <span class="text-[10px] font-bold text-brand-sage uppercase">Evening Dinner</span>
-                    <h4 class="font-serif font-bold text-brand-forest text-base mt-1">${info.dinner}</h4>
-                </div>
-            `;
+            const heightM = height / 100;
+            const bmi = (weight / (heightM * heightM)).toFixed(1);
 
-            document.getElementById('diet-stat-calories').innerText = info.calories;
-            document.getElementById('diet-stat-protein').innerText = info.protein;
-            document.getElementById('diet-stat-micro').innerText = info.micro;
-        }
+            document.getElementById('res-bmi').innerText = `${bmi} kg/m²`;
 
-        // Initialize default Monday view
-        switchDietDay('mon');
+            // Calculate mock percentiles for presentation
+            let hPct = Math.min(Math.max(Math.round((height / 115) * 80), 20), 95);
+            let wPct = Math.min(Math.max(Math.round((weight / 20) * 75), 15), 92);
 
-        // --- Donation Form Logic ---
-        let currentAmount = 1200;
-        let selectedFreq = 'one-time';
+            document.getElementById('res-h-pct').innerText = `${hPct}th Percentile`;
+            document.getElementById('bar-h-pct').style.width = `${hPct}%`;
 
-        function switchDonateTab(tab) {
-            if (tab === 'money') {
-                document.getElementById('donate-form-money').classList.remove('hidden');
-                document.getElementById('donate-form-volunteer').classList.add('hidden');
-                document.getElementById('tab-money').classList.add('border-brand-forest', 'text-brand-forest');
-                document.getElementById('tab-volunteer').classList.remove('border-brand-forest', 'text-brand-forest');
-                document.getElementById('tab-volunteer').classList.add('text-gray-400');
+            document.getElementById('res-w-pct').innerText = `${wPct}th Percentile`;
+            document.getElementById('bar-w-pct').style.width = `${wPct}%`;
+
+            const status = document.getElementById('res-status');
+            if (bmi < 14) {
+                status.innerText = "✦ Mild Underweight Category";
+                status.className = "text-xs text-electric-pink mt-1 block font-semibold";
+            } else if (bmi <= 17) {
+                status.innerText = "✦ Healthy WHO Growth Band";
+                status.className = "text-xs text-sprout mt-1 block font-semibold";
             } else {
-                document.getElementById('donate-form-money').classList.add('hidden');
-                document.getElementById('donate-form-volunteer').classList.remove('hidden');
-                document.getElementById('tab-volunteer').classList.add('border-brand-forest', 'text-brand-forest');
-                document.getElementById('tab-money').classList.remove('border-brand-forest', 'text-brand-forest');
-                document.getElementById('tab-money').classList.add('text-gray-400');
+                status.innerText = "✦ Above Average Growth Band";
+                status.className = "text-xs text-peach mt-1 block font-semibold";
             }
         }
 
-        function setFrequency(freq) {
-            selectedFreq = freq;
-            document.querySelectorAll('.freq-btn').forEach(btn => {
-                btn.classList.remove('bg-brand-forest', 'text-white');
-                btn.classList.add('text-gray-600');
-            });
-            const activeFreqBtn = document.getElementById(`freq-${freq}`);
-            activeFreqBtn.classList.add('bg-brand-forest', 'text-white');
-            updateImpactText();
+        // Impact Calculator Script
+        function updateImpact(val) {
+            document.getElementById('donation-val').innerText = val;
+            
+            // Metrics formulas
+            const meals = Math.floor(val / 15);
+            const checkups = Math.floor(val / 500);
+            const kits = Math.floor(val / 1200);
+
+            document.getElementById('impact-meals').innerText = meals;
+            document.getElementById('impact-checkups').innerText = checkups;
+            document.getElementById('impact-kits').innerText = kits;
         }
 
-        function selectAmount(val) {
-            if (val === 'custom') {
-                document.getElementById('custom-amount-input').focus();
-            } else {
-                currentAmount = val;
-                document.getElementById('custom-amount-input').value = val;
-                updateImpactText();
-            }
-        }
-
-        function updateCustomImpact() {
-            const val = parseInt(document.getElementById('custom-amount-input').value) || 0;
-            currentAmount = val;
-            updateImpactText();
-        }
-
-        function updateImpactText() {
-            const childrenCount = Math.max(1, Math.floor(currentAmount / 1200));
-            const preview = document.getElementById('impact-calculator-preview');
-            preview.innerHTML = `₹${currentAmount.toLocaleString()} provides nutritious daily meals for <span class="text-brand-gold font-extrabold">${childrenCount} child(ren)</span> on a ${selectedFreq} basis.`;
-        }
-
-        function processDonation() {
-            showToast(`Thank you! Initiating secure payment of ₹${currentAmount}...`);
-        }
-
-        function processVolunteer() {
-            showToast("Thank you! Team Community Spark will reach out to you shortly.");
-        }
-
-        // --- Caregiver Demo Logic ---
-        const childDemoData = {
-            "1": { height: "112 cm", weight: "18.5 kg", status: "Normal Growth", color: "bg-emerald-100 text-emerald-800" },
-            "2": { height: "98 cm", weight: "12.1 kg", status: "SAM Alert - Extra Protein", color: "bg-red-100 text-red-800" },
-            "3": { height: "124 cm", weight: "22.0 kg", status: "Normal Growth", color: "bg-emerald-100 text-emerald-800" }
-        };
-
-        function loadChildDemoData() {
-            const selected = document.getElementById('demo-child-select').value;
-            const data = childDemoData[selected];
-            document.getElementById('demo-height').innerText = data.height;
-            document.getElementById('demo-weight').innerText = data.weight;
-            const statusEl = document.getElementById('demo-status');
-            statusEl.innerText = data.status;
-            statusEl.className = `text-xs font-extrabold px-1 py-1 rounded mt-1 ${data.color}`;
-        }
-
-        function logMealDemo() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            document.getElementById('demo-last-logged').innerText = `Logged Today at ${timeStr}`;
-            showToast("Meal served successfully logged into SDSS database!");
-        }
-
-        // --- Toast Utility ---
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-message').innerText = msg;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3500);
-        }
+        // Initial Load Configuration
+        window.addEventListener('DOMContentLoaded', () => {
+            selectDay('mon');
+            updateImpact(1500);
+        });
     </script>
 </body>
 </html>
