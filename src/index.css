@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+
+@theme {
+  --font-syne: "Syne", sans-serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-editorial: "Cormorant Garamond", serif;
+
+  --color-forest-800: #234739;
+  --color-forest-900: #1d3c30;
+  --color-forest-950: #12271f;
+  --color-electricPink: #ff70a6;
+  --color-sproutGreen: #a8db5c;
+  --color-pastelOrange: #ffcca7;
+  --color-softMint: #d8f3dc;
+  --color-paperWhite: #fcfbf7;
+}
+
+.retro-border {
+  border: 3px solid #1d3c30;
+  box-shadow: 4px 4px 0px #1d3c30;
+}
+
+.retro-border-pink {
+  border: 3px solid #1d3c30;
+  box-shadow: 4px 4px 0px #ff70a6;
+}
+
+.retro-border-green {
+  border: 3px solid #1d3c30;
+  box-shadow: 4px 4px 0px #a8db5c;
+}
+
+/* Delicate Lace-Inspired Scalloped Frame for the Hero Box */
+.lace-box {
+  position: relative;
+  border: 3px solid #1d3c30;
+  box-shadow: 6px 6px 0px #1d3c30;
+  background-image: radial-gradient(circle at 12px 0, transparent 7px, #fcfbf7 8px);
+}
+
+.lace-trim {
+  background-image: radial-gradient(circle at 10px 10px, #fcfbf7 6px, transparent 7px);
+  background-size: 20px 12px;
+  background-repeat: repeat-x;
+}
+
+/* Heart-shaped photo cutout */
+.heart-clip {
+  clip-path: path("M 110 205 C 110 205 10 140 10 68 C 10 30 40 5 72 5 C 92 5 105 18 110 30 C 115 18 128 5 148 5 C 180 5 210 30 210 68 C 210 140 110 205 110 205 Z");
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
