@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import { initialChildren } from '../data/mockData';
 
 export default function Children({ childrenList, setChildrenList }) {
+  const [localChildren, setLocalChildren] = useState(initialChildren);
+  const activeChildren = childrenList || localChildren;
+  const updateChildren = setChildrenList || setLocalChildren;
+
   const [role, setRole] = useState(null); // null | 'visitor' | 'staff'
   const [selectedChild, setSelectedChild] = useState(null);
   const [filterStatus, setFilterStatus] = useState('all');
 
   const toggleAttendance = (id, status) => {
-    setChildrenList((prev) =>
+    updateChildren((prev) =>
       prev.map((child) =>
         child.id === id ? { ...child, presentToday: status } : child
       )
@@ -14,7 +19,7 @@ export default function Children({ childrenList, setChildrenList }) {
   };
 
   const toggleMeal = (id, mealKey) => {
-    setChildrenList((prev) =>
+    updateChildren((prev) =>
       prev.map((child) =>
         child.id === id
           ? {
@@ -34,34 +39,29 @@ export default function Children({ childrenList, setChildrenList }) {
       return {
         label: 'WHO Healthy (Green)',
         bg: 'bg-sproutGreen text-forest-950',
-        dot: 'bg-emerald-600',
       };
     }
     if (status === 'yellow') {
       return {
         label: 'WHO Watch (Yellow)',
         bg: 'bg-amber-300 text-forest-950',
-        dot: 'bg-amber-600',
       };
     }
     return {
       label: 'Priority Nutrition (Red)',
       bg: 'bg-electricPink text-forest-950',
-      dot: 'bg-rose-700',
     };
   };
 
-  // ROLE GATE SCREEN (Fixed badge layout for phone & desktop)
+  // ROLE GATE SCREEN
   if (!role) {
     return (
       <div className="max-w-xl mx-auto py-4 sm:py-10 px-1">
         <div className="bg-paperWhite p-6 sm:p-10 rounded-3xl retro-border-pink text-center space-y-5">
-          {/* Avatar Icon */}
           <div className="w-16 h-16 mx-auto rounded-2xl bg-softMint border-3 border-forest-900 flex items-center justify-center text-3xl shadow-[3px_3px_0px_#12271f]">
             🧒🏽
           </div>
 
-          {/* Clean Multi-line Friendly Retro Tag (No broken double-oval) */}
           <div className="flex justify-center">
             <span className="bg-electricPink text-forest-950 font-syne text-[10px] sm:text-xs font-extrabold uppercase tracking-wide px-4 py-1.5 rounded-xl border-2 border-forest-900 inline-block leading-snug max-w-full">
               Child Privacy &amp; Register Access
@@ -78,12 +78,14 @@ export default function Children({ childrenList, setChildrenList }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
             <button
+              type="button"
               onClick={() => setRole('visitor')}
               className="w-full py-3.5 px-5 rounded-2xl bg-softMint hover:bg-sproutGreen text-forest-950 font-syne text-xs sm:text-sm font-extrabold border-3 border-forest-900 shadow-[4px_4px_0px_#12271f] transition-all cursor-pointer"
             >
               👀 I am a Visitor
             </button>
             <button
+              type="button"
               onClick={() => setRole('staff')}
               className="w-full py-3.5 px-5 rounded-2xl bg-electricPink hover:bg-pastelOrange text-forest-950 font-syne text-xs sm:text-sm font-extrabold border-3 border-forest-900 shadow-[4px_4px_0px_#12271f] transition-all cursor-pointer"
             >
@@ -97,8 +99,8 @@ export default function Children({ childrenList, setChildrenList }) {
 
   const filteredChildren =
     filterStatus === 'all'
-      ? childrenList
-      : childrenList.filter((c) => c.whoStatus === filterStatus);
+      ? activeChildren
+      : activeChildren.filter((c) => c.whoStatus === filterStatus);
 
   return (
     <div className="space-y-6 sm:space-y-8">
@@ -124,6 +126,7 @@ export default function Children({ childrenList, setChildrenList }) {
               ].map((f) => (
                 <button
                   key={f.id}
+                  type="button"
                   onClick={() => setFilterStatus(f.id)}
                   className={`px-3 py-1.5 rounded-xl font-syne text-xs font-extrabold border-2 border-forest-900 cursor-pointer ${
                     filterStatus === f.id
@@ -138,6 +141,7 @@ export default function Children({ childrenList, setChildrenList }) {
           )}
 
           <button
+            type="button"
             onClick={() => setRole(role === 'staff' ? 'visitor' : 'staff')}
             className="px-3.5 py-1.5 rounded-xl bg-pastelOrange text-forest-950 font-syne text-xs font-extrabold border-2 border-forest-900 cursor-pointer"
           >
@@ -156,7 +160,6 @@ export default function Children({ childrenList, setChildrenList }) {
               className="bg-paperWhite p-5 sm:p-6 rounded-2xl sm:rounded-3xl retro-border flex flex-col justify-between space-y-4"
             >
               <div className="space-y-3">
-                {/* Header Row */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="w-14 h-14 rounded-2xl bg-softMint border-2 border-forest-900 flex items-center justify-center text-3xl shrink-0">
@@ -210,6 +213,7 @@ export default function Children({ childrenList, setChildrenList }) {
                       </span>
                       <div className="flex gap-1.5">
                         <button
+                          type="button"
                           onClick={() => toggleAttendance(child.id, true)}
                           className={`px-3 py-1 rounded-lg text-xs font-syne font-extrabold border-2 border-forest-900 cursor-pointer ${
                             child.presentToday === true
@@ -220,6 +224,7 @@ export default function Children({ childrenList, setChildrenList }) {
                           Present
                         </button>
                         <button
+                          type="button"
                           onClick={() => toggleAttendance(child.id, false)}
                           className={`px-3 py-1 rounded-lg text-xs font-syne font-extrabold border-2 border-forest-900 cursor-pointer ${
                             child.presentToday === false
@@ -241,6 +246,7 @@ export default function Children({ childrenList, setChildrenList }) {
                         {['breakfast', 'lunch', 'snack'].map((meal) => (
                           <button
                             key={meal}
+                            type="button"
                             onClick={() => toggleMeal(child.id, meal)}
                             className={`px-2.5 py-1 rounded-lg text-[11px] font-syne font-extrabold capitalize border-2 border-forest-900 cursor-pointer ${
                               child.mealsToday[meal]
@@ -260,6 +266,7 @@ export default function Children({ childrenList, setChildrenList }) {
 
               {role === 'staff' && (
                 <button
+                  type="button"
                   onClick={() => setSelectedChild(child)}
                   className="w-full py-2.5 rounded-xl bg-forest-900 text-paperWhite font-syne text-xs font-extrabold hover:bg-forest-800 transition-colors cursor-pointer"
                 >
@@ -285,6 +292,7 @@ export default function Children({ childrenList, setChildrenList }) {
                 </p>
               </div>
               <button
+                type="button"
                 onClick={() => setSelectedChild(null)}
                 className="w-9 h-9 rounded-full bg-electricPink border-2 border-forest-900 font-extrabold cursor-pointer"
               >
