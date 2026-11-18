@@ -1,62 +1,55 @@
 @import "tailwindcss";
 
-
 @theme {
+  --color-forest-950: #0b1914;
+  --color-forest-900: #12271f;
+  --color-forest-800: #1b3a2e;
+  --color-paperWhite: #faf8f5;
+  --color-softMint: #d8f3dc;
+  --color-sproutGreen: #8ce99a;
+  --color-electricPink: #ff85a1;
+  --color-pastelOrange: #ffcca7;
+
   --font-syne: "Syne", sans-serif;
   --font-sans: "Plus Jakarta Sans", sans-serif;
   --font-editorial: "Cormorant Garamond", serif;
+}
 
-  --color-forest-800: #234739;
-  --color-forest-900: #1d3c30;
-  --color-forest-950: #12271f;
-  --color-electricPink: #ff70a6;
-  --color-sproutGreen: #a8db5c;
-  --color-pastelOrange: #ffcca7;
-  --color-softMint: #d8f3dc;
-  --color-paperWhite: #fcfbf7;
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: var(--color-paperWhite);
+  color: var(--color-forest-950);
 }
 
 .retro-border {
-  border: 3px solid #1d3c30;
-  box-shadow: 4px 4px 0px #1d3c30;
+  border: 3px solid #12271f;
+  box-shadow: 5px 5px 0px #12271f;
 }
 
 .retro-border-pink {
-  border: 3px solid #1d3c30;
-  box-shadow: 4px 4px 0px #ff70a6;
+  border: 3px solid #12271f;
+  box-shadow: 5px 5px 0px #ff85a1;
 }
 
-.retro-border-green {
-  border: 3px solid #1d3c30;
-  box-shadow: 4px 4px 0px #a8db5c;
-}
-
-/* Delicate Lace-Inspired Scalloped Frame for the Hero Box */
 .lace-box {
-  position: relative;
-  border: 3px solid #1d3c30;
-  box-shadow: 6px 6px 0px #1d3c30;
-  background-image: radial-gradient(circle at 12px 0, transparent 7px, #fcfbf7 8px);
+  border: 3px solid #12271f;
+  box-shadow: 6px 6px 0px #12271f;
 }
 
 .lace-trim {
-  background-image: radial-gradient(circle at 10px 10px, #fcfbf7 6px, transparent 7px);
+  background-image: radial-gradient(circle at 10px 6px, #faf8f5 5px, transparent 6px);
   background-size: 20px 12px;
-  background-repeat: repeat-x;
 }
 
-/* Heart-shaped photo cutout */
 .heart-clip {
-  clip-path: path("M 110 205 C 110 205 10 140 10 68 C 10 30 40 5 72 5 C 92 5 105 18 110 30 C 115 18 128 5 148 5 C 180 5 210 30 210 68 C 210 140 110 205 110 205 Z");
+  clip-path: path("M 110 202 C 110 202 10 136 10 66 C 10 28 40 6 72 6 C 92 6 105 18 110 30 C 115 18 128 6 148 6 C 180 6 210 28 210 66 C 210 136 110 202 110 202 Z");
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: 200%;
-  animation: marquee 25s linear infinite;
+@media (max-width: 639px) {
+  .heart-clip {
+    clip-path: path("M 95 175 C 95 175 8 118 8 57 C 8 24 34 5 62 5 C 80 5 91 15 95 26 C 99 15 110 5 128 5 C 156 5 182 24 182 57 C 182 118 95 175 95 175 Z");
+  }
 }
