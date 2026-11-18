@@ -21,6 +21,7 @@ export default function Navbar({ activeTab, onNavigate }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-3">
         {/* Brand Logo & Subtitle */}
         <button
+          type="button"
           onClick={() => handleSelect('home')}
           className="flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none group cursor-pointer min-w-0"
         >
@@ -47,6 +48,7 @@ export default function Navbar({ activeTab, onNavigate }) {
             return (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => handleSelect(item.id)}
                 className={`whitespace-nowrap px-4 py-1.5 rounded-full font-syne text-sm font-extrabold transition-all cursor-pointer ${
                   isActive
@@ -60,7 +62,7 @@ export default function Navbar({ activeTab, onNavigate }) {
           })}
         </nav>
 
-        {/* Mobile Three-Line Hamburger Button (Hidden on Desktop) */}
+        {/* Mobile Three-Line SVG Hamburger Button (Always renders on mobile) */}
         <button
           type="button"
           onClick={() => setMenuOpen((prev) => !prev)}
@@ -68,11 +70,19 @@ export default function Navbar({ activeTab, onNavigate }) {
           aria-expanded={menuOpen}
           className="md:hidden w-10 h-10 rounded-xl bg-sproutGreen text-forest-950 border-2 border-forest-950 shadow-[2px_2px_0px_#0b1914] flex items-center justify-center shrink-0 cursor-pointer active:translate-y-0.5 transition-transform"
         >
-          <i className={`fa-solid ${menuOpen ? 'fa-xmark' : 'fa-bars'} text-lg`}></i>
+          {menuOpen ? (
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round">
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          )}
         </button>
       </div>
 
-      {/* Mobile Dropdown Drawer */}
+      
       {menuOpen && (
         <nav
           aria-label="Mobile Navigation"
@@ -83,6 +93,7 @@ export default function Navbar({ activeTab, onNavigate }) {
             return (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => handleSelect(item.id)}
                 className={`w-full text-left px-4 py-2.5 rounded-xl font-syne text-sm font-extrabold transition-all flex items-center justify-between cursor-pointer ${
                   isActive
@@ -91,7 +102,7 @@ export default function Navbar({ activeTab, onNavigate }) {
                 }`}
               >
                 <span>{item.label}</span>
-                {isActive && <i className="fa-solid fa-arrow-right text-xs"></i>}
+                {isActive && <span>→</span>}
               </button>
             );
           })}
