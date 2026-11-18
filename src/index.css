@@ -24,6 +24,15 @@ body {
   color: var(--color-forest-950);
 }
 
+/* Hide horizontal scrollbar on compact mobile nav */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .retro-border {
   border: 3px solid #12271f;
   box-shadow: 5px 5px 0px #12271f;
